@@ -42,7 +42,6 @@ ul
 -->
 </style>
 
-<meta name=Template content="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
 </head>
 
 <body lang=EN-US link=blue vlink=purple>
@@ -105,16 +104,17 @@ ul
  </tr>
  <tr>
   <td width="15%" valign=top style='width:15.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-  <p>&lt;version&gt;</p>
+  <p>v1.1</p>
   </td>
   <td width="18%" valign=top style='width:18.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-  <p class=MsoNormal>&lt;date&gt;</p>
+  <p class=MsoNormal>09/19/10</p>
   </td>
   <td width="25%" valign=top style='width:25.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-  <p class=MsoNormal>&lt;who&gt;</p>
+  <p class=MsoNormal>Steven Nichols</p>
   </td>
   <td width="42%" valign=top style='width:42.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-  <p>&lt;comment&gt;</p>
+  <p>Updated Quality Assurance, Risk Management, Technical Progress Metrics,
+  Plan for tracking, control, and reporting progress</p>
   </td>
  </tr>
 </table>
@@ -129,7 +129,7 @@ ul
  <li class=MsoNormal>Eric Olsen : EOlsen@knights.ucf.edu : <a
      href="http://robbs.ath.cx/team1/wiki/Grumbanumba5/">Eric's Webpage</a> </li>
  <li class=MsoNormal>Steven Nichols : steven.nichols@knights.ucf.edu : <a
-     href="http://robbs.ath.cx/team1/wiki/Steven">Steven's Webpage</a></li>
+     href="http://robbs.ath.cx/team1/wiki/Steven">Steven’s Webpage</a></li>
  <li class=MsoNormal>...</li>
 </ul>
 
@@ -394,9 +394,17 @@ your text for background information&gt;</p>
 
 <p><a name=QA><b>Quality Assurance</b></a></p>
 
-<p style='margin-left:1.0in'>&lt;What QA activities will your group do and when
-will each activity occur? ... Who is responsible for making sure this occurs?
-How will the results be reported?&gt;</p>
+<p style='margin-left:1.0in'>Developers shall be responsible for testing the
+functionality of their own modules and are encouraged to do so as they write
+them through techniques such as Unit Tests and Integration tests. New modules
+should be tested against sample data and be free of major issues before being
+committed to the version control system.</p>
+
+<p style='margin-left:1.0in'>Developers are responsible for making sure their
+modules work, but may coordinate among themselves to QA each other’s modules if
+they so desire. Negative test results should be reported through the Issues
+tracker on GitHub which is integrated with source control. Subsequent positive
+results should be reported by marking the Issue as resolved.</p>
 
 <div class=MsoNormal align=center style='text-align:center'>
 
@@ -406,10 +414,43 @@ How will the results be reported?&gt;</p>
 
 <p><a name=RiskMgmt><b>Risk Management</b></a></p>
 
-<p style='margin-left:.5in'>&lt;Identify potential risks for this project. For
-each risk, how will you manage the risk? . Note: it is expected that this
-information will be at a high-level at the beginning of the project and will be
-updated monthly to provide more detail.&gt;</p>
+<p style='margin-left:1.0in'><b>Group member decides to drop class</b><br>
+The workload assigned to the member will be split up among the remaining
+students. Some students may have to re-learn information that was known only to
+the member who is leaving</p>
+
+<p style='margin-left:1.0in'><b>A group member’s computer breaks<br>
+</b>Since documents and source code will always be stored in the repository on
+a remote machine, the loss of data should be minimal. That unlucky group member
+will need to get their computer fixed ASAP and recreate any changes they made
+between the last commit and the computer failure.</p>
+
+<p style='margin-left:1.0in'><b>The source control site goes down<br>
+</b>Since the source control system we are using is open source, we can install
+the software one of the servers that group members have access to and easily
+recreate the repository from the most recent copy between all group members.</p>
+
+<p style='margin-left:1.0in'><b>The wiki goes down<br>
+</b>The worst case scenario is that all the personal web pages are lost along
+with the information they contained. We would have to start a new Wiki on
+another server and accept that the individual progress logs are lost. The
+project would be able to proceed, but our logs would be incomplete.</p>
+
+<p style='margin-left:1.0in'><b>The chosen programming language is incompatible
+with the system design<br>
+</b>The sooner this is discovered the better. Best case, we find a serious flaw
+immediate after starting to code and are forced to fall back to another
+language. We would lose a little bit of time porting the code to a new language
+setting our efforts back by a day or so. In  a worst case scenario, the flaw
+isn’t discovered until near the end of the project. In this case we would keep
+most of the project in the current language and port only those modules which
+had to be written in another language. </p>
+
+<p style='margin-left:1.0in'><b>Someone accidentally types “import skynet” and
+the project becomes self-aware<br>
+</b>This is one of the downsides to using Python as the primary language. The
+danger can be somewhat mitigated by always adding
+“thisAlgorithmBecomingSkynetCost = 999999999999” to all genetic algorithms.</p>
 
 <div class=MsoNormal align=center style='text-align:center'>
 
@@ -440,8 +481,6 @@ important activities and dependencies are evident. Estimated durations of
 activities and the critical path should be included. See your text for
 discussion and example PERT charts.&gt;</p>
 
-<p style='margin-left:1.0in'><b>&nbsp;</b></p>
-
 <div class=MsoNormal align=center style='text-align:center'>
 
 <hr size=2 width="100%" align=center>
@@ -450,21 +489,40 @@ discussion and example PERT charts.&gt;</p>
 
 <p><a name=TechnicalProgress><b>Technical Progress Metrics</b></a></p>
 
-<p style='margin-left:1.0in'>&lt;You must estimate and track your technical
-progress using appropriate metrics for each phase of your project. What is a
-useful metric for each phase of your project? For example, for requirements
-phase, the total number of requirements, the number of requirements changes,
-the number of TBDs, ... For OO analysis and design, you might want to count UML
-diagrams completed. For detailed design and code, you might want to count
-packages, classes, methods. You will also want to think about other technical
-metrics such as: memory usage, execution speed, size of various documents,
-complexity of code (using any of the complexity metrics), ... These can help in
-planning and in tracking your project work.&gt;</p>
+<p style='margin-left:1.0in'><b>Requirements phase<br>
+</b>In the requirements phase, we will use the number of documents completed
+verses the number of documents to be submitted to judge the current progress. This
+metric is easy to collect and interpret and should be sufficient.</p>
 
-<p style='margin-left:1.0in'>&lt;Choose your metrics carefully -- select
-metrics that will be easy to collect, easy to report, and easy to interpret.
-The goal is to give management insight into the progress and risks of your
-project.&gt;</p>
+<p style='margin-left:1.0in'><b>Analysis phase<br>
+</b>In the analysis phase, we will track the number of modules that have been
+specified. The most natural approach would be to count the number of completed UML
+diagrams. This metric can be used to track progress from week to week but will
+be insufficient to measure how close the analysis phase is to completion. For
+that, we will need individuals to estimate how many diagrams remain.</p>
+
+<p style='margin-left:1.0in'><b>Design phase<br>
+</b>Lines of Code (LoC) -- This metric is easy to collected and report. It is
+useful if interpreted correctly. The change in LoC from week to week will allow
+the project leader to get a sense of when the low hanging fruit in the design
+begins to be exhausted. As the programmers are forced to tackle more difficult
+functions, their weekly LoC will decrease and may even be negative if entire
+functions need to be re-written in light of new information.</p>
+
+<p style='margin-left:1.0in'>Number of Functions (NoF) -- A more useful,
+through slightly more difficult to collect, metric, the NoF should give an
+indication of the number of tasks that have been completed as each function
+should be simple bock of code corresponding to a single task. <br>
+<br>
+Number of Integrated Modules (NoIM) – This metric is focused on how many modules
+have been tested and are known to work together vs the number of modules
+remaining to be integrated. This metric will only become useful as the project
+nears the final stages.<br>
+<br>
+Number of Bugs Squashed (NoBS) – This metric is more about keeping programmers
+encouraged than tracking actual progress. Humans have a tendency to forget how
+far they have come, and so this metric can remind them of the gains which have
+been made.</p>
 
 <div class=MsoNormal align=center style='text-align:center'>
 
@@ -475,26 +533,24 @@ project.&gt;</p>
 <p><a name=TrackPlan></a><b>Plan for tracking, control, and reporting</b> <b>of
 progress</b></p>
 
-<p style='margin-left:.5in'>&lt;What data to collect; when to collect it; how
-and when to interpret it; how and when to report it. For example, the following
-would suffice: </p>
+<p style='margin-left:1.0in'>Each team member will post weekly updates to their
+individual pages detailing their status, any issues or problems they are
+working to address, and their individual activity log. Reporting of progress
+will be automated as much as possible to free team members to focus on writing
+software/documentation.</p>
 
-<p style='margin-left:1.0in'>&quot;At a minimum, each team member will post the
-following information weekly: individual time and activity log, individual
-status information, individual issues and problems, and individual defect log. </p>
+<p style='margin-left:1.0in'>Each week the project manager will read the
+individual logs, collected automated progress reports and examine the work
+completed. Based on these results the project manager will take corrective
+action if necessary.</p>
 
-<p style='margin-left:1.0in'>Each week, the project manager will: read and
-analyze the logs; examine the technical content of the work done to date;
-examine the technical progress metrics; consider the QA results; reassess the
-potential project risks; and take corrective action if necessary. </p>
+<p style='margin-left:1.0in'>The project manager will issue a revised Project
+Management Report every two weeks which will include a brief, ~1 sentence
+description of the project status, a brief description of any planned changes
+to the project, an updated graph of the technical progress metric (planned vs. actual)
+for the previous two weeks and an updated PERT chart. </p>
 
-<p style='margin-left:1.0in'>The project manager will issue a Project
-Management Report on the schedule as indicated in the deliverables section
-above. At a minimum, the Project Management Report will be generated every two
-weeks and will include the following information: 1 sentence description of
-overall status, 1 or 2 sentence of any planned changes to the project plan,
-graph of planned vs actual time, graph of planned vs actual for each technical
-progress metric, updated PERT chart.&quot;</p>
+<p style='margin-left:1.0in'>&nbsp;</p>
 
 <div class=MsoNormal align=center style='text-align:center'>
 
@@ -508,9 +564,11 @@ href="mailto:GWalton@mail.ucf.edu"><span style='font-size:10.0pt'>GWalton@mail.u
 style='font-size:10.0pt'>) on Aug 30, 1999 and last updated Aug 15, 2000</span></p>
 
 <p align=center style='margin-left:1.5in;text-align:center'><span
-style='font-size:10.0pt'>This page last modified by &lt;your name here&gt;
-(&lt;your e-mail address text and link here&gt; ) on &lt;modification date
-here&gt;</span></p>
+style='font-size:10.0pt'>This page last modified by Steven Nichols (</span><a
+href="mailto:steven.nichols@knights.ucf.edu"><span style='font-size:10.0pt'>steven.nichols@knights.ucf.edu</span></a><span
+style='font-size:10.0pt'> : </span><a
+href="http://robbs.ath.cx/team1/wiki/Steven"><span style='font-size:10.0pt'>http://robbs.ath.cx/team1/wiki/Steven</span></a><span
+style='font-size:10.0pt'> ) on September 19, 2010</span></p>
 
 </div>
 
