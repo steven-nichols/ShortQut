@@ -82,7 +82,7 @@
 </table>
 <p>&nbsp;</p>
 <p><font size="2">Team Name: Team1</font></p>
-<p><font size="2">Team Members:</font></p>
+<p><font size="2">Team Members: </font></p>
 <ul>
   <li><font size="2"><a href="http://robbs.ath.cx/team1/wiki/Robbs">Robby Ronk</a> - rjr@knights.ucf.edu</font></li>
   <li><font size="2">&lt;person2 and that person's e-mail and web page -- name and links&gt; </font></li>
@@ -127,31 +127,23 @@
 <HR>
 <p></P>
 <P><font size="2">SECTION 2: <A NAME="TestEnvironment">Description of Test Environment</A></font></P>
-<P><font size="2">&lt; What is the hardware and software in the environment in 
-  which you will run the test? Who will be the testers (actual users? developers? 
-  ...) Will this test environment be the same environment in which the software 
-  will operate? If not, how does it differ?&gt;</font></P>
+<P><font size="2"> The testing environment will first be simulated on
+the developers computers. Then the developers will test the software
+on its intended platform, a netbook with an external GPS device. Once
+the bug finding slows down, users will test the software on a
+netbook. </font></P>
 <P>
 <HR>
 <p></P>
 <P><font size="2">SECTION 3: <A NAME="StoppingCriteria">Stopping Criteria</A></font></P>
-<P><font size="2">&lt;How will you determine when to stop testing the software 
-  and either deliver it or send it "back" to development? Things to consider: 
-  </font></P>
 <UL>
-  <LI><font size="2">If you find errors during testing: Will you stop testing 
-    each time you find a problem and immediately fix that problem? Will you continue 
-    testing and recording errors until you find a fatal error that won't allow 
-    you to continue? Will you test for 2 hours and then fix whatever errors have 
-    been found? Will you test for 2 hours and then hold a group meeting to decide 
-    whether to continue to test? ... </font></LI>
-  <LI><font size="2">If you find no errors during testing: How many test cases 
-    of what sort will you run before you declare the software to be "good enough 
-    to deliver"? </font></LI>
-  <LI><font size="2">How do you define "good enough to deliver"? Does it require 
-    that there are no known errors? Or no known errors other than cosmetic errors? 
-    Or no known errors other than cosmetic errors and errors for which there is 
-    a well-defined workaround? .... &gt;</font></LI>
+  <LI><font size="2">Testing will continue until a fatal error. All
+errors will be recorded and sent to the team members responsible for
+fixing them along with relevant information. Test cases will be
+created when possible.
+</font></LI>
+  <LI><font size="2">All test cases must pass before the software is
+ready for release. </font></LI>
 </UL>
 <P>&nbsp;</P>
 <P>
@@ -179,6 +171,67 @@
   <LI><font size="2">Expected Results: &lt;If the test executes correctly, what 
     will be the result -- i.e., exactly what will the output look like; what will 
     be the resulting data in the database, ...&gt;</font></LI>
+</UL>
+<UL>
+  <LI><font size="2">Test Objective: Verifying the Interpreter</font></LI>
+  <LI><font size="2">Test Description: Feeds the Interpreter a set of
+  data sourced from the GPS. The source data will come from a program
+  which records raw data from the GPS.</font></LI>
+  <LI><font size="2">Test Conditions: Python toplevel.</font></LI>
+  <LI><font size="2">Expected Results: Latitude, Longitude points.</font></LI>
+</UL>
+<UL>
+  <LI><font size="2">Test Objective: Verify the Point Filter</font></LI>
+  <LI><font size="2">Test Description: The GPS isn't perfectly
+  accurate and so the Map Factory needs to filter the input from the
+  Interpreter. This test will feed the Map Factory with a set of data
+  from the Interpreter with some wild points. </font></LI>
+  <LI><font size="2">Test Conditions: Python toplevel.</font></LI>
+  <LI><font size="2">Expected Results: Points with outliers removed.</font></LI>
+</UL>
+<UL>
+  <LI><font size="2">Test Objective: Map Points to Roads</font></LI>
+  <LI><font size="2">Test Description: Filtered points won't be
+  exactly on roads and need to be mapped to roads.</font></LI>
+  <LI><font size="2">Test Conditions: Python toplevel.</font></LI>
+  <LI><font size="2">Expected Results: Correct roads.</font></LI>
+</UL>
+<UL>
+  <LI><font size="2">Test Objective: Test Intersections</font></LI>
+  <LI><font size="2">Test Description: The Map Factory is responsible
+  for roads AND intersections. This test will test going across an
+  intersection and making right and left turns.</font></LI>
+  <LI><font size="2">Test Conditions: Python toplevel.</font></LI>
+  <LI><font size="2">Expected Results: Correct road segments.</font></LI>
+</UL>
+<UL>
+  <LI><font size="2">Test Objective: Find time taken of Road
+  Segment</font></LI>
+  <LI><font size="2">Test Description: The Map Factory determines the
+  time taken across road segments.</font></LI>
+  <LI><font size="2">Test Conditions: Python toplevel.</font></LI>
+  <LI><font size="2">Expected Results: The time taken within a %5
+  tolerance.</font></LI>
+</UL>
+<UL>
+  <LI><font size="2">Test Objective: Testing A*</font></LI>
+  <LI><font size="2">Test Description: A* is a pathfinding algorithm
+  and should be tested for correctness. Many different unit tests will
+  be run on A*. </font></LI>
+  <LI><font size="2">Test Conditions: Python toplevel.</font></LI>
+  <LI><font size="2">Expected Results: Uniquely correct paths. </font></LI>
+</UL>
+<UL>
+  <LI><font size="2">Test Objective: </font></LI>
+  <LI><font size="2">Test Description: </font></LI>
+  <LI><font size="2">Test Conditions: </font></LI>
+  <LI><font size="2">Expected Results: </font></LI>
+</UL>
+<UL>
+  <LI><font size="2">Test Objective: </font></LI>
+  <LI><font size="2">Test Description: </font></LI>
+  <LI><font size="2">Test Conditions: </font></LI>
+  <LI><font size="2">Expected Results: </font></LI>
 </UL>
 <P>&nbsp;</P>
 <P>
