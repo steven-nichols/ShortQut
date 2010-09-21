@@ -206,7 +206,12 @@ Assignments</a></p>
 
 <p><a name=Overview><b>Project Overview</b></a></p>
 
-<p>&lt;include a 1-paragraph description of what the project is all about&gt;</p>
+<p>Team 1, Inc. will implement a Global Positioning System, nicknamed Shortqut, which will 
+have the ability to learn about and adapt to road congestion from collected data as well as 
+suggest the quickest route given the provided data. Shortqut will be run via any portable 
+computer connected with a USB GPS device and the database in which the archived data is stored. 
+Unlike ordinary GPS devices, Shortqut will have stored documentation of traffic patterns from 
+which it will be able to derive the optimal route.</p>
 
 <div class=MsoNormal align=center style='text-align:center'>
 
@@ -248,22 +253,27 @@ this section</p>
 
 <p><a name=Organization><b>Project Team Organization</b></a></p>
 
-<p style='margin-left:1.0in'>&lt;include a short description of your
-organization and any organizational issues (a paragraph or two will usually
-suffice). See your text for background information. Things to includes are:</p>
-
-<ul type=disc>
- <ul type=circle>
-  <li class=MsoNormal>&lt;Who is in the group? &gt; </li>
-  <li class=MsoNormal>&lt;Who is responsible for what -- will one of you assume
-      the role of project manager? will each artifact have a manager? will
-      functional chunks of the work have separate managers? who is responsible
-      for the group web site? ... &gt; </li>
-  <li class=MsoNormal>&lt;How will you handle communication -- scheduled
-      face-to-face meetings, on-line meetings, ... ?&gt; </li>
-  <li class=MsoNormal>&lt;any other information that you want to include&gt;</li>
- </ul>
+<p style='margin-left:1.0in'>Members of this development group include Robby Ronk, 
+Eric Olsen, Steven Nichols, Dana Orlando, Richie Manis, and Laura Barton. The developers 
+communicate through weekly face-to-face meetings, group emails, a Trac site, and GitHub. 
+Ronk leads the team in the role of project manager. He oversees the development of each 
+functional part as determined by the group as well as maintains the group web site. Each 
+group member is responsible for a different section of the project that, when completed, 
+will work together seamlessly. The following is a list of functional chunks, their managers 
+and a brief description of the responsibilities involved with that part:
+<ul style='margin-left:1.0in' type=circle>
+	<li><b>Interpreter/Retriever: </b> Manis will manage the communication between the GPS device 
+		and the Shortqut program.</li>
+	<li><b>Map Factory:</b> Olsen will be responsible for the creation of the map and plotting of data
+		 </li>
+	<li><b>Route Factory:</b> The generation of the top 3 quickest routes using the A* algorithm will be 
+		overseen by Nichols.</li>
+	<li><b>The Stiqy (i.e. GUI):</b> Orlando will compile the user interface which will display the 
+		map and the suggested routes as well as use text-to-speech to convey the directions.</li>
+	<li><b>Database Communication:</b> Barton will develop the database tables and procedures needed 
+		to pass data between both the local and server databases and the local database and Shortqut.</li>
 </ul>
+</p>
 
 <div class=MsoNormal align=center style='text-align:center'>
 
@@ -271,7 +281,7 @@ suffice). See your text for background information. Things to includes are:</p>
 
 </div>
 
-<p><a name=Deliverables><b>Deliverables </b></a>&lt;fill in the table&gt;</p>
+<p><a name=Deliverables><b>Deliverables </b></a></p>
 
 <table class=MsoNormalTable border=1 cellspacing=1 cellpadding=0 width=426
  style='width:319.5pt'>
@@ -280,86 +290,99 @@ suffice). See your text for background information. Things to includes are:</p>
   <p><b>Artifact</b> </p>
   </td>
   <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-  <p><b>Due Dates</b> &lt;some will have multiple deliveries&gt; </p>
+  <p><b>Due Dates</b></p>
   </td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Meeting Minutes </p>
   </td>
-  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'></td>
+  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+	Due 2 days after each meeting</td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Individual Logs </p>
   </td>
-  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'></td>
+  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+	Due every Friday</td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Group Project Management Reports </p>
   </td>
-  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'></td>
+  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+	Due biweekly on Fridays</td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>ConOps </p>
   </td>
-  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'></td>
+  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+	Due 9/21 to Project Manager<br/>Due 9/23 for Deliverables I</td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Project Plan </p>
   </td>
-  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'></td>
+  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+	Due 9/21 to Project Manager<br/>Due 9/23 for Deliverables I</td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>SRS </p>
   </td>
-  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'></td>
+  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+	Due 9/21 to Project Manager<br/>Due 9/23 for Deliverables I</td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>High-Level Design </p>
   </td>
-  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'></td>
+  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+	Due 10/24 to Project Manager<br/>Due 10/26 for Deliverables II</td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Detailed Design </p>
   </td>
-  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'></td>
+  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+	Due 10/24 to Project Manager<br/>Due 10/26 for Deliverables II</td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Test Plan </p>
   </td>
-  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'></td>
+  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+	Due 9/21 to Project Manager<br/>Due 9/23 for Deliverables I</td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>User's Manual </p>
   </td>
-  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'></td>
+  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+	Due 11/28 to Project Manager<br/>Due 11/30 for Final Presentation</td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Final Test Results </p>
   </td>
-  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'></td>
+  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+	Due 11/28 to Project Manager<br/>Due 11/30 for Final Presentation</td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Source, Executable, Build Instructions </p>
   </td>
-  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'></td>
+  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+	Due 11/28 to Project Manager<br/>Due 11/30 for Final Presentation</td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Project Legacy </p>
   </td>
-  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'></td>
+  <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+	Due 11/28 to Project Manager<br/>Due 11/30 for Final Presentation</td>
  </tr>
 </table>
 
@@ -416,7 +439,7 @@ should be tested against sample data and be free of major issues before being
 committed to the version control system.</p>
 
 <p style='margin-left:1.0in'>Developers are responsible for making sure their
-modules work, but may coordinate among themselves to QA each other’s modules if
+modules work, but may coordinate among themselves to QA each other?s modules if
 they so desire. Negative test results should be reported through the Issues
 tracker on GitHub which is integrated with source control. Subsequent positive
 results should be reported by marking the Issue as resolved.</p>
@@ -434,7 +457,7 @@ The workload assigned to the member will be split up among the remaining
 students. Some students may have to re-learn information that was known only to
 the member who is leaving</p>
 
-<p style='margin-left:1.0in'><b>A group member’s computer breaks<br>
+<p style='margin-left:1.0in'><b>A group member?s computer breaks<br>
 </b>Since documents and source code will always be stored in the repository on
 a remote machine, the loss of data should be minimal. That unlucky group member
 will need to get their computer fixed ASAP and recreate any changes they made
@@ -456,16 +479,16 @@ with the system design<br>
 </b>The sooner this is discovered the better. Best case, we find a serious flaw
 immediate after starting to code and are forced to fall back to another
 language. We would lose a little bit of time porting the code to a new language
-setting our efforts back by a day or so. In  a worst case scenario, the flaw
-isn’t discovered until near the end of the project. In this case we would keep
+setting our efforts back by a day or so. In? a worst case scenario, the flaw
+isn?t discovered until near the end of the project. In this case we would keep
 most of the project in the current language and port only those modules which
 had to be written in another language. </p>
 
-<p style='margin-left:1.0in'><b>Someone accidentally types “import skynet” and
+<p style='margin-left:1.0in'><b>Someone accidentally types ?import skynet? and
 the project becomes self-aware<br>
 </b>This is one of the downsides to using Python as the primary language. The
 danger can be somewhat mitigated by always adding
-“thisAlgorithmBecomingSkynetCost = 999999999999” to all genetic algorithms.</p>
+?thisAlgorithmBecomingSkynetCost = 999999999999? to all genetic algorithms.</p>
 
 <div class=MsoNormal align=center style='text-align:center'>
 
@@ -533,12 +556,12 @@ through slightly more difficult to collect, metric, the NoF should give an
 indication of the number of tasks that have been completed as each function
 should be simple bock of code corresponding to a single task. <br>
 <br>
-Number of Integrated Modules (NoIM) – This metric is focused on how many modules
+Number of Integrated Modules (NoIM) ? This metric is focused on how many modules
 have been tested and are known to work together vs the number of modules
 remaining to be integrated. This metric will only become useful as the project
 nears the final stages.<br>
 <br>
-Number of Bugs Squashed (NoBS) – This metric is more about keeping programmers
+Number of Bugs Squashed (NoBS) ? This metric is more about keeping programmers
 encouraged than tracking actual progress. Humans have a tendency to forget how
 far they have come, and so this metric can remind them of the gains which have
 been made.</p>
