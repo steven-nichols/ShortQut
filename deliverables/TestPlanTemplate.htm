@@ -54,29 +54,14 @@
       <p><font size="2">v1.0 </font>
     </td>
     <td width="18%" valign="TOP"> 
-      <p><font size="2">&lt;date here&gt; </font>
+      <p><font size="2">9/20/10 </font>
     </td>
     <td width="25%" valign="TOP"> 
-      <p><font size="2">&lt;who&gt; </font>
+      <p><font size="2">Robby Ronk </font>
     </td>
     <td width="42%" valign="TOP"> 
-      <p><font size="2">&lt;put comment to summarize the changes made in this 
-        version&gt;</font></p>
-    </td>
-  </tr>
-  <tr> 
-    <td width="15%" valign="TOP"> 
-      <p><font size="2">... </font>
-    </td>
-    <td width="18%" valign="TOP"> 
-      <p>&nbsp; 
-    </td>
-    <td width="25%" valign="TOP"> 
-      <p>&nbsp; 
-    </td>
-    <td width="42%" valign="TOP"> 
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
+      <p><font size="2">Created Sections 1, 2, 3 and 4. Added 8 test
+      cases.</font></p>
     </td>
   </tr>
 </table>
@@ -84,9 +69,12 @@
 <p><font size="2">Team Name: Team1</font></p>
 <p><font size="2">Team Members: </font></p>
 <ul>
-  <li><font size="2"><a href="http://robbs.ath.cx/team1/wiki/Robbs">Robby Ronk</a> - rjr@knights.ucf.edu</font></li>
-  <li><font size="2">&lt;person2 and that person's e-mail and web page -- name and links&gt; </font></li>
-  <li><font size="2">...</font></li>
+  <li><font size="2"><a href="http://robbs.ath.cx/team1/wiki/Robbs">Robby Ronk</a> - <a href="mailto:rjr@knights.ucf.edu">rjr@knights.ucf.edu</a></font></li>
+  <li><font size="2"><a href="http://robbs.ath.cx/team1/wiki/Robbs">Richie Manis</a> - <a href="mailto:r@knights.ucf.edu">r@knights.ucf.edu</a></font></li>
+  <li><font size="2"><a href="http://robbs.ath.cx/team1/wiki/Robbs">Steven Nichols</a> - <a href="mailto:steven.nichols@knights.ucf.edu">steven.nichols@knights.ucf.edu</a></font></li>
+  <li><font size="2"><a href="http://robbs.ath.cx/team1/wiki/Dana">Dana Orlando</a> - <a href="mailto:kittymage@knights.ucf.edu">kittymage@knights.ucf.edu</a></font></li>
+  <li><font size="2"><a href="http://robbs.ath.cx/team1/wiki/EricOlsen">Eric Olsen</a> - <a href="mailto:eolsen@knights.ucf.edu">eolsen@knights.ucf.edu</a></font></li>
+  <li><font size="2"><a href="http://robbs.ath.cx/team1/wiki/Laura">Laura Barton</a> - <a href="mailto:lbarton@knights.ucf.edu">lbarton@knights.ucf.edu</a></font></li>
 </ul>
 <p>
 <hr align="LEFT" width="90%">
@@ -108,19 +96,19 @@
 <p></P>
 <P><font size="2">SECTION 1: Introduction</font></P>
 <UL>
-  <LI><font size="2"><A NAME="OverallObjective">Overall Objective for Software 
-    Test Activity:</A> </font></LI>
-  <LI><font size="2"> The software test is expected to find bugs and ineffective processes 
-    before the software is released. The software test is also expected to find as many bugs as 
-    possible every time it is performed.</font></LI>
+  <LI><font size="2"><A NAME="OverallObjective">Overall Objective for
+    Software Test Activity:</A> </font></LI>
+  <LI><font size="2"> The software test is expected to find bugs and
+    ineffective processes before the software is released. The
+    software test is also expected to find as many bugs as possible
+    every time it is performed. As many tests as possible are to be
+    automated.</font></LI>
 </UL>
 <P><font size="2"><A NAME="ReferenceDocuments">Reference Documents:</A></font></P>
 <UL>
-  <LI><font size="2">Concept of Operations &lt;include link here&gt; </font></LI>
-  <LI><font size="2">Project Plan &lt;include link here&gt; </font></LI>
-  <LI><font size="2">SRS &lt;include link here&gt; </font></LI>
-  <LI><font size="2">&lt;any other relevant documents; include full reference 
-    information or link&gt;</font></LI>
+  <LI><font size="2"><a href="ConOpsTemplate.html">Concept of Operations</a></font></LI>
+  <LI><font size="2"><a href="ProjectPlanTemplate.html">Project Plan</a></font></LI>
+  <LI><font size="2"><a href="SRSTemplate.html">SRS</a></font></LI>
 </UL>
 <P>&nbsp;</P>
 <P>
@@ -128,9 +116,13 @@
 <p></P>
 <P><font size="2">SECTION 2: <A NAME="TestEnvironment">Description of Test Environment</A></font></P>
 <P><font size="2"> The testing environment will first be simulated on
-the developers computers. Then the developers will test the software
-on its intended platform, a netbook with an external GPS device. Once
-the bug finding slows down, users will test the software on a
+the developers computers. Python has an environment called the
+toplevel, also known in other languages as a REPL (Read Eval Print
+Loop). The toplevel allows for interactive development which speeds up
+production and reveals bugs quickly. After the toplevel, the
+developers will test the software on its intended platform, which is a
+netbook with an external GPS device. When the developers are confident
+that all major bugs are eliminated, users will test the software on a
 netbook. </font></P>
 <P>
 <HR>
@@ -139,8 +131,8 @@ netbook. </font></P>
 <UL>
   <LI><font size="2">Testing will continue until a fatal error. All
 errors will be recorded and sent to the team members responsible for
-fixing them along with relevant information. Test cases will be
-created when possible.
+solving the issue along with relevant information. Unit test cases
+will be created when possible.
 </font></LI>
   <LI><font size="2">All test cases must pass before the software is
 ready for release. </font></LI>
@@ -214,24 +206,30 @@ ready for release. </font></LI>
   tolerance.</font></LI>
 </UL>
 <UL>
-  <LI><font size="2">Test Objective: Testing A*</font></LI>
+  <LI><font size="2">Test Objective: Test A*</font></LI>
   <LI><font size="2">Test Description: A* is a pathfinding algorithm
-  and should be tested for correctness. Many different unit tests will
+  and should be tested for correctness. Many (10 or more) different unit tests will
   be run on A*. </font></LI>
   <LI><font size="2">Test Conditions: Python toplevel.</font></LI>
   <LI><font size="2">Expected Results: Uniquely correct paths. </font></LI>
 </UL>
 <UL>
-  <LI><font size="2">Test Objective: </font></LI>
-  <LI><font size="2">Test Description: </font></LI>
-  <LI><font size="2">Test Conditions: </font></LI>
-  <LI><font size="2">Expected Results: </font></LI>
+  <LI><font size="2">Test Objective: Test Route Generation</font></LI>
+  <LI><font size="2">Test Description: This will test the ability of
+  the Route Factory to generate a route using actual roads, using
+  predetermined costs for the roads. Several (3 or more) different
+  tests of this function will be created.</font></LI>
+  <LI><font size="2">Test Conditions: Python toplevel.</font></LI>
+  <LI><font size="2">Expected Results: Uniquely correct routes. </font></LI>
 </UL>
 <UL>
-  <LI><font size="2">Test Objective: </font></LI>
-  <LI><font size="2">Test Description: </font></LI>
-  <LI><font size="2">Test Conditions: </font></LI>
-  <LI><font size="2">Expected Results: </font></LI>
+  <LI><font size="2">Test Objective: GUI Route Display</font></LI>
+  <LI><font size="2">Test Description: The GUI will need to display a
+  route to the user in a visually intuitive way. The GUI will be fed a
+  predetermined route and it will be expected to highlight it on the
+  screen.</font></LI>
+  <LI><font size="2">Test Conditions: GUI on its own. No other modules necessary. </font></LI>
+  <LI><font size="2">Expected Results: A highlighted route.</font></LI>
 </UL>
 <P>&nbsp;</P>
 <P>
