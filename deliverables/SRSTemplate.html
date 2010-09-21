@@ -215,7 +215,13 @@ Eric's Webpage</a> </LI>
 
 </U><UL><U>
 
-</u><LI>&lt;one paragraph to identify the software produced(s) to be produced.. Refer the reader to the reference documents for more information&gt;</LI></UL>
+</u><LI>A GPS navigation program that learns about rush hour travel times 
+and reroutes accordingly. An external USB GPS will connect to a netbook 
+which will run the program. The software will store the time of travel 
+and the time of day for each road segment and store it in a local database.
+There will also be an internet accessible central database; this database
+will hold all information from all users and allow the users to sync to
+it and use other user's data as well.</LI></UL>
 
 
 
@@ -241,7 +247,10 @@ Eric's Webpage</a> </LI>
 
 </u>
   <LI>&lt;You do not have to repeat the standards included in the project plan. 
-    This is where you cite any standards that are specific to the system requirements.&gt;</LI>
+    This is where you cite any standards that are specific to the system requirements.&gt;
+    </LI>
+    <LI>A USB GPS unit</LI>
+    <LI>a laptop with Python 2.6</LI>
 
   </UL>
 
@@ -253,7 +262,8 @@ Eric's Webpage</a> </LI>
 
 <U>
 
-</u><LI>&lt;include any that are needed to read this document (or "None" if document is self-explanatory and no acronyms or abbreviations will be used&gt;</LI></UL>
+</u><LI>USB: Universal Serial Bus</LI>
+    <LI>GPS: Global Positioning System</LI></UL>
 
 
 
@@ -267,9 +277,16 @@ Eric's Webpage</a> </LI>
 
 </U><UL><U>
 
-</u><LI>&lt;List all the assumptions the developers are making. For example: assumptions about other systems this product will interface with; assumptions about the technological environment in which the product will operate (how much memory, what type of processor, ...); assumptions about availability and capability of COTS, GOTS, or other re-used products, ...&gt; </LI>
+</u><LI>We assume the GPS will connect to the computer via USB
+<LI></LI> GPS and computer will communicate using the areNMEA 0183 protocol
+<LI>The computer must have at least 1 GB of memory and a 2Ghz CPU.</LI> 
 
-<LI>...</LI></UL>
+<LI>&lt;List all the assumptions the developers are making. For example:
+ assumptions about other systems this product will interface with; assumptions
+  about the technological environment in which the product will operate 
+  (how much memory, what type of processor, ...); assumptions about availability 
+  and capability of COTS, GOTS, or other re-used products, ...&gt; </LI>
+</LI></UL>
 
 
 
@@ -279,7 +296,15 @@ Eric's Webpage</a> </LI>
 
 </U><UL><U>
 
-</u><LI>&lt;A stakeholder is anyone who has an interest in the software to be developed. For example, the customer, the various classes of users, applicable regulatory agencies, ... List each category of stakeholder and give a phrase or a sentence to describe their interest or concerns&gt;</LI></UL>
+</u><LI>All the members of our team</LI>
+    <LI>The client (aka the TA)</LI>
+    <LI>The professor, Dr. Turgut</LI>
+    <LI>GPS navigation companies (Magellan, Garmin)</LI>
+    <LI>Geoff Huston</LI>
+<LI>&lt;A stakeholder is anyone who has an interest in the software to be
+ developed. For example, the customer, the various classes of users, applicable
+  regulatory agencies, ... List each category of stakeholder and give a phrase 
+  or a sentence to describe their interest or concerns&gt;</LI></UL>
 
 
 
@@ -299,7 +324,7 @@ Eric's Webpage</a> </LI>
 
 <TR><TD WIDTH="24%" VALIGN="TOP">
 
-<P><FONT SIZE=2>Event Name</FONT></TD>
+<FONT SIZE=2><P>Event Name</FONT></TD>
 
 <TD WIDTH="22%" VALIGN="TOP">
 
@@ -317,55 +342,74 @@ Eric's Webpage</a> </LI>
 
 <TR><TD WIDTH="24%" VALIGN="TOP">
 
-<FONT SIZE=2><P>&nbsp;</FONT></TD>
+<FONT SIZE=2><P>Receive GPS data</FONT></TD>
 
 <TD WIDTH="22%" VALIGN="TOP">
 
-<FONT SIZE=2><P>&nbsp;</FONT></TD>
+<FONT SIZE=2>USB GPS sends data to the computer</FONT></TD>
 
 <TD WIDTH="27%" VALIGN="TOP">
 
-<FONT SIZE=2><P>&nbsp;</FONT></TD>
+<FONT SIZE=2>Update location and route</FONT></FONT></TD>
 
 <TD WIDTH="28%" VALIGN="TOP">
 
-<FONT SIZE=2><P>&nbsp;</FONT></TD>
+<FONT SIZE=2>Filter data, update local database, reroute if necessary</FONT></TD>
 
 </TR>
 
 <TR><TD WIDTH="24%" VALIGN="TOP">
 
-<FONT SIZE=2><P>&nbsp;</FONT></TD>
+<FONT SIZE=2><P>Create Route</FONT></TD>
 
 <TD WIDTH="22%" VALIGN="TOP">
 
-<FONT SIZE=2><P>&nbsp;</FONT></TD>
+<FONT SIZE=2>User chooses to find route</FONT></TD>
 
 <TD WIDTH="27%" VALIGN="TOP">
 
-<FONT SIZE=2><P>&nbsp;</FONT></TD>
+<FONT SIZE=2>Route(s) is displayed on the GUI</FONT></TD>
 
 <TD WIDTH="28%" VALIGN="TOP">
 
-<FONT SIZE=2><P>&nbsp;</FONT></TD>
+<FONT SIZE=2>A* calculates best routes based on data</FONT></TD>
 
 </TR>
 
 <TR><TD WIDTH="24%" VALIGN="TOP">
 
-<FONT SIZE=2><P>&nbsp;</FONT></TD>
+<FONT SIZE=2><P>Zoom In/Out</FONT></TD>
 
 <TD WIDTH="22%" VALIGN="TOP">
 
-<FONT SIZE=2><P>&nbsp;</FONT></TD>
+<FONT SIZE=2>User pushes zoom in or out button</FONT></TD>
 
 <TD WIDTH="27%" VALIGN="TOP">
 
-<FONT SIZE=2><P>&nbsp;</FONT></TD>
+<FONT SIZE=2>View of map zooms in or out depending on input</FONT></TD>
 
 <TD WIDTH="28%" VALIGN="TOP">
 
-<FONT SIZE=2><P>&nbsp;</FONT></TD>
+<FONT SIZE=2>View distance is changed to reflect the user's input</FONT></TD>
+
+</TR>
+
+<TR><TD WIDTH="24%" VALIGN="TOP">
+
+<FONT SIZE=2><P>Synchronize Database</FONT></TD>
+
+<TD WIDTH="22%" VALIGN="TOP">
+
+<FONT SIZE=2>User connects local program to the central database</FONT></TD>
+
+<TD WIDTH="27%" VALIGN="TOP">
+
+<FONT SIZE=2>Display "Update Complete"</FONT></TD>
+
+<TD WIDTH="28%" VALIGN="TOP">
+
+<FONT SIZE=2>Add user's local data to central database and 
+update user's data from central database </FONT></TD>
 
 </TR>
 
@@ -749,3 +793,10 @@ Eric's Webpage</a> </LI>
 </BODY>
 
 </HTML>
+
+Powered by the Dedicated Servers and
+Cloud Computing of Rackspace Hosting®
+BlogSupportTrainingJob BoardShopContactAPIStatus
+© 2010 GitHub Inc. All rights reserved.Terms of ServicePrivacySecurity
+EnglishDeutschFrançais日本語Português (BR)Русский中文
+See all available languages
