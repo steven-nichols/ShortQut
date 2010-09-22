@@ -10,6 +10,9 @@
  @font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
  /* Style Definitions */
  p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
@@ -27,12 +30,22 @@ p
 	margin-left:0in;
 	font-size:12.0pt;
 	font-family:"Times New Roman","serif";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
 p.msochpdefault, li.msochpdefault, div.msochpdefault
 	{mso-style-name:msochpdefault;
 	margin-right:0in;
 	margin-left:0in;
 	font-size:10.0pt;
 	font-family:"Times New Roman","serif";}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
 .MsoChpDefault
 	{font-size:10.0pt;}
 @page Section1
@@ -211,7 +224,8 @@ ul
      - rjr@knights.ucf.edu</li>
  <li class=MsoNormal><a href="http://robbs.ath.cx/team1/wiki/Richie">Richie
      Manis</a> - r@knights.ucf.edu</li>
- <li class=MsoNormal><a href="http;//robbs.ath.cx/team1/wiki/Dana">Dana Orlando</a> - kittymage@knights.ucf.edu</li>
+ <li class=MsoNormal><a href="http://robbs.ath.cx/team1/wiki/Dana">Dana Orlando</a>
+     - kittymage@knights.ucf.edu</li>
  <li class=MsoNormal><a href="http://robbs.ath.cx/team1/wiki/Laura">Laura
      Barton</a> - lbarton@knights.ucf.edu</li>
 </ul>
@@ -222,9 +236,13 @@ ul
 
 <div>
 
+<div>
+
 <div class=MsoNormal>
 
 <hr size=2 width="90%" align=left>
+
+</div>
 
 </div>
 
@@ -293,7 +311,9 @@ it will be able to derive the optimal route.</p>
 <ul style='margin-top:0in' type=disc>
  <li class=MsoNormal><a href="ConOpsTemplate.html">Concept of Operations</a></li>
 </ul>
-<br/>
+
+<p class=MsoNormal>&nbsp;</p>
+
 <div class=MsoNormal align=center style='text-align:center'>
 
 <hr size=2 width="100%" align=center>
@@ -308,7 +328,9 @@ it will be able to derive the optimal route.</p>
  <li class=MsoNormal><a href="#TechnicalProgress">Artifact Size Metric Standard</a>
      </li>
 </ul>
-<br/>
+
+<p class=MsoNormal>&nbsp;</p>
+
 <div class=MsoNormal align=center style='text-align:center'>
 
 <hr size=2 width="100%" align=center>
@@ -319,8 +341,8 @@ it will be able to derive the optimal route.</p>
 
 <p style='margin-left:1.0in'>Members of this development group include Robby
 Ronk, Eric Olsen, Steven Nichols, Dana Orlando, Richie Manis, and Laura Barton.
-The developers communicate through weekly face-to-face meetings, group emails, a
-Trac site, and GitHub. Ronk leads the team in the role of project manager. He
+The developers communicate through weekly face-to-face meetings, group emails,
+a Trac site, and GitHub. Ronk leads the team in the role of project manager. He
 oversees the development of each module as determined by the group as well as
 maintains the group web site. Each group member is responsible for a different
 section of the project that, when completed, shall work together seamlessly.
@@ -328,32 +350,36 @@ The following is a list of functional modules, their managers and a brief
 description of the responsibilities involved with that part: </p>
 
 <p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
-style='font-size:10.0pt;font-family:"Courier New"'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
-</span></span><b>Interpreter/Retriever: </b>Manis shall manage the
-communication between the GPS device and the ShortQut program.</p>
+style='font-size:10.0pt;font-family:"Courier New"'>o</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp; </span><b>Interpreter/Retriever: </b>Manis
+shall manage the communication between the GPS device and the ShortQut program.</p>
 
 <p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
-style='font-size:10.0pt;font-family:"Courier New"'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
-</span></span><b>Map Factory:</b> Olsen shall be responsible for the creation
-of the map and plotting of data </p>
+style='font-size:10.0pt;font-family:"Courier New"'>o</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp; </span><b>Map Factory:</b> Olsen
+shall be responsible for the creation of the map and plotting of data </p>
 
 <p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
-style='font-size:10.0pt;font-family:"Courier New"'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
-</span></span><b>Route Factory:</b> The generation of the top 3 quickest routes
-using the A* algorithm shall be overseen by Nichols.</p>
+style='font-size:10.0pt;font-family:"Courier New"'>o</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp; </span><b>Route Factory:</b> The
+generation of the top 3 quickest routes using the A* algorithm shall be
+overseen by Nichols.</p>
 
 <p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
-style='font-size:10.0pt;font-family:"Courier New"'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
-</span></span><b>The Stiqy (i.e. GUI):</b> Orlando shall compile the user
-interface which will display the map and the suggested routes as well as use
-text-to-speech to convey the directions.</p>
+style='font-size:10.0pt;font-family:"Courier New"'>o</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp; </span><b>The Stiqy (i.e. GUI):</b>
+Orlando shall compile the user interface which will display the map and the
+suggested routes as well as use text-to-speech to convey the directions.</p>
 
 <p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
-style='font-size:10.0pt;font-family:"Courier New"'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
-</span></span><b>Database Communication:</b> Barton shall develop the database
-tables and procedures needed to pass data between both the local and server
-databases and the local database and ShortQut.</p>
-<br/>
+style='font-size:10.0pt;font-family:"Courier New"'>o</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp; </span><b>Database Communication:</b>
+Barton shall develop the database tables and procedures needed to pass data
+between both the local and server databases and the local database and
+ShortQut.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
 <div class=MsoNormal align=center style='text-align:center'>
 
 <hr size=2 width="100%" align=center>
@@ -498,14 +524,18 @@ databases and the local database and ShortQut.</p>
 
 <p><a name=Process><b>Software Life Cycle Process</b></a></p>
 
-<p style='margin-left:1.0in'>Team 1, Inc. developers will follow the V life cycle process
-model. The V model incorporates the same steps that the group will take in
-developing the product while also allowing for the verification of design
-decisions and validation of requirements, which the developers shall monitor
-during the testing phases, as is indicated in the V model diagram below.<br/>
-</p>
-<img src="vmodel.jpg" border=1 style="margin-left:1.0in" alt="V Model Diagram"/><br/>
-<br/>
+<p style='margin-left:1.0in'>Team 1, Inc. developers will follow the V life
+cycle process model. The V model incorporates the same steps that the group
+will take in developing the product while also allowing for the verification of
+design decisions and validation of requirements, which the developers shall
+monitor during the testing phases, as is indicated in the V model diagram
+below.</p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><img border=0 width=686
+height=424
+src="../../../../../../home/steven/Desktop/ShortQut/deliverables/vmodel.jpg"
+alt="V Model Diagram"></p>
+
 <div class=MsoNormal align=center style='text-align:center'>
 
 <hr size=2 width="100%" align=center>
@@ -611,11 +641,12 @@ isn't discovered until near the end of the project. In this case we would keep
 most of the project in the current language and port only those modules which
 had to be written in another language. </p>
 
-<p style='margin-left:1.0in'><b>Someone accidentally types "import skynet" and
-the project becomes self-aware<br>
+<p style='margin-left:1.0in'><b>Someone accidentally types &quot;import
+skynet&quot; and the project becomes self-aware<br>
 </b>This is one of the downsides to using Python as the primary language. The
-danger can be somewhat mitigated by always adding "thisAlgorithmBecomingSkynetCost
-= 999999999999" to all genetic algorithms.</p>
+danger can be somewhat mitigated by always adding
+&quot;thisAlgorithmBecomingSkynetCost = 999999999999&quot; to all genetic
+algorithms.</p>
 
 <div class=MsoNormal align=center style='text-align:center'>
 
@@ -645,6 +676,7 @@ responsible for making sure each module is completed.</p>
   Work Time</b></p>
   </td>
  </tr>
+ <tr>
   <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
   <p class=MsoNormal><i>Design Development</i></p>
   </td>
@@ -654,7 +686,11 @@ responsible for making sure each module is completed.</p>
   <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
   <p class=MsoNormal>10 hours</p>
   </td>
+ </tr>
  <tr>
+  <td style='padding:0in 0in 0in 0in'></td>
+  <td style='border:none;padding:0in 0in 0in 0in'></td>
+  <td style='border:none;padding:0in 0in 0in 0in'></td>
  </tr>
  <tr>
   <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
@@ -767,8 +803,11 @@ responsible for making sure each module is completed.</p>
 
 <p><a name=PERT><b>PERT Chart </b></a></p>
 
-<img src="pertchart.jpg" alt="PERT Chart" style='margin-left:1.0in' border=1 /><br/>
-<br/>
+<p class=MsoNormal style='margin-bottom:12.0pt'><img border=0 width=626
+height=525
+src="../../../../../../home/steven/Desktop/ShortQut/deliverables/pertchart.jpg"
+alt="PERT Chart"></p>
+
 <div class=MsoNormal align=center style='text-align:center'>
 
 <hr size=2 width="100%" align=center>
@@ -803,8 +842,8 @@ in the LoC metric.</p>
 
 <p style='margin-left:1.0in'>Number of Functions (NoF) -- A more useful,
 through slightly more difficult to collect, metric, the NoF should give an
-indication of the number of tasks that have been completed as each function should
-be simple bock of code corresponding to a single task. <br>
+indication of the number of tasks that have been completed as each function
+should be simple bock of code corresponding to a single task. <br>
 <br>
 Number of Integrated Modules (NoIM) -- This metric is focused on how many
 modules have been tested and are known to work together vs the number of
@@ -854,11 +893,8 @@ href="mailto:GWalton@mail.ucf.edu"><span style='font-size:10.0pt'>GWalton@mail.u
 style='font-size:10.0pt'>) on Aug 30, 1999 and last updated Aug 15, 2000</span></p>
 
 <p align=center style='margin-left:1.5in;text-align:center'><span
-style='font-size:10.0pt'>This page last modified by Steven Nichols (</span><a
-href="mailto:steven.nichols@knights.ucf.edu"><span style='font-size:10.0pt'>steven.nichols@knights.ucf.edu</span></a><span
-style='font-size:10.0pt'> : </span><a
-href="http://robbs.ath.cx/team1/wiki/Steven"><span style='font-size:10.0pt'>http://robbs.ath.cx/team1/wiki/Steven</span></a><span
-style='font-size:10.0pt'> ) on September 19, 2010</span></p>
+style='font-size:10.0pt'>This page last modified by Laura Barton on September
+21, 2010</span></p>
 
 </div>
 

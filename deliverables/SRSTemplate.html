@@ -1,1514 +1,1260 @@
-<HTML>
+<html>
 
-<HEAD>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>SRS Template</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
 
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta name=Template content="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+</head>
 
-<META NAME="Generator" CONTENT="Microsoft Word 97">
+<body lang=EN-US link=blue vlink=purple>
 
-<TITLE>SRS Template</TITLE>
+<div class=Section1>
 
-<META NAME="Template" CONTENT="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+<p align=center style='text-align:center'><b><span style='font-size:10.0pt'>ShortQut</span></b></p>
 
-</HEAD>
+<p align=center style='text-align:center'><b><span style='font-size:10.0pt'>Software
+Requirements Specification</span></b></p>
 
-<BODY LINK="#0000ff" VLINK="#800080">
+<p align=center style='text-align:center'><b><span style='font-size:10.0pt'>COP4331C,
+Fall, 2010</span></b></p>
 
+<p align=center style='text-align:center'><b>&nbsp;</b></p>
 
+<p><span style='font-size:10.0pt'>Modification history: </span></p>
 
-<B><FONT SIZE=5>
-<P ALIGN="CENTER"><font size="2">ShortQut</font></P>
-<P ALIGN="CENTER"><font size="2">Software Requirements Specification</font></P>
-</FONT></B> 
-<p align="center"><font size="2"><b>COP4331C, Fall, 2010</b></font></p>
-<B>
-<P ALIGN="CENTER">&nbsp;</P>
-</B><FONT SIZE=2> 
-<P>Modification history: </P>
-</FONT> 
-<table BORDER cellspacing=1 cellpadding=7 width=711>how 
-  <tr> 
-    <td width="15%" valign="TOP"> 
-      <p><font size=2>Version</font> 
-    </td>
-    <td width="18%" valign="TOP"> 
-      <p><font size="2">Date </font>
-    </td>
-    <td width="25%" valign="TOP"> 
-      <p><font size="2">Who </font>
-    </td>
-    <td width="42%" valign="TOP"> 
-      <p><font size="2">Comment </font>
-    </td>
-  </tr>
-  <tr> 
-    <td width="15%" valign="TOP"> 
-      <p><font size="2">v0.0 </font>
-    </td>
-    <td width="18%" valign="TOP"> 
-      <p><font size="2">8/15/00</font>
-    </td>
-    <td width="25%" valign="TOP"> 
-      <p><font size="2">G. H. Walton </font>
-    </td>
-    <td width="42%" valign="TOP"> 
-      <p><font size="2">Template </font>
-    </td>
-  </tr>
-  <tr> 
-    <td width="15%" valign="TOP"> 
-      <p><font size="2">v1.0 </font>
-    </td>
-    <td width="18%" valign="TOP"> 
-      <p><font size="2">9/16/10 </font>
-    </td>
-    <td width="25%" valign="TOP"> 
-      <p><font size="2">Eric Olsen </font>
-    </td>
-    <td width="42%" valign="TOP"> 
-      <p><font size="2"> Filled in information up to the body/contents.</font></p>
-    </td>
-  </tr>
-  <tr> 
-    <td width="15%" valign="TOP"> 
-      <p><font size="2">v2.0 </font>
-    </td>
-    <td width="18%" valign="TOP"> 
-      <p><font size="2">9/21/10 </font>
-    </td>
-    <td width="25%" valign="TOP"> 
-      <p><font size="2">Eric Olsen </font>
-    </td>
-    <td width="42%" valign="TOP"> 
-      <p><font size="2"> All done through Section 2</font></p>
-    </td>
-  </tr>
-  <tr> 
-    <td width="15%" valign="TOP"> 
-      <p><font size="2">v3.0 </font>
-    </td>
-    <td width="18%" valign="TOP"> 
-      <p><font size="2">9/21/10 </font>
-    </td>
-    <td width="25%" valign="TOP"> 
-      <p><font size="2">Charles Manis</font>
-    </td>
-    <td width="42%" valign="TOP"> 
-      <p><font size="2">Added the requirements tables for Section 3</font></p>
-    </td>
-  </tr>
-  <tr> 
-    <td width="15%" valign="TOP"> 
-      <p><font size="2">... </font>
-    </td>
-    <td width="18%" valign="TOP"> 
-      <p><font size="2"></font> 
-    </td>
-    <td width="25%" valign="TOP"> 
-      <p><font size="2"></font> 
-    </td>
-    <td width="42%" valign="TOP"> 
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-    </td>
-  </tr>
+<table class=MsoNormalTable border=1 cellspacing=1 cellpadding=0 width=711
+ style='width:533.25pt'>
+ <tr>
+  <td width="15%" valign=top style='width:15.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p>how <span style='font-size:10.0pt'>Version</span> </p>
+  </td>
+  <td width="18%" valign=top style='width:18.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Date </span></p>
+  </td>
+  <td width="25%" valign=top style='width:25.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Who </span></p>
+  </td>
+  <td width="42%" valign=top style='width:42.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Comment </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width="15%" valign=top style='width:15.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>v0.0 </span></p>
+  </td>
+  <td width="18%" valign=top style='width:18.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>8/15/00</span> </p>
+  </td>
+  <td width="25%" valign=top style='width:25.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>G. H. Walton </span></p>
+  </td>
+  <td width="42%" valign=top style='width:42.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Template </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width="15%" valign=top style='width:15.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>v1.0 </span></p>
+  </td>
+  <td width="18%" valign=top style='width:18.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>9/16/10 </span></p>
+  </td>
+  <td width="25%" valign=top style='width:25.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Eric Olsen </span></p>
+  </td>
+  <td width="42%" valign=top style='width:42.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Filled in information up to the
+  body/contents.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width="15%" valign=top style='width:15.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>v2.0 </span></p>
+  </td>
+  <td width="18%" valign=top style='width:18.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>9/21/10 </span></p>
+  </td>
+  <td width="25%" valign=top style='width:25.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Eric Olsen </span></p>
+  </td>
+  <td width="42%" valign=top style='width:42.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>All done through Section 2</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width="15%" valign=top style='width:15.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>v3.0 </span></p>
+  </td>
+  <td width="18%" valign=top style='width:18.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>9/21/10 </span></p>
+  </td>
+  <td width="25%" valign=top style='width:25.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Charles Manis</span> </p>
+  </td>
+  <td width="42%" valign=top style='width:42.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Added the requirements tables for Section 3</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width="15%" valign=top style='width:15.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>v3.1</span></p>
+  </td>
+  <td width="18%" valign=top style='width:18.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>9/22/10</span></p>
+  </td>
+  <td width="25%" valign=top style='width:25.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>Steven Nichols</span></p>
+  </td>
+  <td width="42%" valign=top style='width:42.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Updated team members and added links to
+  Reference Documents section</span></p>
+  </td>
+ </tr>
 </table>
-<FONT SIZE=2>
-<P>&nbsp; </P>
-</FONT> <FONT SIZE=2>
-<P>Team Name: Team 1 Inc</P>
 
-<P>Team Members:</P>
-
-
-
-<UL>
-
-<LI>Eric Olsen : EOlsen@knights.ucf.edu : <a href="http://robbs.ath.cx/team1/wiki/Grumbanumba5/">
-Eric's Webpage</a> </LI>
-
-<LI>&lt;person2 and that person's e-mail and web page&gt; </LI>
-
-<LI>...</LI></UL>
-
-
-
-</FONT><P><HR ALIGN="LEFT" WIDTH="90%"><p></P>
-
-<FONT SIZE=2><P ALIGN="CENTER">Contents of this Document</P></FONT><DIR><FONT SIZE=2>
-
-
-
-</font><P><A HREF="#Introduction"><FONT SIZE=2>Introduction</FONT></A></P></DIR>
-
-
-
-
-
-<UL>
-
-
-
-<UL>
-
-<LI><A HREF="#SoftwareToBeProduced"><FONT SIZE=2>Software to be Produced</FONT></A> </LI>
-
-<LI><A HREF="#ReferenceDocuments"><FONT SIZE=2>Reference Documents</FONT></A> </LI>
-
-<LI><A HREF="#ApplicableStandards"><FONT SIZE=2>Applicable Standards</FONT></A></LI></UL>
-
-</UL>
-
-<DIR>
-
-
-
-<P><A HREF="#DefinitionsAcronymsAbbreviations"><FONT SIZE=2>Definition, Acronyms, and Abbreviations</FONT></A></P>
-
-<P><A HREF="#ProductOverview"><FONT SIZE=2>Product Overview</FONT></A></P></DIR>
-
-
-
-
-
-<UL>
-
-
-
-<UL>
-
-<LI><A HREF="#Assumptions"><FONT SIZE=2>Assumptions</FONT></A> </LI>
-
-<LI><A HREF="#StakeHolders"><FONT SIZE=2>Stakeholders</FONT></A> </LI>
-
-<LI><A HREF="#EventTable"><FONT SIZE=2>Event Table</FONT></A> </LI>
-
-<LI><A HREF="#UseCaseDiagram"><FONT SIZE=2>Use Case Diagram</FONT></A> </LI>
-
-<LI><A HREF="#UseCaseDescriptions"><FONT SIZE=2>Use Case Descriptions</FONT></A></LI></UL>
-
-</UL>
-
-<DIR>
-
-
-
-<P><A HREF="#SpecificRequirements"><FONT SIZE=2>Specific Requirements</FONT></A></P></DIR>
-
-
-
-
-
-<UL>
-
-
-
-<UL>
-
-<LI><A HREF="#FunctionalRequirements"><FONT SIZE=2>Functional Requirements</FONT></A> </LI>
-
-<LI><A HREF="#InterfaceRequirements"><FONT SIZE=2>Interface Requirements</FONT></A> </LI>
-
-<LI><A HREF="#PhysicalEnvironmentRequirements"><FONT SIZE=2>Physical Environment Requirements</FONT></A> </LI>
-
-<LI><A HREF="#UsersHumanFactorsRequirements"><FONT SIZE=2>Users and Human Factors Requirements</FONT></A> </LI>
-
-<LI><A HREF="#DocumentationRequirements"><FONT SIZE=2>Documentation Requirements</FONT></A> </LI>
-
-<LI><A HREF="#DataRequirements"><FONT SIZE=2>Data Requirements</FONT></A> </LI>
-
-<LI><A HREF="#ResourceRequirements"><FONT SIZE=2>Resource Requirements</FONT></A> </LI>
-
-<LI><A HREF="#SecurityRequirements"><FONT SIZE=2>Security Requirements</FONT></A> </LI>
-
-<LI><A HREF="#QualityAssuranceRequirements"><FONT SIZE=2>Quality Assurance Requirements</FONT></A></LI></UL>
-
-</UL>
-
-<DIR>
-
-
-
-<P><A HREF="#SupportingMaterials"><FONT SIZE=2>Supporting Material</FONT></A></P></DIR>
-
-
-
-<P><HR><p></P>
-
-<FONT SIZE=2><P><A NAME="Introduction">SECTION 1: Introduction</A></P>
-
-<U><P><A NAME="SoftwareToBeProduced">Software to be Produced:</A></P>
-
-
-
-</U><UL><U>
-
-</u><LI>A GPS navigation program that learns about rush hour travel times 
-and reroutes accordingly. An external USB GPS will connect to a netbook 
-which will run the program. The software will store the time of travel 
-and the time of day for each road segment and store it in a local database.
-There will also be an internet accessible central database; this database
-will hold all information from all users and allow the users to sync to
-it and use other user's data as well.</LI></UL>
-
-
-
-<U><P><A NAME="ReferenceDocuments">Reference Documents:</A></P>
-
-
-
-</U><UL><U>
-
-</u><LI>Concept of Operations &lt;include link here&gt; </LI>
-
-<LI>Project Plan &lt;include link here&gt; </LI>
-
-<LI>&lt;any other relevant documents; include full reference information or link&gt;</LI></UL>
-
-
-
-<U><P><A NAME="ApplicableStandards">Applicable Standards:</A></P>
-
-
-
-</U><UL><U>
-
-</u><LI>A USB GPS unit</LI>
-    <LI>a laptop with Python 2.6</LI>
-
-  </UL>
-
-
-
-<P>&nbsp;<A NAME="DefinitionsAcronymsAbbreviations"></A><U>Definitions, Acronyms, and Abbreviations:</u></P><UL>
-
-
-
-<U>
-
-</u><LI>USB: Universal Serial Bus</LI>
-    <LI>GPS: Global Positioning System</LI></UL>
-
-
-
-</FONT><P><HR><p></P>
-
-<FONT SIZE=2><P>SECTION 2: <A NAME="ProductOverview">Product Overview</A></P>
-
-<U><P><A NAME="Assumptions">Assumptions:</A></P>
-
-
-
-</U><UL><U>
-
-</u><LI>We assume the GPS will connect to the computer via USB
-<LI>GPS and computer will communicate using the areNMEA 0183 protocol</LI>
-<LI>The computer must have at least 1 GB of memory and a 2Ghz CPU.</LI> 
-</LI></UL>
-
-
-
-<U><P><A NAME="StakeHolders">Stakeholders:</A></P>
-
-
-
-</U><UL><U>
-
-</u><LI>All the members of our team</LI>
-    <LI>The client (aka the TA)</LI>
-    <LI>The professor, Dr. Turgut</LI>
-    <LI>GPS navigation companies (Magellan, Garmin)</LI>
-    <LI>Geoff Huston</LI></UL>
-
-
-
-<U><P><A NAME="EventTable">Event Table</A>:</P>
-
-
-
-</U>
-
-</FONT>
-
-<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=715>
-
-<TR><TD WIDTH="24%" VALIGN="TOP">
-
-<FONT SIZE=2><P>Event Name</FONT></TD>
-
-<TD WIDTH="22%" VALIGN="TOP">
-
-<FONT SIZE=2><P>External Stimuli</FONT></TD>
-
-<TD WIDTH="27%" VALIGN="TOP">
-
-<FONT SIZE=2><P>External Responses</FONT></TD>
-
-<TD WIDTH="28%" VALIGN="TOP">
-
-<FONT SIZE=2><P>Internal data and state</FONT></TD>
-
-</TR>
-
-<TR><TD WIDTH="24%" VALIGN="TOP">
-
-<FONT SIZE=2><P>Receive GPS data</FONT></TD>
-
-<TD WIDTH="22%" VALIGN="TOP">
-
-<FONT SIZE=2>USB GPS sends data to the computer</FONT></TD>
-
-<TD WIDTH="27%" VALIGN="TOP">
-
-<FONT SIZE=2>Update location and route</FONT></FONT></TD>
-
-<TD WIDTH="28%" VALIGN="TOP">
-
-<FONT SIZE=2>Filter data, update local database, reroute if necessary</FONT></TD>
-
-</TR>
-
-<TR><TD WIDTH="24%" VALIGN="TOP">
-
-<FONT SIZE=2><P>Create Route</FONT></TD>
-
-<TD WIDTH="22%" VALIGN="TOP">
-
-<FONT SIZE=2>User chooses to find route</FONT></TD>
-
-<TD WIDTH="27%" VALIGN="TOP">
-
-<FONT SIZE=2>Route(s) is displayed on the GUI</FONT></TD>
-
-<TD WIDTH="28%" VALIGN="TOP">
-
-<FONT SIZE=2>A* calculates best routes based on data</FONT></TD>
-
-</TR>
-
-<TR><TD WIDTH="24%" VALIGN="TOP">
-
-<FONT SIZE=2><P>Zoom In/Out</FONT></TD>
-
-<TD WIDTH="22%" VALIGN="TOP">
-
-<FONT SIZE=2>User pushes zoom in or out button</FONT></TD>
-
-<TD WIDTH="27%" VALIGN="TOP">
-
-<FONT SIZE=2>View of map zooms in or out depending on input</FONT></TD>
-
-<TD WIDTH="28%" VALIGN="TOP">
-
-<FONT SIZE=2>View distance is changed to reflect the user's input</FONT></TD>
-
-</TR>
-
-<TR><TD WIDTH="24%" VALIGN="TOP">
-
-<FONT SIZE=2><P>Synchronize Database</FONT></TD>
-
-<TD WIDTH="22%" VALIGN="TOP">
-
-<FONT SIZE=2>User connects local program to the central database</FONT></TD>
-
-<TD WIDTH="27%" VALIGN="TOP">
-
-<FONT SIZE=2>Display "Update Complete"</FONT></TD>
-
-<TD WIDTH="28%" VALIGN="TOP">
-
-<FONT SIZE=2>Add user's local data to central database and 
-update user's data from central database </FONT></TD>
-
-</TR>
-
-</TABLE>
-
-
-
-<FONT SIZE=2><P>&nbsp;</P>
-
-<U><P><A NAME="UseCaseDiagram">Use Case Diagram:</A></P>
-
-
-
-</U><UL><U>
-
-</u>
-<a href="http://s29.photobucket.com/albums/c300/Grumbanumba5/random/?action=view&current=UseCasediag.jpg"
- target="_blank"><img src="http://i29.photobucket.com/albums/c300/Grumbanumba5/random/UseCasediag.jpg" 
- border="0" alt="Photobucket"></a>
-</UL>
- 
-
-
-
-<U><P><A NAME="UseCaseDescriptions">Use Case Descriptions:</A></P>
-
-
-
-</U><UL><U>
-
-</u>
-  <LI>Select Destination - The user will use the GUI to select a destination
-  to navigate to</LI>
-  <LI>Display Route(s) - After A* calculates the best route(s), they are 
-  highlighted on the map in the GUI</LI>
-  <LI>Give Current Location - The Map Factory sends the GPS's current coordinates
-  to the Route Factory</LI>
-  <LI>Give Required Data - The Local Database must give the road segments,
-  time traveled, and travel duration to the Route Factory</LI>
-  <LI>Filter Data - The Map Factory takes the raw data from the Interpreter
-  and filters out outliers and other unwanted information</LI>
-  <LI>Store Travel Data - The Map Factory takes the filtered data
-  and stores the relevant information in the Local Database</LI>
-  <LI>Synchronize with Database - When the user connects to the Central 
-  Database, the data collected in the Local Database must be uploaded
-  to the Central Database, and the Local Database must be updated
-  with any new data from the Central Database
-  <LI>Send Data - The GPS must send the data to the Interpreter using the
-  areNMEA 0183 protocol</LI>
-</UL>
-
-
-</FONT><P><HR><p></P>
-
-<FONT SIZE=2>
-<P>
-<A NAME="SpecificRequirements">SECTION 3: Specific Requirements</A>
-</P>
-<DIR>
-<DIR>
-<P>&lt;The following template must be used for <U>each</U> requirement: &gt;</P></DIR> </DIR> 
-</FONT>
-
-<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
-  <TR>
-    <TD VALIGN="TOP">
-      <P>
-	<FONT SIZE=2>
-	  No: &lt;unique requirement number&gt;
-	</FONT>
-      </P>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Statement: &lt;the "shall" statement of the requirement&gt;
-	</P>
-    </FONT></TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Source: &lt;source of the requirement&gt;
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>Dependency: &lt;list (with link) to each other requirement on which
-	  satisfaction of this requirement depends. (May be "None")&gt;
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP"> 
-      <FONT SIZE=2>
-	<P>
-	  Conflicts: &lt;list (with link) to each other
-	  requirements with which this requirement conflicts. (May be
-	  "None")&gt;
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Supporting Materials: &lt;list (with link) to
-	  supporting diagrams, lists, memos, etc.&gt;
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>Evaluation Method: &lt;How can you tell if the
-	  completed system satisfies this requirement? &gt;
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Revision History: &lt;who, when, what&gt;
-	</P>
-      </FONT>
-    </TD> 
-  </TR>
-</TABLE>
-
-<FONT SIZE=2><P>&nbsp;</P>
-
-<P><A NAME="FunctionalRequirements"><U>3.1 Functional Requirements</u>:</A></P>
-
-<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
-  <TR>
-    <TD VALIGN="TOP">
-      <P>
-	<FONT SIZE=2>
-	  <a name="GPSConnection">
-	    No: 1
-	  </a>
-	</FONT>
-      </P>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Statement: The software shall collect data from the GPS device.
-	</P>
-    </FONT></TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Source: The team.
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Dependency: None
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP"> 
-      <FONT SIZE=2>
-	<P>
-	  Conflicts: None
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Supporting Materials:
-	  <ul>
-	    <li>NMEA 0183</li>
-	    <li>Python serial interface library</li>
-	  </ul>
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Evaluation Method: Does the software know where on Earth it
-	  is and report an accurate location?
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Revision History: Charles Manis, 2010-09-21, added requirement
-	</P>
-      </FONT>
-    </TD> 
-  </TR>
-</TABLE>
-
-<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
-  <TR>
-    <TD VALIGN="TOP">
-      <P>
-	<FONT SIZE=2>
-	  No: <a name="RouteCalc">2</a>
-	</FONT>
-      </P>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Statement: The software shall calculate the fastest route
-	  from the current location to the target destination using
-	  A*.  Weights will be retreived from the database.
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Source: The team
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Dependency:
-	  <ul>
-	    <li><a href="#GPSConnection">The current location</a></li>
-	    <li><a href="#Destination">The target destination</a></li>
-	    <li><a href="#LocalDatabase">Local database connection</a></li>
-	  </ul>
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP"> 
-      <FONT SIZE=2>
-	<P>
-	  Conflicts: None
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Supporting Materials:
-	  <ul>
-	    <li><a href="#AStar">A* search algorithm</a></li>
-	  </ul>
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Evaluation Method: The software calculates the shortest path
-	  from the current location to the target.
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Revision History: Charles Manis, 2010-09-21, added requirement
-	</P>
-      </FONT>
-    </TD> 
-  </TR>
-</TABLE>
-
-
-<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
-  <TR>
-    <TD VALIGN="TOP">
-      <P>
-	<FONT SIZE=2>
-	  <a name="Destination">No: 3</a>
-	</FONT>
-      </P>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Statement: The software shall get the target destination
-	  from the user through the GUI interface.
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Source: The team
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Dependency:
-	  <ul>
-	    <li><a href="#GUI">GUI</a></li>
-	  </ul>
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP"> 
-      <FONT SIZE=2>
-	<P>
-	  Conflicts: None
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Supporting Materials:
-	  <ul>
-	    <li><a href="#">User interaction to get target</a></li>
-	  </ul>
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Evaluation Method: Can the user set the target destination?
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Revision History: Charles Manis, 2010-09-21, added requirement
-	</P>
-      </FONT>
-    </TD> 
-  </TR>
-</TABLE>
-
-<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
-  <TR>
-    <TD VALIGN="TOP">
-      <P>
-	<FONT SIZE=2>
-	  <a name="CenterMap">No: 4</a>
-	</FONT>
-      </P>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Statement: The software shall provide the user with a GUI
-	  centered on the current location with the ability to zoom,
-	  pan, and recenter the view.
-	</P>
-    </FONT></TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Source: The team
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Dependency:
-	  <ul>
-	    <li><a href="#GPSConnection">The current location</a></li>
-	    <li><a href="#GUI">GUI</a></li>
-	  </ul>
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP"> 
-      <FONT SIZE=2>
-	<P>
-	  Conflicts: None
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Supporting Materials:
-	  <ul>
-	    <li><a href="#">User interacting with the software</a></li>
-	  </ul>
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Evaluation Method: Does the software center the view?  Can
-	  the user pan?  Can the user zoom?  Can the user restore the
-	  view?
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Revision History: Charles Manis, 2010-09-21, added requirement
-	</P>
-      </FONT>
-    </TD> 
-  </TR>
-</TABLE>
-
-<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
-  <TR>
-    <TD VALIGN="TOP">
-      <P>
-	<FONT SIZE=2>
-	  <a name="SyncDB">No: 5</a>
-	</FONT>
-      </P>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Statement: The software shall synchronize the local database
-	  with the central database.
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Source: The team
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>Dependency: &lt;list (with link) to each other requirement on which
-	  satisfaction of this requirement depends. (May be "None")&gt;
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP"> 
-      <FONT SIZE=2>
-	<P>
-	  Conflicts: &lt;list (with link) to each other
-	  requirements with which this requirement conflicts. (May be
-	  "None")&gt;
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Supporting Materials:
-	  <ul>
-	    <li><a href="#">Database Interaction</a></li>
-	  </ul>
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Evaluation Method: Is the software aware of roads?  Does the
-	  software update the central database's tables?
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Revision History: Charles Manis, 2010-09-21, added requirement
-	</P>
-      </FONT>
-    </TD> 
-  </TR>
-</TABLE>
-
-<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
-  <TR>
-    <TD VALIGN="TOP">
-      <P>
-	<FONT SIZE=2>
-	  <a name="DetermineRoads">No: 6</a>
-	</FONT>
-      </P>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Statement: The software shall filter (removing outliers) the
-	  data from the GPS and determine the road it is on and how
-	  long it is taking, noting the current time.
-	</P>
-    </FONT></TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Source: The team
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Dependency:
-	  <ul>
-	    <li><a href="#GPSConnection">The current location</a></li>
-	    <li><a href="#LocalDB">Local Database</a></li>
-	  </ul>
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP"> 
-      <FONT SIZE=2>
-	<P>
-	  Conflicts: None
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Supporting Materials: &lt;list (with link) to
-	  supporting diagrams, lists, memos, etc.&gt;
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Evaluation Method: Does the software accurately display the
-	  road it is on?  Does the software correctly calculate speed?
-	  Does the software log travel time to the local database?
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Revision History: Charles Manis, 2010-09-21, added requirement
-	</P>
-      </FONT>
-    </TD> 
-  </TR>
-</TABLE>
-
-<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
-  <TR>
-    <TD VALIGN="TOP">
-      <P>
-	<FONT SIZE=2>
-	  <a name="TextToSpeech">No: 7</a>
-	</FONT>
-      </P>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Statement: The software shall speak directions on the route
-	  to the user using a text-to-speech interface.
-	</P>
-    </FONT></TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Source: The team
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Dependency:
-	  <ul>
-	    <li><a href="#RouteCalc">The next turn to make, from the
-		current route</a></li>
-	  </ul>
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP"> 
-      <FONT SIZE=2>
-	<P>
-	  Conflicts: None
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Supporting Materials:
-	  <ul>
-	    <li><a href="#">Text to speech</a></li>
-	  </ul>
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Evaluation Method: Does it talk?  Does it say the right things?
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Revision History: Charles Manis, 2010-09-21, added requirement
-	</P>
-      </FONT>
-    </TD> 
-  </TR>
-</TABLE>
-
-<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
-  <TR>
-    <TD VALIGN="TOP">
-      <P>
-	<FONT SIZE=2>
-	  <a name="GUI">No: 8</a>
-	</FONT>
-      </P>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Statement: The software shall display route(s) on the map
-	  with street names.
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Source: The team
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Dependency:
-	  <ul>
-	    <li><a href="#RouteCalc">Route calculation</a></li>
-	    <li><a href="#GPSConnection">The current location</a></li>
-	  </ul>
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP"> 
-      <FONT SIZE=2>
-	<P>
-	  Conflicts: None
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Supporting Materials: &lt;list (with link) to
-	  supporting diagrams, lists, memos, etc.&gt;
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Evaluation Method: Are route(s) displayed on the map as well
-	  as street names?
-	</P>
-      </FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP">
-      <FONT SIZE=2>
-	<P>
-	  Revision History: Charles Manis, 2010-09-21, added requirement
-	</P>
-      </FONT>
-    </TD> 
-  </TR>
-</TABLE>
-
-
-<UL>
-
-<LI>&lt; Describe the fundamental <U>actions</U> that the software
-must perform. Functional requirements can be partitioned into
-subfunctions or subprocesses. Note: the software design partition does
-not have to correspond with the functional requirements
-partition. Functional requirements include: </LI>
-
-
-
-<UL>
-
-<LI>validity checks on the inputs, </LI>
-
-<LI>exact sequence of operations, </LI>
-
-<LI>responses to abnormal situations, including: overflow, communication facilities, and error handling and recovery </LI>
-
-<LI>effect of parameters </LI>
-
-<LI>relationship of outputs to inputs, including: input/output sequences, formulas for input to output conversion </LI>
-
-<LI>...&gt;</LI></UL>
-
-</UL>
-
-
-
-<U><P>&nbsp;</P>
-
-<P><A NAME="InterfaceRequirements">3.2 Interface Requirements:</A></P>
-
-
-
-</U><UL><U>
-
-</u><LI>&lt; Describe the interactions of the software with other entities. Interface requirements include a precise description of the protocol for each interface: </LI>
-
-
-
-<UL>
-
-<LI>what data items are input </LI>
-
-<LI>what data items are output </LI>
-
-<LI>what is the data type, the format, and the possible range of values for each data item? (i.e. what is the "domain" of this data item?) </LI>
-
-<LI>how accurate must each data item be?</LI>
-
-<LI>how often will each data item be received or sent? </LI>
-
-<LI>timing issues (synchronous/asynchronous)&gt; </LI>
-
-<LI>how many will be received or sent in a particular time period? </LI>
-
-<LI>how accurate must the data be? </LI>
-
-<LI>...&gt;</LI></UL>
-
-</UL>
-
-
-
-<U><P><A NAME="PhysicalEnvironmentRequirements">3.3Physical Environment Requirements:</A></P>
-
-
-
-</U><UL><U>
-
-</u><LI>&lt; Describe the environment in which the software must run. Physical environment requirements include: </LI>
-
-
-
-<UL>
-
-<LI>type of equipment on which the software must run </LI>
-
-<LI>location of the equipment </LI>
-
-<LI>environmental considerations: temperature, humidity, ... </LI>
-
-<LI>...&gt;</LI></UL>
-
-</UL>
-
-
-
-<P>&nbsp;</P>
-
-<U><P><A NAME="UsersHumanFactorsRequirements">3.4 Users and Human Factors Requirements:</A></P>
-
-
-
-</U><UL><U>
-
-</u><LI>&lt;Describe the users and their constraints: </LI>
-
-
-
-<UL>
-
-<LI>What different types of users must the system support? </LI>
-
-<LI>What is the skill level of each type of user? What type of training and documentation must be provided for each user? </LI>
-
-<LI>Do any users require special accommodations (large font size, ...) </LI>
-
-<LI>Must the system detect and prevent misuse? If so, what types of potential misuse must the system detect and prevent? </LI>
-
-<LI>...&gt;</LI></UL>
-
-</UL>
-
-
-
-<P>&nbsp;</P>
-
-<U><P><A NAME="DocumentationRequirements">3.5 Documentation Requirements:</A></P>
-
-
-
-</U><UL><U>
-
-</u><LI>&lt;Describe what documentation is required: </LI>
-
-
-
-<UL>
-
-<LI>on-line, printed, or both? </LI>
-
-<LI>what is the assumed skill level of the audience of each component of documentation? </LI>
-
-<LI>...&gt;</LI></UL>
-
-</UL>
-
-
-
-<U><P><A NAME="DataRequirements">3.6 Data Requirements:</A></P>
-
-
-
-</U><UL><U>
-
-</u><LI>&lt;Describe any data calculations: what formula will be used? to what degree of precision must the calculations be made? &gt;</LI>
-
-<LI>&lt;Describe any retained data requirements: exactly what must be retained? </LI>
-
-<LI>...&gt;</LI></UL>
-
-
-
-<U><P><A NAME="ResourceRequirements">3.7 Resource Requirements:</A></P>
-
-
-
-</U><UL><U>
-
-</u><LI>&lt;Describe the system resources: </LI>
-
-
-
-<UL>
-
-<LI>skilled personnel required to build, use, and maintain the system? </LI>
-
-<LI>physical space, power, heating, air conditioning, ...? </LI>
-
-<LI>schedule? </LI>
-
-<LI>funding? </LI>
-
-<LI>hardware/software/tools? </LI>
-
-<LI>...&gt;</LI></UL>
-
-</UL>
-
-
-
-<U><P><A NAME="SecurityRequirements">3.8 Security Requirements:</A></P>
-
-
-
-</U><UL><U>
-
-</u><LI>&lt;Describe any security requirements: </LI>
-
-
-
-<UL>
-
-<LI>must access to the system or information be controlled? </LI>
-
-<LI>must one user's data be isolated from others? </LI>
-
-<LI>how will user programs be isolated from other programs and from the operating system? </LI>
-
-<LI>how often will the system be backed up? </LI>
-
-<LI>must the backup copies be stored at a different location? </LI>
-
-<LI>should precautions be taken against fire, water damage, theft, ...? </LI>
-
-<LI>what are the recovery requirements? </LI>
-
-<LI>...&gt;</LI></UL>
-
-</UL>
-
-
-
-<P>&nbsp;</P>
-
-<U><P><A NAME="QualityAssuranceRequirements">3.9 Quality Assurance Requirements:</A></P>
-
-
-
-</U><UL><U>
-
-</u><LI>&lt;Describe quality attributes: </LI>
-
-
-
-<UL>
-
-<LI>What are the requirements for reliability, availability, maintainability, security, portability ...? </LI>
-
-<LI>How must these quality attributes be demonstrated? </LI>
-
-<LI>Must the system detect and isolate faults? If so, what types of faults? </LI>
-
-<LI>Is there a prescribed mean time between failures? </LI>
-
-<LI>Is there a prescribed time the system must be available? </LI>
-
-<LI>Is there a maximum time allowed for restarting the system after a failure? </LI>
-
-<LI>What are the requirements for resource usage and response times? </LI>
-
-<LI>...&gt;</LI></UL>
-
-</UL>
-
-
-
-<P>&nbsp;</P>
-
-<U><P><A NAME="SupportingMaterials">SECTION 4: Supporting Material</A></P>
-
-</U><UL><U>
-
-</u> <LI>&lt;Here is where you put all your analysis work from which you derived the above requirements. It may include UML or other diagrams, notes, memos, etc.)</LI></UL>
-
-
-
-
-
-</FONT><P><HR><p></P>
-<DIR> 
-  <DIR> 
-    <DIR> 
-      <p ALIGN="CENTER"><FONT SIZE=2>Template created by G. Walton (</font><A HREF="mailto:GWalton@mail.ucf.edu"><FONT SIZE=2>GWalton@mail.ucf.edu</FONT></A><FONT SIZE=2>) 
-        on Aug 30, 1999 and last updated Aug 15, 2000</font></p>
-      <p ALIGN="CENTER"><font size=2>This page last modified by &lt;your name 
-        here&gt; (&lt;your e-mail address text and link here&gt; </font><font size=2>) 
-        on &lt;modification date here&gt;</font></p>
-    </DIR>
-  </DIR>
-</DIR>
-
-</BODY>
-
-</HTML>
-
+<p><span style='font-size:10.0pt'>&nbsp; </span></p>
+
+<p><span style='font-size:10.0pt'>Team Name: Team 1 Inc</span></p>
+
+<p><span style='font-size:10.0pt'>Team Members:</span></p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'><a
+     href="http://robbs.ath.cx/team1/wiki/Grumbanumba5/">Eric Olsen</a></span><span
+     style='font-size:10.0pt'> : EOlsen@knights.ucf.edu</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'><a
+     href="http://robbs.ath.cx/team1/wiki/Steven">Steven Nichols</a></span><span
+     style='font-size:10.0pt'> : steven.nichols@knights.ucf.edu</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'><a
+     href="http://robbs.ath.cx/team1/wiki/Robbs">Robby Ronk</a></span><span
+     style='font-size:10.0pt'> - rjr@knights.ucf.edu</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'><a
+     href="http://robbs.ath.cx/team1/wiki/Richie">Richie Manis</a></span><span
+     style='font-size:10.0pt'> - r@knights.ucf.edu</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'><a
+     href="http://robbs.ath.cx/team1/wiki/Dana">Dana Orlando</a></span><span
+     style='font-size:10.0pt'> - kittymage@knights.ucf.edu</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'><a
+     href="http://robbs.ath.cx/team1/wiki/Laura">Laura Barton</a></span><span
+     style='font-size:10.0pt'> - lbarton@knights.ucf.edu</span></li>
+</ul>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<div class=MsoNormal>
+
+<hr size=2 width="90%" align=left>
+
+</div>
+
+<p align=center style='text-align:center'><span style='font-size:10.0pt'>Contents
+of this Document</span></p>
+
+<p style='margin-left:.5in'><a href="#Introduction"><span style='font-size:
+10.0pt'>Introduction</span></a></p>
+
+<ul type=disc>
+ <ul type=circle>
+  <li class=MsoNormal><a href="#SoftwareToBeProduced"><span style='font-size:
+      10.0pt'>Software to be Produced</span></a> </li>
+  <li class=MsoNormal><a href="#ReferenceDocuments"><span style='font-size:
+      10.0pt'>Reference Documents</span></a> </li>
+  <li class=MsoNormal><a href="#ApplicableStandards"><span style='font-size:
+      10.0pt'>Applicable Standards</span></a></li>
+ </ul>
+</ul>
+
+<p style='margin-left:.5in'><a href="#DefinitionsAcronymsAbbreviations"><span
+style='font-size:10.0pt'>Definition, Acronyms, and Abbreviations</span></a></p>
+
+<p style='margin-left:.5in'><a href="#ProductOverview"><span style='font-size:
+10.0pt'>Product Overview</span></a></p>
+
+<ul type=disc>
+ <ul type=circle>
+  <li class=MsoNormal><a href="#Assumptions"><span style='font-size:10.0pt'>Assumptions</span></a>
+      </li>
+  <li class=MsoNormal><a href="#StakeHolders"><span style='font-size:10.0pt'>Stakeholders</span></a>
+      </li>
+  <li class=MsoNormal><a href="#EventTable"><span style='font-size:10.0pt'>Event
+      Table</span></a> </li>
+  <li class=MsoNormal><a href="#UseCaseDiagram"><span style='font-size:10.0pt'>Use
+      Case Diagram</span></a> </li>
+  <li class=MsoNormal><a href="#UseCaseDescriptions"><span style='font-size:
+      10.0pt'>Use Case Descriptions</span></a></li>
+ </ul>
+</ul>
+
+<p style='margin-left:.5in'><a href="#SpecificRequirements"><span
+style='font-size:10.0pt'>Specific Requirements</span></a></p>
+
+<ul type=disc>
+ <ul type=circle>
+  <li class=MsoNormal><a href="#FunctionalRequirements"><span style='font-size:
+      10.0pt'>Functional Requirements</span></a> </li>
+  <li class=MsoNormal><a href="#InterfaceRequirements"><span style='font-size:
+      10.0pt'>Interface Requirements</span></a> </li>
+  <li class=MsoNormal><a href="#PhysicalEnvironmentRequirements"><span
+      style='font-size:10.0pt'>Physical Environment Requirements</span></a> </li>
+  <li class=MsoNormal><a href="#UsersHumanFactorsRequirements"><span
+      style='font-size:10.0pt'>Users and Human Factors Requirements</span></a> </li>
+  <li class=MsoNormal><a href="#DocumentationRequirements"><span
+      style='font-size:10.0pt'>Documentation Requirements</span></a> </li>
+  <li class=MsoNormal><a href="#DataRequirements"><span style='font-size:10.0pt'>Data
+      Requirements</span></a> </li>
+  <li class=MsoNormal><a href="#ResourceRequirements"><span style='font-size:
+      10.0pt'>Resource Requirements</span></a> </li>
+  <li class=MsoNormal><a href="#SecurityRequirements"><span style='font-size:
+      10.0pt'>Security Requirements</span></a> </li>
+  <li class=MsoNormal><a href="#QualityAssuranceRequirements"><span
+      style='font-size:10.0pt'>Quality Assurance Requirements</span></a></li>
+ </ul>
+</ul>
+
+<p style='margin-left:.5in'><a href="#SupportingMaterials"><span
+style='font-size:10.0pt'>Supporting Material</span></a></p>
+
+<div class=MsoNormal align=center style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</div>
+
+<p><a name=Introduction><span style='font-size:10.0pt'>SECTION 1: Introduction</span></a></p>
+
+<p><a name=SoftwareToBeProduced><u><span style='font-size:10.0pt'>Software to
+be Produced:</span></u></a></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'>A GPS navigation program
+     that learns about rush hour travel times and reroutes accordingly. An
+     external USB GPS will connect to a netbook which will run the program. The
+     software will store the time of travel and the time of day for each road
+     segment and store it in a local database. There will also be an internet
+     accessible central database; this database will hold all information from
+     all users and allow the users to sync to it and use other user's data as
+     well.</span></li>
+</ul>
+
+<p><a name=ReferenceDocuments><u><span style='font-size:10.0pt'>Reference
+Documents:</span></u></a></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'><a
+     href="file:///Z:\home\steven\Desktop\ShortQut\deliverables\ConOpsTemplate.html">Concept
+     of Operations</a> </span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'><a
+     href="file:///Z:\home\steven\Desktop\ShortQut\deliverables\ProjectMgmtRptTemplate.html">Project
+     Plan</a> </span></li>
+</ul>
+
+<p><a name=ApplicableStandards><u><span style='font-size:10.0pt'>Applicable
+Standards:</span></u></a></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'>A USB GPS unit</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>a laptop with Python 2.6</span></li>
+</ul>
+
+<p><span style='font-size:10.0pt'>&nbsp;<a
+name=DefinitionsAcronymsAbbreviations></a><u>Definitions, Acronyms, and
+Abbreviations:</u></span></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'>USB: Universal Serial Bus</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>GPS: Global Positioning
+     System</span></li>
+</ul>
+
+<div class=MsoNormal align=center style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</div>
+
+<p><span style='font-size:10.0pt'>SECTION 2: <a name=ProductOverview>Product
+Overview</a></span></p>
+
+<p><a name=Assumptions><u><span style='font-size:10.0pt'>Assumptions:</span></u></a></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'>We assume the GPS will connect
+     to the computer via USB </span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>GPS and computer will
+     communicate using the areNMEA 0183 protocol</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>The computer must have at
+     least 1 GB of memory and a 2Ghz CPU.</span></li>
+</ul>
+
+<p><a name=StakeHolders><u><span style='font-size:10.0pt'>Stakeholders:</span></u></a></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'>All the members of our team</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>The client (aka the TA)</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>The professor, Dr. Turgut</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>GPS navigation companies
+     (Magellan, Garmin)</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>Geoff Huston</span></li>
+</ul>
+
+<p><a name=EventTable><u><span style='font-size:10.0pt'>Event Table</span></u></a><u><span
+style='font-size:10.0pt'>:</span></u></p>
+
+<table class=MsoNormalTable border=1 cellspacing=1 cellpadding=0 width=715
+ style='width:536.25pt;border:outset black 1.0pt'>
+ <tr>
+  <td width="24%" valign=top style='width:24.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Event Name</span></p>
+  </td>
+  <td width="22%" valign=top style='width:22.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>External Stimuli</span></p>
+  </td>
+  <td width="27%" valign=top style='width:27.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>External Responses</span></p>
+  </td>
+  <td width="28%" valign=top style='width:28.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Internal data and state</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width="24%" valign=top style='width:24.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Receive GPS data</span></p>
+  </td>
+  <td width="22%" valign=top style='width:22.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>USB GPS sends data to the
+  computer</span></p>
+  </td>
+  <td width="27%" valign=top style='width:27.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>Update location and route</span></p>
+  </td>
+  <td width="28%" valign=top style='width:28.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>Filter data, update local
+  database, reroute if necessary</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width="24%" valign=top style='width:24.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Create Route</span></p>
+  </td>
+  <td width="22%" valign=top style='width:22.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>User chooses to find route</span></p>
+  </td>
+  <td width="27%" valign=top style='width:27.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>Route(s) is displayed on
+  the GUI</span></p>
+  </td>
+  <td width="28%" valign=top style='width:28.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>A* calculates best routes
+  based on data</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width="24%" valign=top style='width:24.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Zoom In/Out</span></p>
+  </td>
+  <td width="22%" valign=top style='width:22.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>User pushes zoom in or out
+  button</span></p>
+  </td>
+  <td width="27%" valign=top style='width:27.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>View of map zooms in or out
+  depending on input</span></p>
+  </td>
+  <td width="28%" valign=top style='width:28.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>View distance is changed to
+  reflect the user's input</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width="24%" valign=top style='width:24.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Synchronize Database</span></p>
+  </td>
+  <td width="22%" valign=top style='width:22.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>User connects local program
+  to the central database</span></p>
+  </td>
+  <td width="27%" valign=top style='width:27.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>Display &quot;Update
+  Complete&quot;</span></p>
+  </td>
+  <td width="28%" valign=top style='width:28.0%;border:inset black 1.0pt;
+  padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>Add user's local data to
+  central database and update user's data from central database </span></p>
+  </td>
+ </tr>
+</table>
+
+<p><span style='font-size:10.0pt'>&nbsp;</span></p>
+
+<p><a name=UseCaseDiagram><u><span style='font-size:10.0pt'>Use Case Diagram:</span></u></a></p>
+
+<p class=MsoNormal style='margin-left:.5in'><a
+href="http://s29.photobucket.com/albums/c300/Grumbanumba5/random/?action=view&amp;current=UseCasediag.jpg"
+target="_blank"><span style='font-size:10.0pt;text-decoration:none'><img
+border=0 width=430 height=304
+src="http://i29.photobucket.com/albums/c300/Grumbanumba5/random/UseCasediag.jpg"
+alt=Photobucket></span></a></p>
+
+<p><a name=UseCaseDescriptions><u><span style='font-size:10.0pt'>Use Case
+Descriptions:</span></u></a></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'>Select Destination - The user
+     will use the GUI to select a destination to navigate to</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>Display Route(s) - After A*
+     calculates the best route(s), they are highlighted on the map in the GUI</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>Give Current Location - The
+     Map Factory sends the GPS's current coordinates to the Route Factory</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>Give Required Data - The
+     Local Database must give the road segments, time traveled, and travel
+     duration to the Route Factory</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>Filter Data - The Map
+     Factory takes the raw data from the Interpreter and filters out outliers
+     and other unwanted information</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>Store Travel Data - The Map
+     Factory takes the filtered data and stores the relevant information in the
+     Local Database</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>Synchronize with Database -
+     When the user connects to the Central Database, the data collected in the
+     Local Database must be uploaded to the Central Database, and the Local
+     Database must be updated with any new data from the Central Database </span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>Send Data - The GPS must
+     send the data to the Interpreter using the areNMEA 0183 protocol</span></li>
+</ul>
+
+<div class=MsoNormal align=center style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</div>
+
+<p><a name=SpecificRequirements><span style='font-size:10.0pt'>SECTION 3:
+Specific Requirements</span></a><span style='font-size:10.0pt'> </span></p>
+
+<p style='margin-left:1.0in'><span style='font-size:10.0pt'>&lt;The following
+template must be used for <u>each</u> requirement: &gt;</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=1 cellpadding=0 width=638
+ style='width:478.5pt;border:outset black 1.0pt'>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>No: &lt;unique requirement number&gt; </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Statement: &lt;the &quot;shall&quot;
+  statement of the requirement&gt; </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Source: &lt;source of the requirement&gt; </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Dependency: &lt;list (with link) to each
+  other requirement on which satisfaction of this requirement depends. (May be
+  &quot;None&quot;)&gt; </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Conflicts: &lt;list (with link) to each
+  other requirements with which this requirement conflicts. (May be
+  &quot;None&quot;)&gt; </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Supporting Materials: &lt;list (with link)
+  to supporting diagrams, lists, memos, etc.&gt; </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Evaluation Method: &lt;How can you tell if
+  the completed system satisfies this requirement? &gt; </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Revision History: &lt;who, when, what&gt; </span></p>
+  </td>
+ </tr>
+</table>
+
+<p><span style='font-size:10.0pt'>&nbsp;</span></p>
+
+<p><a name=FunctionalRequirements><u><span style='font-size:10.0pt'>3.1
+Functional Requirements</span></u></a><span style='font-size:10.0pt'>:</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=1 cellpadding=0 width=638
+ style='width:478.5pt;border:outset black 1.0pt'>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><a name=GPSConnection><span style='font-size:10.0pt'>No: 1 </span></a></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Statement: The software shall collect data
+  from the GPS device. </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Source: The team. </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Dependency: None </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Conflicts: None </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Supporting Materials: </span></p>
+  <ul type=disc>
+   <li class=MsoNormal><span style='font-size:10.0pt'>NMEA 0183</span></li>
+   <li class=MsoNormal><span style='font-size:10.0pt'>Python serial interface
+       library</span></li>
+  </ul>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Evaluation Method: Does the software know
+  where on Earth it is and report an accurate location? </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Revision History: Charles Manis,
+  2010-09-21, added requirement </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:10.0pt;display:none'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=1 cellpadding=0 width=638
+ style='width:478.5pt;border:outset black 1.0pt'>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>No: <a name=RouteCalc>2</a> </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Statement: The software shall calculate the
+  fastest route from the current location to the target destination using A*.
+  Weights will be retreived from the database. </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Source: The team </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Dependency: </span></p>
+  <ul type=disc>
+   <li class=MsoNormal><span style='font-size:10.0pt'><a href="#GPSConnection">The
+       current location</a></span></li>
+   <li class=MsoNormal><span style='font-size:10.0pt'><a href="#Destination">The
+       target destination</a></span></li>
+   <li class=MsoNormal><span style='font-size:10.0pt'><a href="#LocalDatabase">Local
+       database connection</a></span></li>
+  </ul>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Conflicts: None </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Supporting Materials: </span></p>
+  <ul type=disc>
+   <li class=MsoNormal><span style='font-size:10.0pt'><a href="#AStar">A*
+       search algorithm</a></span></li>
+  </ul>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Evaluation Method: The software calculates
+  the shortest path from the current location to the target. </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Revision History: Charles Manis,
+  2010-09-21, added requirement </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:10.0pt;display:none'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=1 cellpadding=0 width=638
+ style='width:478.5pt;border:outset black 1.0pt'>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><a name=Destination><span style='font-size:10.0pt'>No: 3</span></a><span
+  style='font-size:10.0pt'> </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Statement: The software shall get the
+  target destination from the user through the GUI interface. </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Source: The team </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Dependency: </span></p>
+  <ul type=disc>
+   <li class=MsoNormal><span style='font-size:10.0pt'><a href="#GUI">GUI</a></span></li>
+  </ul>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Conflicts: None </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Supporting Materials: </span></p>
+  <ul type=disc>
+   <li class=MsoNormal><span style='font-size:10.0pt'><span class=MsoHyperlink>User
+       interaction to get target</span></span></li>
+  </ul>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Evaluation Method: Can the user set the
+  target destination? </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Revision History: Charles Manis,
+  2010-09-21, added requirement </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:10.0pt;display:none'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=1 cellpadding=0 width=638
+ style='width:478.5pt;border:outset black 1.0pt'>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><a name=CenterMap><span style='font-size:10.0pt'>No: 4</span></a><span
+  style='font-size:10.0pt'> </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Statement: The software shall provide the
+  user with a GUI centered on the current location with the ability to zoom,
+  pan, and recenter the view. </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Source: The team </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Dependency: </span></p>
+  <ul type=disc>
+   <li class=MsoNormal><span style='font-size:10.0pt'><a href="#GPSConnection">The
+       current location</a></span></li>
+   <li class=MsoNormal><span style='font-size:10.0pt'><a href="#GUI">GUI</a></span></li>
+  </ul>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Conflicts: None </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Supporting Materials: </span></p>
+  <ul type=disc>
+   <li class=MsoNormal><span style='font-size:10.0pt'><span class=MsoHyperlink>User
+       interacting with the software</span></span></li>
+  </ul>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Evaluation Method: Does the software center
+  the view? Can the user pan? Can the user zoom? Can the user restore the view?
+  </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Revision History: Charles Manis,
+  2010-09-21, added requirement </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:10.0pt;display:none'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=1 cellpadding=0 width=638
+ style='width:478.5pt;border:outset black 1.0pt'>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><a name=SyncDB><span style='font-size:10.0pt'>No: 5</span></a><span
+  style='font-size:10.0pt'> </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Statement: The software shall synchronize
+  the local database with the central database. </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Source: The team </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Dependency: &lt;list (with link) to each
+  other requirement on which satisfaction of this requirement depends. (May be
+  &quot;None&quot;)&gt; </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Conflicts: &lt;list (with link) to each
+  other requirements with which this requirement conflicts. (May be
+  &quot;None&quot;)&gt; </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Supporting Materials: </span></p>
+  <ul type=disc>
+   <li class=MsoNormal><span style='font-size:10.0pt'><span class=MsoHyperlink>Database
+       Interaction</span></span></li>
+  </ul>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Evaluation Method: Is the software aware of
+  roads? Does the software update the central database's tables? </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Revision History: Charles Manis,
+  2010-09-21, added requirement </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:10.0pt;display:none'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=1 cellpadding=0 width=638
+ style='width:478.5pt;border:outset black 1.0pt'>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><a name=DetermineRoads><span style='font-size:10.0pt'>No: 6</span></a><span
+  style='font-size:10.0pt'> </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Statement: The software shall filter
+  (removing outliers) the data from the GPS and determine the road it is on and
+  how long it is taking, noting the current time. </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Source: The team </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Dependency: </span></p>
+  <ul type=disc>
+   <li class=MsoNormal><span style='font-size:10.0pt'><a href="#GPSConnection">The
+       current location</a></span></li>
+   <li class=MsoNormal><span style='font-size:10.0pt'><a href="#LocalDB">Local
+       Database</a></span></li>
+  </ul>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Conflicts: None </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Supporting Materials: &lt;list (with link)
+  to supporting diagrams, lists, memos, etc.&gt; </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Evaluation Method: Does the software
+  accurately display the road it is on? Does the software correctly calculate
+  speed? Does the software log travel time to the local database? </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Revision History: Charles Manis,
+  2010-09-21, added requirement </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:10.0pt;display:none'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=1 cellpadding=0 width=638
+ style='width:478.5pt;border:outset black 1.0pt'>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><a name=TextToSpeech><span style='font-size:10.0pt'>No: 7</span></a><span
+  style='font-size:10.0pt'> </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Statement: The software shall speak
+  directions on the route to the user using a text-to-speech interface. </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Source: The team </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Dependency: </span></p>
+  <ul type=disc>
+   <li class=MsoNormal><span style='font-size:10.0pt'><a href="#RouteCalc">The
+       next turn to make, from the current route</a></span></li>
+  </ul>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Conflicts: None </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Supporting Materials: </span></p>
+  <ul type=disc>
+   <li class=MsoNormal><span style='font-size:10.0pt'><span class=MsoHyperlink>Text
+       to speech</span></span></li>
+  </ul>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Evaluation Method: Does it talk? Does it
+  say the right things? </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Revision History: Charles Manis,
+  2010-09-21, added requirement </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:10.0pt;display:none'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=1 cellpadding=0 width=638
+ style='width:478.5pt;border:outset black 1.0pt'>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><a name=GUI><span style='font-size:10.0pt'>No: 8</span></a><span
+  style='font-size:10.0pt'> </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Statement: The software shall display
+  route(s) on the map with street names. </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Source: The team </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Dependency: </span></p>
+  <ul type=disc>
+   <li class=MsoNormal><span style='font-size:10.0pt'><a href="#RouteCalc">Route
+       calculation</a></span></li>
+   <li class=MsoNormal><span style='font-size:10.0pt'><a href="#GPSConnection">The
+       current location</a></span></li>
+  </ul>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Conflicts: None </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Supporting Materials: &lt;list (with link)
+  to supporting diagrams, lists, memos, etc.&gt; </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Evaluation Method: Are route(s) displayed
+  on the map as well as street names? </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:inset black 1.0pt;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p><span style='font-size:10.0pt'>Revision History: Charles Manis,
+  2010-09-21, added requirement </span></p>
+  </td>
+ </tr>
+</table>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'>&lt; Describe the
+     fundamental <u>actions</u> that the software must perform. Functional
+     requirements can be partitioned into subfunctions or subprocesses. Note:
+     the software design partition does not have to correspond with the
+     functional requirements partition. Functional requirements include: </span></li>
+ <ul type=circle>
+  <li class=MsoNormal><span style='font-size:10.0pt'>validity checks on the
+      inputs, </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>exact sequence of
+      operations, </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>responses to abnormal
+      situations, including: overflow, communication facilities, and error
+      handling and recovery </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>effect of parameters </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>relationship of outputs to
+      inputs, including: input/output sequences, formulas for input to output
+      conversion </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>...&gt;</span></li>
+ </ul>
+</ul>
+
+<p><u><span style='font-size:10.0pt'>&nbsp;</span></u></p>
+
+<p><a name=InterfaceRequirements><u><span style='font-size:10.0pt'>3.2
+Interface Requirements:</span></u></a></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'>&lt; Describe the
+     interactions of the software with other entities. Interface requirements
+     include a precise description of the protocol for each interface: </span></li>
+ <ul type=circle>
+  <li class=MsoNormal><span style='font-size:10.0pt'>what data items are input </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>what data items are output
+      </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>what is the data type, the
+      format, and the possible range of values for each data item? (i.e. what
+      is the &quot;domain&quot; of this data item?) </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>how accurate must each
+      data item be?</span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>how often will each data
+      item be received or sent? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>timing issues
+      (synchronous/asynchronous)&gt; </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>how many will be received
+      or sent in a particular time period? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>how accurate must the data
+      be? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>...&gt;</span></li>
+ </ul>
+</ul>
+
+<p><a name=PhysicalEnvironmentRequirements><u><span style='font-size:10.0pt'>3.3Physical
+Environment Requirements:</span></u></a></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'>&lt; Describe the
+     environment in which the software must run. Physical environment
+     requirements include: </span></li>
+ <ul type=circle>
+  <li class=MsoNormal><span style='font-size:10.0pt'>type of equipment on which
+      the software must run </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>location of the equipment </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>environmental
+      considerations: temperature, humidity, ... </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>...&gt;</span></li>
+ </ul>
+</ul>
+
+<p><span style='font-size:10.0pt'>&nbsp;</span></p>
+
+<p><a name=UsersHumanFactorsRequirements><u><span style='font-size:10.0pt'>3.4
+Users and Human Factors Requirements:</span></u></a></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'>&lt;Describe the users and
+     their constraints: </span></li>
+ <ul type=circle>
+  <li class=MsoNormal><span style='font-size:10.0pt'>What different types of
+      users must the system support? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>What is the skill level of
+      each type of user? What type of training and documentation must be
+      provided for each user? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>Do any users require
+      special accommodations (large font size, ...) </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>Must the system detect and
+      prevent misuse? If so, what types of potential misuse must the system
+      detect and prevent? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>...&gt;</span></li>
+ </ul>
+</ul>
+
+<p><span style='font-size:10.0pt'>&nbsp;</span></p>
+
+<p><a name=DocumentationRequirements><u><span style='font-size:10.0pt'>3.5
+Documentation Requirements:</span></u></a></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'>&lt;Describe what
+     documentation is required: </span></li>
+ <ul type=circle>
+  <li class=MsoNormal><span style='font-size:10.0pt'>on-line, printed, or both?
+      </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>what is the assumed skill
+      level of the audience of each component of documentation? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>...&gt;</span></li>
+ </ul>
+</ul>
+
+<p><a name=DataRequirements><u><span style='font-size:10.0pt'>3.6 Data
+Requirements:</span></u></a></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'>&lt;Describe any data
+     calculations: what formula will be used? to what degree of precision must
+     the calculations be made? &gt;</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>&lt;Describe any retained
+     data requirements: exactly what must be retained? </span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'>...&gt;</span></li>
+</ul>
+
+<p><a name=ResourceRequirements><u><span style='font-size:10.0pt'>3.7 Resource
+Requirements:</span></u></a></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'>&lt;Describe the system
+     resources: </span></li>
+ <ul type=circle>
+  <li class=MsoNormal><span style='font-size:10.0pt'>skilled personnel required
+      to build, use, and maintain the system? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>physical space, power,
+      heating, air conditioning, ...? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>schedule? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>funding? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>hardware/software/tools? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>...&gt;</span></li>
+ </ul>
+</ul>
+
+<p><a name=SecurityRequirements><u><span style='font-size:10.0pt'>3.8 Security
+Requirements:</span></u></a></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'>&lt;Describe any security
+     requirements: </span></li>
+ <ul type=circle>
+  <li class=MsoNormal><span style='font-size:10.0pt'>must access to the system
+      or information be controlled? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>must one user's data be
+      isolated from others? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>how will user programs be
+      isolated from other programs and from the operating system? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>how often will the system
+      be backed up? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>must the backup copies be
+      stored at a different location? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>should precautions be
+      taken against fire, water damage, theft, ...? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>what are the recovery
+      requirements? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>...&gt;</span></li>
+ </ul>
+</ul>
+
+<p><span style='font-size:10.0pt'>&nbsp;</span></p>
+
+<p><a name=QualityAssuranceRequirements><u><span style='font-size:10.0pt'>3.9
+Quality Assurance Requirements:</span></u></a></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'>&lt;Describe quality
+     attributes: </span></li>
+ <ul type=circle>
+  <li class=MsoNormal><span style='font-size:10.0pt'>What are the requirements
+      for reliability, availability, maintainability, security, portability
+      ...? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>How must these quality
+      attributes be demonstrated? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>Must the system detect and
+      isolate faults? If so, what types of faults? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>Is there a prescribed mean
+      time between failures? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>Is there a prescribed time
+      the system must be available? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>Is there a maximum time
+      allowed for restarting the system after a failure? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>What are the requirements
+      for resource usage and response times? </span></li>
+  <li class=MsoNormal><span style='font-size:10.0pt'>...&gt;</span></li>
+ </ul>
+</ul>
+
+<p><span style='font-size:10.0pt'>&nbsp;</span></p>
+
+<p><a name=SupportingMaterials><u><span style='font-size:10.0pt'>SECTION 4:
+Supporting Material</span></u></a></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'>&lt;Here is where you put
+     all your analysis work from which you derived the above requirements. It
+     may include UML or other diagrams, notes, memos, etc.)</span></li>
+</ul>
+
+<div class=MsoNormal align=center style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</div>
+
+<p align=center style='margin-left:1.5in;text-align:center'><span
+style='font-size:10.0pt'>Template created by G. Walton (</span><a
+href="mailto:GWalton@mail.ucf.edu"><span style='font-size:10.0pt'>GWalton@mail.ucf.edu</span></a><span
+style='font-size:10.0pt'>) on Aug 30, 1999 and last updated Aug 15, 2000</span></p>
+
+<p align=center style='margin-left:1.5in;text-align:center'><span
+style='font-size:10.0pt'>This page last modified by Steven Nichols (steven.nichols@knights.ucf.edu
+) on September 22, 2010</span></p>
+
+</div>
+
+</body>
+
+</html>
 Powered by the Dedicated Servers and
 Cloud Computing of Rackspace HostingÃƒâ€šÃ‚Â®
 BlogSupportTrainingJob BoardShopContactAPIStatus
 Ãƒâ€šÃ‚Â© 2010 GitHub Inc. All rights reserved.Terms of ServicePrivacySecurity
-EnglishDeutschFranÃƒÆ’Ã‚Â§aisÃƒÂ¦Ã¢â‚¬â€�Ã‚Â¥ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¨Ã‚ÂªÃ…Â¾PortuguÃƒÆ’Ã‚Âªs (BR)Ãƒ�Ã‚Â Ãƒâ€˜Ã†â€™Ãƒâ€˜�Ãƒâ€˜�Ãƒ�Ã‚ÂºÃƒ�Ã‚Â¸Ãƒ�Ã‚Â¹ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡
+EnglishDeutschFranÃƒÆ’Ã‚Â§aisÃƒÂ¦Ã¢â‚¬â€�Ã‚Â¥ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¨Ã‚ÂªÃ…Â¾PortuguÃƒÆ’Ã‚Âªs (BR)Ãƒ�Ã‚Â�&nbsp;Ãƒâ€˜Ã�&nbsp;â€™Ãƒâ€˜�Ãƒâ€˜�Ãƒ�Ã‚ÂºÃƒ�Ã‚Â¸Ãƒ�Ã‚Â¹ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡
 See all available languages
