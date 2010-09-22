@@ -71,6 +71,20 @@
   </tr>
   <tr> 
     <td width="15%" valign="TOP"> 
+      <p><font size="2">v1.1 </font>
+    </td>
+    <td width="18%" valign="TOP"> 
+      <p><font size="2">9/21/10 </font>
+    </td>
+    <td width="25%" valign="TOP"> 
+      <p><font size="2">Charles Manis </font>
+    </td>
+    <td width="42%" valign="TOP"> 
+      <p><font size="2"> Added Section 3.</font></p>
+    </td>
+  </tr>
+  <tr> 
+    <td width="15%" valign="TOP"> 
       <p><font size="2">... </font>
     </td>
     <td width="18%" valign="TOP"> 
@@ -449,81 +463,768 @@ update user's data from central database </FONT></TD>
 
 </FONT><P><HR><p></P>
 
-<FONT SIZE=2><P><A NAME="SpecificRequirements">SECTION 3: Specific Requirements</A></P><DIR>
-
+<FONT SIZE=2>
+<P>
+<A NAME="SpecificRequirements">SECTION 3: Specific Requirements</A>
+</P>
 <DIR>
-
-
-
-<P>&lt;The following template must be used for <U>each</U> requirement: &gt;</P></DIR>
-
-</DIR>
-
+<DIR>
+<P>&lt;The following template must be used for <U>each</U> requirement: &gt;</P></DIR> </DIR> 
 </FONT>
 
 <TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
-
-<TR><TD VALIGN="TOP">
-
-<P><FONT SIZE=2>No: &lt;unique requirement number&gt;</FONT></TD>
-
-</TR>
-
-<TR><TD VALIGN="TOP">
-
-<FONT SIZE=2><P>Statement: &lt;the "shall" statement of the requirement&gt;</FONT></TD>
-
-</TR>
-
-<TR><TD VALIGN="TOP">
-
-<FONT SIZE=2><P>Source: &lt;source of the requirement&gt;</FONT></TD>
-
-</TR>
-
-<TR><TD VALIGN="TOP">
-
-<FONT SIZE=2><P>Dependency: &lt;list (with link) to each other requirement on which satisfaction of this requirement depends. (May be "None")&gt;</FONT></TD>
-
-</TR>
-
-<TR><TD VALIGN="TOP">
-
-<FONT SIZE=2><P>Conflicts: &lt;list (with link) to each other requirements with which this requirement conflicts. (May be "None")&gt;</FONT></TD>
-
-</TR>
-
-<TR><TD VALIGN="TOP">
-
-<FONT SIZE=2><P>Supporting Materials: &lt;list (with link) to supporting diagrams, lists, memos, etc.&gt;</FONT></TD>
-
-</TR>
-
-<TR><TD VALIGN="TOP">
-
-<FONT SIZE=2><P>Evaluation Method: &lt;How can you tell if the completed system satisfies this requirement? &gt;</FONT></TD>
-
-</TR>
-
-<TR><TD VALIGN="TOP">
-
-<FONT SIZE=2><P>Revision History: &lt;who, when, what&gt;</FONT></TD>
-
-</TR>
-
+  <TR>
+    <TD VALIGN="TOP">
+      <P>
+	<FONT SIZE=2>
+	  No: &lt;unique requirement number&gt;
+	</FONT>
+      </P>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Statement: &lt;the "shall" statement of the requirement&gt;
+	</P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Source: &lt;source of the requirement&gt;
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>Dependency: &lt;list (with link) to each other requirement on which
+	  satisfaction of this requirement depends. (May be "None")&gt;
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP"> 
+      <FONT SIZE=2>
+	<P>
+	  Conflicts: &lt;list (with link) to each other
+	  requirements with which this requirement conflicts. (May be
+	  "None")&gt;
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Supporting Materials: &lt;list (with link) to
+	  supporting diagrams, lists, memos, etc.&gt;
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>Evaluation Method: &lt;How can you tell if the
+	  completed system satisfies this requirement? &gt;
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Revision History: &lt;who, when, what&gt;
+	</P>
+      </FONT>
+    </TD> 
+  </TR>
 </TABLE>
-
-
 
 <FONT SIZE=2><P>&nbsp;</P>
 
 <P><A NAME="FunctionalRequirements"><U>3.1 Functional Requirements</u>:</A></P>
 
+<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
+  <TR>
+    <TD VALIGN="TOP">
+      <P>
+	<FONT SIZE=2>
+	  <a name="GPSConnection">
+	    No: 1
+	  </a>
+	</FONT>
+      </P>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Statement: The software shall collect data from the GPS device.
+	</P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Source: The team.
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Dependency: None
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP"> 
+      <FONT SIZE=2>
+	<P>
+	  Conflicts: None
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Supporting Materials:
+	  <ul>
+	    <li>NMEA 0183</li>
+	    <li>Python serial interface library</li>
+	  </ul>
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Evaluation Method: Does the software know where on Earth it
+	  is and report an accurate location?
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Revision History: Charles Manis, 2010-09-21, added requirement
+	</P>
+      </FONT>
+    </TD> 
+  </TR>
+</TABLE>
+
+<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
+  <TR>
+    <TD VALIGN="TOP">
+      <P>
+	<FONT SIZE=2>
+	  No: <a name="RouteCalc">2</a>
+	</FONT>
+      </P>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Statement: The software shall calculate the fastest route
+	  from the current location to the target destination using
+	  A*.  Weights will be retreived from the database.
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Source: The team
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Dependency:
+	  <ul>
+	    <li><a href="#GPSConnection">The current location</a></li>
+	    <li><a href="#Destination">The target destination</a></li>
+	    <li><a href="#LocalDatabase">Local database connection</a></li>
+	  </ul>
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP"> 
+      <FONT SIZE=2>
+	<P>
+	  Conflicts: None
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Supporting Materials:
+	  <ul>
+	    <li><a href="#AStar">A* search algorithm</a></li>
+	  </ul>
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Evaluation Method: The software calculates the shortest path
+	  from the current location to the target.
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Revision History: Charles Manis, 2010-09-21, added requirement
+	</P>
+      </FONT>
+    </TD> 
+  </TR>
+</TABLE>
+
+
+<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
+  <TR>
+    <TD VALIGN="TOP">
+      <P>
+	<FONT SIZE=2>
+	  <a name="Destination">No: 3</a>
+	</FONT>
+      </P>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Statement: The software shall get the target destination
+	  from the user through the GUI interface.
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Source: The team
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Dependency:
+	  <ul>
+	    <li><a href="#GUI">GUI</a></li>
+	  </ul>
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP"> 
+      <FONT SIZE=2>
+	<P>
+	  Conflicts: None
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Supporting Materials:
+	  <ul>
+	    <li><a href="#">User interaction to get target</a></li>
+	  </ul>
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Evaluation Method: Can the user set the target destination?
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Revision History: Charles Manis, 2010-09-21, added requirement
+	</P>
+      </FONT>
+    </TD> 
+  </TR>
+</TABLE>
+
+<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
+  <TR>
+    <TD VALIGN="TOP">
+      <P>
+	<FONT SIZE=2>
+	  <a name="CenterMap">No: 4</a>
+	</FONT>
+      </P>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Statement: The software shall provide the user with a GUI
+	  centered on the current location with the ability to zoom,
+	  pan, and recenter the view.
+	</P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Source: The team
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Dependency:
+	  <ul>
+	    <li><a href="#GPSConnection">The current location</a></li>
+	    <li><a href="#GUI">GUI</a></li>
+	  </ul>
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP"> 
+      <FONT SIZE=2>
+	<P>
+	  Conflicts: None
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Supporting Materials:
+	  <ul>
+	    <li><a href="#">User interacting with the software</a></li>
+	  </ul>
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Evaluation Method: Does the software center the view?  Can
+	  the user pan?  Can the user zoom?  Can the user restore the
+	  view?
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Revision History: Charles Manis, 2010-09-21, added requirement
+	</P>
+      </FONT>
+    </TD> 
+  </TR>
+</TABLE>
+
+<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
+  <TR>
+    <TD VALIGN="TOP">
+      <P>
+	<FONT SIZE=2>
+	  <a name="SyncDB">No: 5</a>
+	</FONT>
+      </P>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Statement: The software shall synchronize the local database
+	  with the central database.
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Source: The team
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>Dependency: &lt;list (with link) to each other requirement on which
+	  satisfaction of this requirement depends. (May be "None")&gt;
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP"> 
+      <FONT SIZE=2>
+	<P>
+	  Conflicts: &lt;list (with link) to each other
+	  requirements with which this requirement conflicts. (May be
+	  "None")&gt;
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Supporting Materials:
+	  <ul>
+	    <li><a href="#">Database Interaction</a></li>
+	  </ul>
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Evaluation Method: Is the software aware of roads?  Does the
+	  software update the central database's tables?
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Revision History: Charles Manis, 2010-09-21, added requirement
+	</P>
+      </FONT>
+    </TD> 
+  </TR>
+</TABLE>
+
+<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
+  <TR>
+    <TD VALIGN="TOP">
+      <P>
+	<FONT SIZE=2>
+	  <a name="DetermineRoads">No: 6</a>
+	</FONT>
+      </P>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Statement: The software shall filter (removing outliers) the
+	  data from the GPS and determine the road it is on and how
+	  long it is taking, noting the current time.
+	</P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Source: The team
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Dependency:
+	  <ul>
+	    <li><a href="#GPSConnection">The current location</a></li>
+	    <li><a href="#LocalDB">Local Database</a></li>
+	  </ul>
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP"> 
+      <FONT SIZE=2>
+	<P>
+	  Conflicts: None
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Supporting Materials: &lt;list (with link) to
+	  supporting diagrams, lists, memos, etc.&gt;
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Evaluation Method: Does the software accurately display the
+	  road it is on?  Does the software correctly calculate speed?
+	  Does the software log travel time to the local database?
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Revision History: Charles Manis, 2010-09-21, added requirement
+	</P>
+      </FONT>
+    </TD> 
+  </TR>
+</TABLE>
+
+<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
+  <TR>
+    <TD VALIGN="TOP">
+      <P>
+	<FONT SIZE=2>
+	  <a name="TextToSpeech">No: 7</a>
+	</FONT>
+      </P>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Statement: The software shall speak directions on the route
+	  to the user using a text-to-speech interface.
+	</P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Source: The team
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Dependency:
+	  <ul>
+	    <li><a href="#RouteCalc">The next turn to make, from the
+		current route</a></li>
+	  </ul>
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP"> 
+      <FONT SIZE=2>
+	<P>
+	  Conflicts: None
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Supporting Materials:
+	  <ul>
+	    <li><a href="#">Text to speech</a></li>
+	  </ul>
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Evaluation Method: Does it talk?  Does it say the right things?
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Revision History: Charles Manis, 2010-09-21, added requirement
+	</P>
+      </FONT>
+    </TD> 
+  </TR>
+</TABLE>
+
+<TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=638>
+  <TR>
+    <TD VALIGN="TOP">
+      <P>
+	<FONT SIZE=2>
+	  <a name="GUI">No: 8</a>
+	</FONT>
+      </P>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Statement: The software shall display route(s) on the map
+	  with street names.
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Source: The team
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Dependency:
+	  <ul>
+	    <li><a href="#RouteCalc">Route calculation</a></li>
+	    <li><a href="#GPSConnection">The current location</a></li>
+	  </ul>
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP"> 
+      <FONT SIZE=2>
+	<P>
+	  Conflicts: None
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Supporting Materials: &lt;list (with link) to
+	  supporting diagrams, lists, memos, etc.&gt;
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Evaluation Method: Are route(s) displayed on the map as well
+	  as street names?
+	</P>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD VALIGN="TOP">
+      <FONT SIZE=2>
+	<P>
+	  Revision History: Charles Manis, 2010-09-21, added requirement
+	</P>
+      </FONT>
+    </TD> 
+  </TR>
+</TABLE>
 
 
 <UL>
 
-<LI>&lt; Describe the fundamental <U>actions</U> that the software must perform. Functional requirements can be partitioned into subfunctions or subprocesses. Note: the software design partition does not have to correspond with the functional requirements partition. Functional requirements include: </LI>
+<LI>&lt; Describe the fundamental <U>actions</U> that the software
+must perform. Functional requirements can be partitioned into
+subfunctions or subprocesses. Note: the software design partition does
+not have to correspond with the functional requirements
+partition. Functional requirements include: </LI>
 
 
 
@@ -795,8 +1496,8 @@ update user's data from central database </FONT></TD>
 </HTML>
 
 Powered by the Dedicated Servers and
-Cloud Computing of Rackspace Hosting®
+Cloud Computing of Rackspace HostingÃ‚Â®
 BlogSupportTrainingJob BoardShopContactAPIStatus
-© 2010 GitHub Inc. All rights reserved.Terms of ServicePrivacySecurity
-EnglishDeutschFrançais日本語Português (BR)Русский中文
+Ã‚Â© 2010 GitHub Inc. All rights reserved.Terms of ServicePrivacySecurity
+EnglishDeutschFranÃƒÂ§aisÃ¦â€”Â¥Ã¦Å“Â¬Ã¨ÂªÅ¾PortuguÃƒÂªs (BR)Ã�Â Ã‘Æ’Ã‘�Ã‘�Ã�ÂºÃ�Â¸Ã�Â¹Ã¤Â¸Â­Ã¦â€“â€¡
 See all available languages
