@@ -26,7 +26,7 @@
 </B><FONT SIZE=2> 
 <P>Modification history: </P>
 </FONT> 
-<table BORDER cellspacing=1 cellpadding=7 width=711>
+<table BORDER cellspacing=1 cellpadding=7 width=711>how 
   <tr> 
     <td width="15%" valign="TOP"> 
       <p><font size=2>Version</font> 
@@ -71,16 +71,30 @@
   </tr>
   <tr> 
     <td width="15%" valign="TOP"> 
-      <p><font size="2">v1.1 </font>
+      <p><font size="2">v2.0 </font>
     </td>
     <td width="18%" valign="TOP"> 
       <p><font size="2">9/21/10 </font>
     </td>
     <td width="25%" valign="TOP"> 
-      <p><font size="2">Charles Manis </font>
+      <p><font size="2">Eric Olsen </font>
     </td>
     <td width="42%" valign="TOP"> 
-      <p><font size="2"> Added Section 3.</font></p>
+      <p><font size="2"> All done through Section 2</font></p>
+    </td>
+  </tr>
+  <tr> 
+    <td width="15%" valign="TOP"> 
+      <p><font size="2">v3.0 </font>
+    </td>
+    <td width="18%" valign="TOP"> 
+      <p><font size="2">9/21/10 </font>
+    </td>
+    <td width="25%" valign="TOP"> 
+      <p><font size="2">Charles Manis</font>
+    </td>
+    <td width="42%" valign="TOP"> 
+      <p><font size="2">Added the requirements tables for Section 3</font></p>
     </td>
   </tr>
   <tr> 
@@ -259,11 +273,7 @@ it and use other user's data as well.</LI></UL>
 
 </U><UL><U>
 
-</u>
-  <LI>&lt;You do not have to repeat the standards included in the project plan. 
-    This is where you cite any standards that are specific to the system requirements.&gt;
-    </LI>
-    <LI>A USB GPS unit</LI>
+</u><LI>A USB GPS unit</LI>
     <LI>a laptop with Python 2.6</LI>
 
   </UL>
@@ -292,14 +302,8 @@ it and use other user's data as well.</LI></UL>
 </U><UL><U>
 
 </u><LI>We assume the GPS will connect to the computer via USB
-<LI></LI> GPS and computer will communicate using the areNMEA 0183 protocol
+<LI>GPS and computer will communicate using the areNMEA 0183 protocol</LI>
 <LI>The computer must have at least 1 GB of memory and a 2Ghz CPU.</LI> 
-
-<LI>&lt;List all the assumptions the developers are making. For example:
- assumptions about other systems this product will interface with; assumptions
-  about the technological environment in which the product will operate 
-  (how much memory, what type of processor, ...); assumptions about availability 
-  and capability of COTS, GOTS, or other re-used products, ...&gt; </LI>
 </LI></UL>
 
 
@@ -314,11 +318,7 @@ it and use other user's data as well.</LI></UL>
     <LI>The client (aka the TA)</LI>
     <LI>The professor, Dr. Turgut</LI>
     <LI>GPS navigation companies (Magellan, Garmin)</LI>
-    <LI>Geoff Huston</LI>
-<LI>&lt;A stakeholder is anyone who has an interest in the software to be
- developed. For example, the customer, the various classes of users, applicable
-  regulatory agencies, ... List each category of stakeholder and give a phrase 
-  or a sentence to describe their interest or concerns&gt;</LI></UL>
+    <LI>Geoff Huston</LI></UL>
 
 
 
@@ -326,11 +326,7 @@ it and use other user's data as well.</LI></UL>
 
 
 
-</U><UL><U>
-
-</u><LI>&lt;An event table identifies all the external events to which the software must respond. This is a first step in determining the required overall system functionality. The event list should be consistent with the context diagram and the interest of each stakeholder. Make sure that exceptions are considered.&gt; </LI>
-
-<LI>&lt;Use the following table format:&gt;</LI></UL>
+</U>
 
 </FONT>
 
@@ -440,10 +436,11 @@ update user's data from central database </FONT></TD>
 </U><UL><U>
 
 </u>
-  <LI>&lt;Include a use case diagram here. It should be consistent with all the 
-    above work For reference, see materials presented in class.Your text also 
-    has a little information.&gt;</LI>
+<a href="http://s29.photobucket.com/albums/c300/Grumbanumba5/random/?action=view&current=UseCasediag.jpg"
+ target="_blank"><img src="http://i29.photobucket.com/albums/c300/Grumbanumba5/random/UseCasediag.jpg" 
+ border="0" alt="Photobucket"></a>
 </UL>
+ 
 
 
 
@@ -454,11 +451,25 @@ update user's data from central database </FONT></TD>
 </U><UL><U>
 
 </u>
-  <LI>&lt;Briefly describe each use case included in the above diagram. Make sure 
-    that exceptions are considered. For reference, see materials presented in 
-    class. class.Your text also has a little information &gt;</LI>
+  <LI>Select Destination - The user will use the GUI to select a destination
+  to navigate to</LI>
+  <LI>Display Route(s) - After A* calculates the best route(s), they are 
+  highlighted on the map in the GUI</LI>
+  <LI>Give Current Location - The Map Factory sends the GPS's current coordinates
+  to the Route Factory</LI>
+  <LI>Give Required Data - The Local Database must give the road segments,
+  time traveled, and travel duration to the Route Factory</LI>
+  <LI>Filter Data - The Map Factory takes the raw data from the Interpreter
+  and filters out outliers and other unwanted information</LI>
+  <LI>Store Travel Data - The Map Factory takes the filtered data
+  and stores the relevant information in the Local Database</LI>
+  <LI>Synchronize with Database - When the user connects to the Central 
+  Database, the data collected in the Local Database must be uploaded
+  to the Central Database, and the Local Database must be updated
+  with any new data from the Central Database
+  <LI>Send Data - The GPS must send the data to the Interpreter using the
+  areNMEA 0183 protocol</LI>
 </UL>
-
 
 
 </FONT><P><HR><p></P>
@@ -1496,8 +1507,8 @@ partition. Functional requirements include: </LI>
 </HTML>
 
 Powered by the Dedicated Servers and
-Cloud Computing of Rackspace HostingÃ‚Â®
+Cloud Computing of Rackspace HostingÃƒâ€šÃ‚Â®
 BlogSupportTrainingJob BoardShopContactAPIStatus
-Ã‚Â© 2010 GitHub Inc. All rights reserved.Terms of ServicePrivacySecurity
-EnglishDeutschFranÃƒÂ§aisÃ¦â€”Â¥Ã¦Å“Â¬Ã¨ÂªÅ¾PortuguÃƒÂªs (BR)Ã�Â Ã‘Æ’Ã‘�Ã‘�Ã�ÂºÃ�Â¸Ã�Â¹Ã¤Â¸Â­Ã¦â€“â€¡
+Ãƒâ€šÃ‚Â© 2010 GitHub Inc. All rights reserved.Terms of ServicePrivacySecurity
+EnglishDeutschFranÃƒÆ’Ã‚Â§aisÃƒÂ¦Ã¢â‚¬â€�Ã‚Â¥ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¨Ã‚ÂªÃ…Â¾PortuguÃƒÆ’Ã‚Âªs (BR)Ãƒ�Ã‚Â Ãƒâ€˜Ã†â€™Ãƒâ€˜�Ãƒâ€˜�Ãƒ�Ã‚ÂºÃƒ�Ã‚Â¸Ãƒ�Ã‚Â¹ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡
 See all available languages
