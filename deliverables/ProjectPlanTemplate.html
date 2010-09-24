@@ -27,6 +27,12 @@ p
 	margin-left:0in;
 	font-size:12.0pt;
 	font-family:"Times New Roman","serif";}
+p.msochpdefault, li.msochpdefault, div.msochpdefault
+	{mso-style-name:msochpdefault;
+	margin-right:0in;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";}
 .MsoChpDefault
 	{font-size:10.0pt;}
 @page Section1
@@ -156,7 +162,22 @@ ul
   <p class=MsoNormal>Laura Barton</p>
   </td>
   <td width="42%" valign=top style='width:42.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-  <p>Updated Life Cycle Process, Table of Work Packages, etc., and Configuration Management</p>
+  <p>Updated Life Cycle Process, Table of Work Packages, etc., and
+  Configuration Management</p>
+  </td>
+ </tr>
+ <tr>
+  <td width="15%" valign=top style='width:15.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p>v1.5</p>
+  </td>
+  <td width="18%" valign=top style='width:18.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p class=MsoNormal>09/21/10</p>
+  </td>
+  <td width="25%" valign=top style='width:25.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p class=MsoNormal>Steven Nichols</p>
+  </td>
+  <td width="42%" valign=top style='width:42.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+  <p>Updated Tools and Computing Environment</p>
   </td>
  </tr>
 </table>
@@ -167,7 +188,7 @@ ul
 
 <p>Team Members:</p>
 
-<ul type=disc>
+<ul style='margin-top:0in' type=disc>
  <li class=MsoNormal><a href="http://robbs.ath.cx/team1/wiki/Grumbanumba5/">Eric
      Olsen</a> : EOlsen@knights.ucf.edu</li>
  <li class=MsoNormal><a href="http://robbs.ath.cx/team1/wiki/Steven">Steven
@@ -177,8 +198,11 @@ ul
  <li class=MsoNormal><a href="http://robbs.ath.cx/team1/wiki/Richie">Richie
      Manis</a> - r@knights.ucf.edu</li>
  <li class=MsoNormal>Dana Orlando - kittymage@knights.ucf.edu</li>
- <li class=MsoNormal><a href="http://robbs.ath.cx/team1/wiki/Laura">Laura Barton</a> - lbarton@knights.ucf.edu</li>
+ <li class=MsoNormal><a href="http://robbs.ath.cx/team1/wiki/Laura">Laura
+     Barton</a> - lbarton@knights.ucf.edu</li>
 </ul>
+
+<div>
 
 <div>
 
@@ -187,6 +211,8 @@ ul
 <div class=MsoNormal>
 
 <hr size=2 width="90%" align=left>
+
+</div>
 
 </div>
 
@@ -234,12 +260,13 @@ Assignments</a></p>
 
 <p><a name=Overview><b>Project Overview</b></a></p>
 
-<p>Team 1, Inc. will implement a Global Positioning System, nicknamed Shortqut, which will 
-have the ability to learn about and adapt to road congestion from collected data as well as 
-suggest the quickest route given the provided data. Shortqut will be run via any portable 
-computer connected with a USB GPS device and the database in which the archived data is stored. 
-Unlike ordinary GPS devices, Shortqut will have stored documentation of traffic patterns from 
-which it will be able to derive the optimal route.</p>
+<p>Team 1, Inc. will implement a Global Positioning System, nicknamed Shortqut,
+which will have the ability to learn about and adapt to road congestion from
+collected data as well as suggest the quickest route given the provided data.
+Shortqut will be run via any portable computer connected with a USB GPS device
+and the database in which the archived data is stored. Unlike ordinary GPS
+devices, Shortqut will have stored documentation of traffic patterns from which
+it will be able to derive the optimal route.</p>
 
 <div class=MsoNormal align=center style='text-align:center'>
 
@@ -249,7 +276,7 @@ which it will be able to derive the optimal route.</p>
 
 <p><a name=Reference><b>Reference Documents</b></a></p>
 
-<ul type=disc>
+<ul style='margin-top:0in' type=disc>
  <li class=MsoNormal>Concept of Operations &lt;include link here&gt; </li>
  <li class=MsoNormal>&lt;any other relevant documents; include full reference
      information or link&gt;</li>
@@ -263,7 +290,7 @@ which it will be able to derive the optimal route.</p>
 
 <p><a name=Standards><b>Applicable Standards</b></a></p>
 
-<ul type=disc>
+<ul style='margin-top:0in' type=disc>
  <li class=MsoNormal><a href="CodingStandards.htm">Coding Standards</a></li>
  <li class=MsoNormal><a href="DocumentStandards.htm">Document Standards</a> </li>
  <li class=MsoNormal><a href="#TechnicalProgress">Artifact Size Metric Standard</a>
@@ -281,27 +308,42 @@ this section</p>
 
 <p><a name=Organization><b>Project Team Organization</b></a></p>
 
-<p style='margin-left:1.0in'>Members of this development group include Robby Ronk, 
-Eric Olsen, Steven Nichols, Dana Orlando, Richie Manis, and Laura Barton. The developers 
-communicate through weekly face-to-face meetings, group emails, a Trac site, and GitHub. 
-Ronk leads the team in the role of project manager. He oversees the development of each 
-module as determined by the group as well as maintains the group web site. Each 
-group member is responsible for a different section of the project that, when completed, 
-shall work together seamlessly. The following is a list of functional modules, their managers 
-and a brief description of the responsibilities involved with that part:
-<ul style='margin-left:1.0in' type=circle>
-	<li><b>Interpreter/Retriever: </b> Manis shall manage the communication between the GPS device 
-		and the Shortqut program.</li>
-	<li><b>Map Factory:</b> Olsen shall be responsible for the creation of the map and plotting of data
-		 </li>
-	<li><b>Route Factory:</b> The generation of the top 3 quickest routes using the A* algorithm shall be 
-		overseen by Nichols.</li>
-	<li><b>The Stiqy (i.e. GUI):</b> Orlando shall compile the user interface which will display the 
-		map and the suggested routes as well as use text-to-speech to convey the directions.</li>
-	<li><b>Database Communication:</b> Barton shall develop the database tables and procedures needed 
-		to pass data between both the local and server databases and the local database and Shortqut.</li>
-</ul>
-</p>
+<p style='margin-left:1.0in'>Members of this development group include Robby
+Ronk, Eric Olsen, Steven Nichols, Dana Orlando, Richie Manis, and Laura Barton.
+The developers communicate through weekly face-to-face meetings, group emails, a
+Trac site, and GitHub. Ronk leads the team in the role of project manager. He
+oversees the development of each module as determined by the group as well as
+maintains the group web site. Each group member is responsible for a different
+section of the project that, when completed, shall work together seamlessly.
+The following is a list of functional modules, their managers and a brief
+description of the responsibilities involved with that part: </p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:"Courier New"'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span><b>Interpreter/Retriever: </b>Manis shall manage the
+communication between the GPS device and the Shortqut program.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:"Courier New"'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span><b>Map Factory:</b> Olsen shall be responsible for the creation
+of the map and plotting of data </p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:"Courier New"'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span><b>Route Factory:</b> The generation of the top 3 quickest routes
+using the A* algorithm shall be overseen by Nichols.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:"Courier New"'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span><b>The Stiqy (i.e. GUI):</b> Orlando shall compile the user
+interface which will display the map and the suggested routes as well as use
+text-to-speech to convey the directions.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:"Courier New"'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span><b>Database Communication:</b> Barton shall develop the database
+tables and procedures needed to pass data between both the local and server
+databases and the local database and Shortqut.</p>
 
 <div class=MsoNormal align=center style='text-align:center'>
 
@@ -312,7 +354,7 @@ and a brief description of the responsibilities involved with that part:
 <p><a name=Deliverables><b>Deliverables </b></a></p>
 
 <table class=MsoNormalTable border=1 cellspacing=1 cellpadding=0 width=426
- style='width:319.5pt; margin-left:1.0in'>
+ style='width:319.5pt;margin-left:1.0in'>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p><b>Artifact</b> </p>
@@ -326,94 +368,119 @@ and a brief description of the responsibilities involved with that part:
   <p>Meeting Minutes </p>
   </td>
   <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-	Due 2 days after each meeting</td>
+  <p class=MsoNormal>Due 2 days after each meeting</p>
+  </td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Individual Logs </p>
   </td>
   <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-	Due every Friday</td>
+  <p class=MsoNormal>Due every Friday</p>
+  </td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Group Project Management Reports </p>
   </td>
   <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-	Due biweekly on Fridays</td>
+  <p class=MsoNormal>Due biweekly on Fridays</p>
+  </td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>ConOps </p>
   </td>
   <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-	Due 9/21 to Project Manager<br/>Due 9/23 for Deliverables I</td>
+  <p class=MsoNormal>Due 9/21 to Project Manager<br>
+  Due 9/23 for Deliverables I</p>
+  </td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Project Plan </p>
   </td>
   <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-	Due 9/21 to Project Manager<br/>Due 9/23 for Deliverables I</td>
+  <p class=MsoNormal>Due 9/21 to Project Manager<br>
+  Due 9/23 for Deliverables I</p>
+  </td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>SRS </p>
   </td>
   <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-	Due 9/21 to Project Manager<br/>Due 9/23 for Deliverables I</td>
+  <p class=MsoNormal>Due 9/21 to Project Manager<br>
+  Due 9/23 for Deliverables I</p>
+  </td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>High-Level Design </p>
   </td>
   <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-	Due 10/24 to Project Manager<br/>Due 10/26 for Deliverables II</td>
+  <p class=MsoNormal>Due 10/24 to Project Manager<br>
+  Due 10/26 for Deliverables II</p>
+  </td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Detailed Design </p>
   </td>
   <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-	Due 10/24 to Project Manager<br/>Due 10/26 for Deliverables II</td>
+  <p class=MsoNormal>Due 10/24 to Project Manager<br>
+  Due 10/26 for Deliverables II</p>
+  </td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Test Plan </p>
   </td>
   <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-	Due 9/21 to Project Manager<br/>Due 9/23 for Deliverables I</td>
+  <p class=MsoNormal>Due 9/21 to Project Manager<br>
+  Due 9/23 for Deliverables I</p>
+  </td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>User's Manual </p>
   </td>
   <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-	Due 11/28 to Project Manager<br/>Due 11/30 for Final Presentation</td>
+  <p class=MsoNormal>Due 11/28 to Project Manager<br>
+  Due 11/30 for Final Presentation</p>
+  </td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Final Test Results </p>
   </td>
   <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-	Due 11/28 to Project Manager<br/>Due 11/30 for Final Presentation</td>
+  <p class=MsoNormal>Due 11/28 to Project Manager<br>
+  Due 11/30 for Final Presentation</p>
+  </td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Source, Executable, Build Instructions </p>
   </td>
   <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-	Due 11/28 to Project Manager<br/>Due 11/30 for Final Presentation</td>
+  <p class=MsoNormal>Due 11/28 to Project Manager<br>
+  Due 11/30 for Final Presentation</p>
+  </td>
  </tr>
  <tr>
   <td width="48%" valign=top style='width:48.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
   <p>Project Legacy </p>
   </td>
   <td width="52%" valign=top style='width:52.0%;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
-	Due 11/28 to Project Manager<br/>Due 11/30 for Final Presentation</td>
+  <p class=MsoNormal>Due 11/28 to Project Manager<br>
+  Due 11/30 for Final Presentation</p>
+  </td>
  </tr>
 </table>
-<br/>
+
+<p class=MsoNormal>&nbsp;</p>
+
 <div class=MsoNormal align=center style='text-align:center'>
 
 <hr size=2 width="100%" align=center>
@@ -427,12 +494,11 @@ sentence or two description of the process and the rationale for selecting this
 process. Give a diagram of the process that includes the major phases and the
 sequencing of the phases. See your text for background information. You may
 decide to implement a &quot;hybrid&quot; model that is not exactly as shown in
-your text.&gt;</i>
-Team 1, Inc. developers will follow the V life cycle process model. The V model 
-incorporates the same steps that the group will take in developing the product 
-while also allowing for the verification of design decisions and validation of 
-requirements, which the developers shall monitor during the testing phases, as 
-is indicated in the V model diagram below.<br/>
+your text.&gt;</i> Team 1, Inc. developers will follow the V life cycle process
+model. The V model incorporates the same steps that the group will take in
+developing the product while also allowing for the verification of design
+decisions and validation of requirements, which the developers shall monitor
+during the testing phases, as is indicated in the V model diagram below.<br>
 [Make V model diagram and insert here]</p>
 
 <div class=MsoNormal align=center style='text-align:center'>
@@ -443,8 +509,28 @@ is indicated in the V model diagram below.<br/>
 
 <p><a name=Environment><b>Tools and Computing Environment</b></a></p>
 
-<p style='margin-left:1.0in'>&lt;What Operating System, programming languages,
-compilers, libraries, ...&gt;</p>
+<p style='margin-left:1.0in'>The majority of the code for the project will be
+written in the Python programming language. Python is an object oriented
+language designed to be easy to read, understand and maintain. It’s main
+advantages are cross-platform compatibility, a large standard library and many
+open-source third-party libraries. Python is an interpreted language, although
+it is also compiled after the first use for later runs. </p>
+
+<p style='margin-left:1.0in'>The project will also require two databases, a
+local database for each instance of the GPS software and a global database to
+allow individuals to share and aggregate traffic data. These databases will be
+created with SQL. The global database will use the MySQL implementation while
+the local database may be either MySQL or SQLite. MySQL has an extension designed
+to store geographical records. This newly added Spatial Extensions library may
+prove to be a deciding factor in favor of MySQL on both the global and local
+databases.</p>
+
+<p style='margin-left:1.0in'>Since all the tools and languages we need for the
+project are cross-platform compatible and since our team is split between
+Windows and Linux users, our program will be designed to also work in Windows
+and in Linux. In those instances where platform specific code is required, such
+as in the text-to-speech module, we can easily detect which platform the code
+is running on and run the appropriate function.</p>
 
 <div class=MsoNormal align=center style='text-align:center'><a name=CM></a>
 
@@ -454,12 +540,11 @@ compilers, libraries, ...&gt;</p>
 
 <p><b>Configuration Management</b></p>
 
-<p style='margin-left:1.0in'>
-Version and change control will be handled through Git, which is a repository 
-storing all of our project files. Group members have access to shared files which 
-they can update from their own computers. Git has a function which monitors all 
-changes made to each of the shared files, so developers need only comment about 
-changes made.</p>
+<p style='margin-left:1.0in'>Version and change control will be handled through
+Git, which is a repository storing all of our project files. Group members have
+access to shared files which they can update from their own computers. Git has
+a function which monitors all changes made to each of the shared files, so
+developers need only comment about changes made.</p>
 
 <div class=MsoNormal align=center style='text-align:center'>
 
@@ -476,7 +561,7 @@ should be tested against sample data and be free of major issues before being
 committed to the version control system.</p>
 
 <p style='margin-left:1.0in'>Developers are responsible for making sure their
-modules work, but may coordinate among themselves to QA each other?s modules if
+modules work, but may coordinate among themselves to QA each other’s modules if
 they so desire. Negative test results should be reported through the Issues
 tracker on GitHub which is integrated with source control. Subsequent positive
 results should be reported by marking the Issue as resolved.</p>
@@ -494,7 +579,7 @@ The workload assigned to the member will be split up among the remaining
 students. Some students may have to re-learn information that was known only to
 the member who is leaving</p>
 
-<p style='margin-left:1.0in'><b>A group member?s computer breaks<br>
+<p style='margin-left:1.0in'><b>A group member’s computer breaks<br>
 </b>Since documents and source code will always be stored in the repository on
 a remote machine, the loss of data should be minimal. That unlucky group member
 will need to get their computer fixed ASAP and recreate any changes they made
@@ -516,16 +601,16 @@ with the system design<br>
 </b>The sooner this is discovered the better. Best case, we find a serious flaw
 immediate after starting to code and are forced to fall back to another
 language. We would lose a little bit of time porting the code to a new language
-setting our efforts back by a day or so. In? a worst case scenario, the flaw
-isn?t discovered until near the end of the project. In this case we would keep
+setting our efforts back by a day or so. In a worst case scenario, the flaw
+isn’t discovered until near the end of the project. In this case we would keep
 most of the project in the current language and port only those modules which
 had to be written in another language. </p>
 
-<p style='margin-left:1.0in'><b>Someone accidentally types ?import skynet? and
+<p style='margin-left:1.0in'><b>Someone accidentally types “import skynet” and
 the project becomes self-aware<br>
 </b>This is one of the downsides to using Python as the primary language. The
-danger can be somewhat mitigated by always adding
-?thisAlgorithmBecomingSkynetCost = 999999999999? to all genetic algorithms.</p>
+danger can be somewhat mitigated by always adding “thisAlgorithmBecomingSkynetCost
+= 999999999999” to all genetic algorithms.</p>
 
 <div class=MsoNormal align=center style='text-align:center'>
 
@@ -536,64 +621,128 @@ danger can be somewhat mitigated by always adding
 <p><a name=WorkPackages><b>Table of Work Packages, Time Estimates, and
 Assignments</b></a></p>
 
-<p style='margin-left:1.0in'>
-The following table is a high-level breakdown of the different modules 
-or steps needed in order to complete the Shortqut system. Note: All time estimates 
-are tentative. Also, listed managers are only who is responsible for making sure 
-each module is completed.</p>
-<table border=1 cellspacing=1 cellpadding=2 style='margin-left:1.0in;'>
-	<tr> <!-- Header row -->
-		<td><b>Work Package</b></td>
-		<td><b>Assignee</b></td>
-		<td><b>Estimated<br/>Work Time</b></td>
-	</tr>
-	<tr> <!-- Database development row -->
-		<td><i>Database Development</i></td>
-		<td>Laura Barton</td>
-		<td>16 hours</td>
-	</tr>
-	<tr> <!-- Interpreter coding row -->
-		<td><i>Interpreter Fabrication</i></td>
-		<td>Richie Manis</td>
-		<td>17 hours</td>
-	</tr>
-	<tr> <!-- Map Factory Construction row -->
-		<td><i>Map Factory Construction</i></td>
-		<td>Eric Olsen</td>
-		<td>14 hours</td>
-	</tr>
-	<tr> <!-- Route Factory Construction row -->
-		<td><i>Route Factory Manufacturing</i></td>
-		<td>Steven Nichols</td>
-		<td>20 hours</td>
-	</tr>
-	<tr> <!-- Stiqy Development row -->
-		<td><i>Stiqy Conglomeration</i></td>
-		<td>Dana Orlando</td>
-		<td>18 hours</td>
-	</tr>
-	<tr> <!-- Unit Testing row -->
-		<td><i>Unit Testing</i></td>
-		<td>Robby Ronk</td>
-		<td>4 hours</td>
-	</tr>
-	<tr> <!-- Module Integration row -->
-		<td><i>Module Integration</i></td>
-		<td>Robby Ronk</td>
-		<td>5 hours</td>
-	</tr>
-	<tr> <!-- Data Collection row -->
-		<td><i>Data Collection</i></td>
-		<td>Robby Ronk</td>
-		<td>30 hours</td>
-	</tr>
-	<tr> <!-- System testing row -->
-		<td><i>System Testing</i></td>
-		<td>Robby Ronk</td>
-		<td>60 hours</td>
-	</tr>
+<p style='margin-left:1.0in'>The following table is a high-level breakdown of
+the different modules or steps needed in order to complete the Shortqut system.
+Note: All time estimates are tentative. Also, listed managers are only who is
+responsible for making sure each module is completed.</p>
+
+<table class=MsoNormalTable border=1 cellspacing=1 cellpadding=0
+ style='margin-left:1.0in'>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><b>Work Package</b></p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><b>Assignee</b></p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><b>Estimated<br>
+  Work Time</b></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><i>Database Development</i></p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>Laura Barton</p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>16 hours</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><i>Interpreter Fabrication</i></p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>Richie Manis</p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>17 hours</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><i>Map Factory Construction</i></p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>Eric Olsen</p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>14 hours</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><i>Route Factory Manufacturing</i></p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>Steven Nichols</p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>20 hours</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><i>Stiqy Conglomeration</i></p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>Dana Orlando</p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>18 hours</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><i>Unit Testing</i></p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>Robby Ronk</p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>4 hours</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><i>Module Integration</i></p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>Robby Ronk</p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>5 hours</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><i>Data Collection</i></p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>Robby Ronk</p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>30 hours</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><i>System Testing</i></p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>Robby Ronk</p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal>60 hours</p>
+  </td>
+ </tr>
 </table>
-<br/>
+
+<p class=MsoNormal>&nbsp;</p>
+
 <div class=MsoNormal align=center style='text-align:center'>
 
 <hr size=2 width="100%" align=center>
@@ -605,7 +754,9 @@ each module is completed.</p>
 <p style='margin-left:1.0in'>&lt;This should be detailed enough so that
 important activities and dependencies are evident. Estimated durations of
 activities and the critical path should be included. See your text for
-discussion and example PERT charts.&gt;<br/><a href="http://www.netmba.com/operations/project/pert/">this link talks about pert charts</a></p>
+discussion and example PERT charts.&gt;<br>
+<a href="http://www.netmba.com/operations/project/pert/">this link talks about
+pert charts</a></p>
 
 <div class=MsoNormal align=center style='text-align:center'>
 
@@ -617,17 +768,17 @@ discussion and example PERT charts.&gt;<br/><a href="http://www.netmba.com/opera
 
 <p style='margin-left:1.0in'><b>Requirements phase<br>
 </b>In the requirements phase, we will use the number of documents completed
-verses the number of documents to be submitted to judge the current progress. When
-a document contains many independent subsections, the number of subsections
-completed vs the number of total subsections may also be used. These metrics
-are easy to collect and interpret and should be sufficient.</p>
+verses the number of documents to be submitted to judge the current progress.
+When a document contains many independent subsections, the number of
+subsections completed vs the number of total subsections may also be used.
+These metrics are easy to collect and interpret and should be sufficient.</p>
 
 <p style='margin-left:1.0in'><b>Analysis phase<br>
 </b>In the analysis phase, we will track the number of modules that have been
-specified. The most natural approach would be to count the number of completed UML
-diagrams. This metric can be used to track progress from week to week but will
-be insufficient to measure how close the analysis phase is to completion. For
-that, we will need individuals to estimate how many diagrams remain.</p>
+specified. The most natural approach would be to count the number of completed
+UML diagrams. This metric can be used to track progress from week to week but
+will be insufficient to measure how close the analysis phase is to completion.
+For that, we will need individuals to estimate how many diagrams remain.</p>
 
 <p style='margin-left:1.0in'><b>Design phase<br>
 </b>Lines of Code (LoC) -- This metric is easy to collected and report. It is
@@ -641,15 +792,15 @@ in the LoC metric.</p>
 
 <p style='margin-left:1.0in'>Number of Functions (NoF) -- A more useful,
 through slightly more difficult to collect, metric, the NoF should give an
-indication of the number of tasks that have been completed as each function
-should be simple bock of code corresponding to a single task. <br>
+indication of the number of tasks that have been completed as each function should
+be simple bock of code corresponding to a single task. <br>
 <br>
-Number of Integrated Modules (NoIM) ? This metric is focused on how many modules
-have been tested and are known to work together vs the number of modules
-remaining to be integrated. This metric will only become useful as the project
-nears the final stages.<br>
+Number of Integrated Modules (NoIM) -- This metric is focused on how many
+modules have been tested and are known to work together vs the number of
+modules remaining to be integrated. This metric will only become useful as the
+project nears the final stages.<br>
 <br>
-Number of Bugs Squashed (NoBS) ? This metric is more about keeping programmers
+Number of Bugs Squashed (NoBS) -- This metric is more about keeping programmers
 encouraged than tracking actual progress. Humans have a tendency to forget how
 far they have come, and so this metric can remind them of the gains which have
 been made.</p>
@@ -677,8 +828,8 @@ action if necessary.</p>
 <p style='margin-left:1.0in'>The project manager will issue a revised Project
 Management Report every two weeks which will include a brief, ~1 sentence
 description of the project status, a brief description of any planned changes
-to the project, an updated graph of the technical progress metric (planned vs. actual)
-for the previous two weeks and an updated PERT chart. </p>
+to the project, an updated graph of the technical progress metric (planned vs.
+actual) for the previous two weeks and an updated PERT chart. </p>
 
 <p style='margin-left:1.0in'>&nbsp;</p>
 
