@@ -1,17 +1,19 @@
 import serial
 
 def openGPS(device="/dev/ttyUSB0"):
-    return serial.Serial(device)
+    return serial.Serial(device,4800)
 
 def getGPSLine(ser):
     data = getSentence(ser)
     if (data):
-        print data
+        #print data
         # we can safely ignore the $--, which is the device type
         type = data[0][3:]
         try:
             return (type, eval ("parse%s(%s)" % (type, data[1:])))
         except SyntaxError:
+            return
+        except NameError:
             return
 
 def parseNMEA(line):
@@ -32,42 +34,44 @@ def getUseful(string):
     data = ['a']
     while(data[0] != string):
         data = getData()
-        print data
+        #print data
 
 def pack(keys,values):
+    #print "     PACK", keys, " ", values
     r = {}
     for i in range(len(keys)):
+        # print "    PACK: ", keys[i], " ", values[i]
         r[keys[i]] = values[i]
     return r
 
 def parseGSV(data):
     """Satellites in view"""
-    #print "GSV received"
-    #print data
-    #print len(data)
+    print "GSV received"
+    # print data
+    # print len(data)
     # I can haz proper destructuring-bind ???
     return pack (["totalMsg","lOrigin","totalSat","prn",
                   "elevation","azimuth","snr"],
-                 data[1:8])
+                 data[:7])
 
 def parseRMC(data):
     print "RMC received"
-    print data
+    #print data
     return
 
 def parseGGA(data):
     """Global positioning system fix data"""
-    #print "GGA received"
-    #print data
+    print "GGA received"
+    # print data
     return pack(["utc", "lat", "ns", "lon", "ew", "quality"
                  "numSats", "horizontalDilution", "altitude",
                  "altitudeUnits", "separation", "separationUnits",
                  "age", "reference"],
-                data[1:])
+                data)
 
 def parseGSA(data):
     print "GSA received"
-    print data
+    #print data
     return
 
 ### The debugging stuff
