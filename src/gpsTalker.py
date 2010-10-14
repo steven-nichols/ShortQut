@@ -29,9 +29,18 @@ class GPSTalker:
     def addMsg(self,data):
         self.messages.put(data)
     def getMsg(self):
-        msg = self.messages.get()
+        msg = self.messages.get()[1]
+        time = msg["utc"]
+        if(msg["ns"] == "S"):
+            lat = "-%s" % msg["lat"]
+        else:
+            lat = msg["lat"]
+        if(msg["ew"] == "W"):
+            lon = "-%s" % msg["lon"]
+        else:
+            lon = msg["lon"]
         self.messages.task_done()
-        return msg
+        return (time, lat, lon)
     def consume(self):
         while(self.messages.qsize() > 0):
             print self.getMsg()
