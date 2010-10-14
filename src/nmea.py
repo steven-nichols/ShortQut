@@ -9,6 +9,7 @@ def getGPSLine(ser):
         #print data
         # we can safely ignore the $--, which is the device type
         type = data[0][3:]
+        #print "   Type = ", type
         try:
             return (type, eval ("parse%s(%s)" % (type, data[1:])))
         except SyntaxError:
@@ -46,7 +47,7 @@ def pack(keys,values):
 
 def parseGSV(data):
     """Satellites in view"""
-    print "GSV received"
+    #print "GSV received"
     # print data
     # print len(data)
     # I can haz proper destructuring-bind ???
@@ -55,13 +56,13 @@ def parseGSV(data):
                  data[:7])
 
 def parseRMC(data):
-    print "RMC received"
+    #print "RMC received"
     #print data
     return
 
 def parseGGA(data):
     """Global positioning system fix data"""
-    print "GGA received"
+    #print "GGA received"
     # print data
     return pack(["utc", "lat", "ns", "lon", "ew", "quality"
                  "numSats", "horizontalDilution", "altitude",
@@ -70,7 +71,7 @@ def parseGGA(data):
                 data)
 
 def parseGSA(data):
-    print "GSA received"
+    #print "GSA received"
     #print data
     return
 
