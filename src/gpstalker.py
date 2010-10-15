@@ -3,6 +3,7 @@ from threading import Thread
 import Queue
 import nmea
 
+
 class GPSTalker:
     cares = {'GGA' : True,
              'RMC' : False,
@@ -13,11 +14,14 @@ class GPSTalker:
     running = True
     # Queue is thread-safe
     messages = Queue.Queue()
+
     def __init__(self,serial="/dev/ttyUSB0"):
         self.ser = nmea.openGPS(serial)
+
     def runLoop(self):
         self.child = TalkerThread(self)
         self.child.start()
+
     def recvMsg(self):
         try:
             (type,data) = nmea.getGPSLine(self.ser)
@@ -26,8 +30,10 @@ class GPSTalker:
                 self.addMsg((type,data))
         except TypeError:
             pass
+
     def addMsg(self,data):
         self.messages.put(data)
+
     def getMsg(self):
         msg = self.messages.get()[1]
         time = msg["utc"]
@@ -41,15 +47,19 @@ class GPSTalker:
             lon = msg["lon"]
         self.messages.task_done()
         return (time, lat, lon)
+
     def consume(self):
         while(self.messages.qsize() > 0):
             print self.getMsg()
         self.messages.join()
+
     def close(self):
         self.ser.close()
+
     def setRunning(self,run):
         with self.lock:
             self.running = run
+
 
 def go():
     try:
@@ -61,6 +71,7 @@ def go():
     except NameError:
         talker = GPSTalker()
         return go()
+
 
 class TalkerThread(Thread):
     def __init__(self,talker):
