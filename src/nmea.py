@@ -1,7 +1,9 @@
 import serial
 
+
 def openGPS(device="/dev/ttyUSB0"):
     return serial.Serial(device,4800)
+
 
 def getGPSLine(ser):
     data = getSentence(ser)
@@ -17,18 +19,22 @@ def getGPSLine(ser):
         except NameError:
             return
 
+
 def parseNMEA(line):
     data = line.split(",")
     return data
 
+
 def getSentence(ser):
     return parseNMEA(ser.readline())
+
 
 def getData():
     ser = serial.Serial("/dev/ttyUSB0",4800)
     data = getSentence(ser)
     ser.close()
     return data
+
 
 def getUseful(string):
     global data
@@ -37,6 +43,7 @@ def getUseful(string):
         data = getData()
         #print data
 
+
 def pack(keys,values):
     #print "     PACK", keys, " ", values
     r = {}
@@ -44,6 +51,7 @@ def pack(keys,values):
         # print "    PACK: ", keys[i], " ", values[i]
         r[keys[i]] = values[i]
     return r
+
 
 def parseGSV(data):
     """Satellites in view"""
@@ -55,10 +63,12 @@ def parseGSV(data):
                   "elevation","azimuth","snr"],
                  data[:7])
 
+
 def parseRMC(data):
     #print "RMC received"
     #print data
     return
+
 
 def parseGGA(data):
     """Global positioning system fix data"""
@@ -70,10 +80,12 @@ def parseGGA(data):
                  "age", "reference"],
                 data)
 
+
 def parseGSA(data):
     #print "GSA received"
     #print data
     return
+
 
 ### The debugging stuff
 
@@ -81,11 +93,12 @@ def start():
     global ser
     ser = serial.Serial("/dev/ttyUSB0",4800)
 
+
 def end():
     ser.close()
+
 
 def go():
     start()
     print getGPSLine(ser)
     end()
-
