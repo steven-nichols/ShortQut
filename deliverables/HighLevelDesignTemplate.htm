@@ -14,10 +14,10 @@
 
 <BODY LINK="#0000ff" VLINK="#800080">
 <B><FONT SIZE=2>
-<P ALIGN="CENTER"><b>&lt;Your Project Name Here&gt;</b></P>
+<P ALIGN="CENTER"><b>Shortqut</b></P>
 </font></B> 
 <p align="CENTER"><font size="2"><b>High Level Design</b></font></p>
-<p align="CENTER"><font size="2"><b>&lt;Course, Semester, Year&gt;</b></font></p>
+<p align="CENTER"><font size="2"><b>COP 4331, Fall 2010</b></font></p>
 <p align="CENTER">&nbsp;</p>
 <p><font size="2">Modification history: </font></p>
 <table BORDER cellspacing=1 cellpadding=7 width=711>
@@ -81,16 +81,31 @@
   </tr>
 </table>
 <p>&nbsp;</p>
-<p><font size="2">Team Name: &lt;your team name here&gt;</font></p>
-<p><font size="2">Team Members:</font></p>
-<ul>
-  <li><font size="2">&lt;person1 and that person's e-mail and web page -- name 
-    and links&gt; </font></li>
-  <li><font size="2">&lt;person2 and that person's e-mail and web page -- name 
-    and links&gt; </font></li>
-  <li><font size="2">...</font></li>
+<p><span style='font-size:10.0pt'>Team Name: Team1</span></p>
+
+<p><span style='font-size:10.0pt'>Team Members:</span></p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt'><a
+     href="http://robbs.ath.cx/team1/wiki/EricOlsen/">Eric Olsen</a></span><span
+     style='font-size:10.0pt'> : EOlsen@knights.ucf.edu</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'><a
+     href="http://robbs.ath.cx/team1/wiki/Steven">Steven Nichols</a></span><span
+     style='font-size:10.0pt'> : steven.nichols@knights.ucf.edu</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'><a
+     href="http://robbs.ath.cx/team1/wiki/Robbs">Robby Ronk</a></span><span
+     style='font-size:10.0pt'> - rjr@knights.ucf.edu</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'><a
+     href="http://robbs.ath.cx/team1/wiki/Richie">Richie Manis</a></span><span
+     style='font-size:10.0pt'> - r@knights.ucf.edu</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'><a
+     href="http://robbs.ath.cx/team1/wiki/Dana">Dana Orlando</a></span><span
+     style='font-size:10.0pt'> - kittymage@knights.ucf.edu</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt'><a
+     href="http://robbs.ath.cx/team1/wiki/Laura">Laura Barton</a></span><span
+     style='font-size:10.0pt'> - lbarton@knights.ucf.edu</span></li>
 </ul>
-<p>
+
 <hr align="LEFT" width="90%">
 <p></P>
 <FONT SIZE=2>
@@ -118,6 +133,27 @@
 <p></P>
 <P><font size="2"><A NAME="Issues">Design Issues</A>:</font></P>
 <DIR> 
+  <P><font size="2">
+  Reusability - Each module will contain code that could be useful in another program.
+  Examples: A* and distance calculations
+  Maintainability - The code will adhere to strict style guidelines and will be heavily documented
+  Testability - The style of development that we are employing, iterative in the REPL, means that 
+  we are testing while developing. Unit tests will also be used when possible and functions and functional units
+  will be tested using unit tests.
+  Performance - Performance was a consideration when choosing python since it is not known for its speed.
+  Performance testing will be used on the most computationally intensive parts of the program. Most parts of the
+  program will not be CPU bound but rather waiting for the user to interact.
+  Portability - Python and the libraries we are using are extremely portable and we are targetting both
+  Windows and Linux platforms. Mobile platforms (excluding iOS) would not be extraordinarily difficult
+  to port to.
+  Reuse - I already covered this.
+  Safety - I don't know what you mean by this.
+  Prototyping - Our development strategy is to build a prototype into a full product. 
+  I expect technical difficulties with the algorithm to match times with streets and the 
+  algorithm to find the correct route since these are both difficult problems.
+  In choosing python we chose a working prototype iterative cycle with a drawback of everyone
+  having to learn the language.
+  </font></P>
   <P><font size="2">&nbsp;&lt;Discuss your team's evaluation of issues such as 
     reusability, maintainability, testability, performance, portability, reuse, 
     safety, ... Which issues are relevant to your project? What prototypes (if 
