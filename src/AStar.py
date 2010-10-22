@@ -10,8 +10,8 @@ class AStar:
     '''A* is an algorithm that is used in pathfinding and graph traversal. Noted
     for its performance and accuracy, it enjoys widespread use. It is an 
     extension of Edsger Dijkstra's 1959 algorithm and achieves better 
-    performance (with respect to time) by using heuristics.'''
-    
+    performance (with respect to time) by using heuristics.
+    '''
     def __init__(self, debug=False, graphfile=None):
         '''When *debug* is True, the program uses the graph stored in *graphfile*
         instead of pulling from the mysql database.
@@ -181,13 +181,13 @@ class AStar:
                     continue
                 
                 if(exceptions is not None and (x,y) in exceptions):
-                    costxy = float('inf')
+                    costxy = float('infinity')
                 else:
                     costxy = self.timeBetween(x,y)
                 tentative_g_score = g_score[x] + costxy
                 
                 if y not in openset:
-                    openset.append(y) # add y to openset
+                    openset.append(y)
                     tentative_is_better = True
                 elif tentative_g_score < g_score[y]:
                     tentative_is_better = True
