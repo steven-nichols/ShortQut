@@ -1,7 +1,10 @@
 import serial
+from Log import Log
 
+log = Log('nmea')
 
 def openGPS(device="/dev/ttyUSB0"):
+    log.info('Opening GPS device at %s' % device)
     return serial.Serial(device,4800)
 
 
@@ -26,7 +29,9 @@ def parseNMEA(line):
 
 
 def getSentence(ser):
-    return parseNMEA(ser.readline())
+    line = ser.readline()
+    log.info('Got line: %s' % line)
+    return parseNMEA(line)
 
 
 def getData():

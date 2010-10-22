@@ -2,7 +2,9 @@ import threading
 from threading import Thread
 import Queue
 import nmea
+from Log import Log
 
+log = Log('gpstalker')
 
 class GPSTalker:
     cares = {'GGA' : True,
@@ -26,7 +28,9 @@ class GPSTalker:
         try:
             (type,data) = nmea.getGPSLine(self.ser)
             #print data
+            log.info('Received %s data from the GPS: %s' % (type,data))
             if(self.cares[type]):
+                log.info('Adding data to queue')
                 self.addMsg((type,data))
         except TypeError:
             pass
@@ -54,10 +58,12 @@ class GPSTalker:
         self.messages.join()
 
     def close(self):
+        log.info('Closing GPS')
         self.ser.close()
 
     def setRunning(self,run):
         with self.lock:
+            log.info('Setting running: %s' % run)
             self.running = run
 
 
@@ -79,6 +85,7 @@ class TalkerThread(Thread):
         self.talker = talker
 
     def run(self):
+        log.info('Started GPSTalker Thread')
         with self.talker.lock:
             running = self.talker.running
         while(running):
