@@ -1,15 +1,8 @@
-<HTML>
-
-<HEAD>
-
+<HTML> <HEAD>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
-
 <META NAME="Generator" CONTENT="Microsoft Word 97">
-
 <TITLE>High-Level Design Template</TITLE>
-
 <META NAME="Template" CONTENT="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
-
 </HEAD>
 
 <BODY LINK="#0000ff" VLINK="#800080">
@@ -134,25 +127,28 @@
 <P><font size="2"><A NAME="Issues">Design Issues</A>:</font></P>
 <DIR> 
   <P><font size="2">
-  Reusability - Each module will contain code that could be useful in another program.
-  Examples: A* and distance calculations
-  Maintainability - The code will adhere to strict style guidelines and will be heavily documented
-  Testability - The style of development that we are employing, iterative in the REPL, means that 
-  we are testing while developing. Unit tests will also be used when possible and functions and functional units
-  will be tested using unit tests.
-  Performance - Performance was a consideration when choosing python since it is not known for its speed.
-  Performance testing will be used on the most computationally intensive parts of the program. Most parts of the
-  program will not be CPU bound but rather waiting for the user to interact.
-  Portability - Python and the libraries we are using are extremely portable and we are targetting both
-  Windows and Linux platforms. Mobile platforms (excluding iOS) would not be extraordinarily difficult
-  to port to.
-  Reuse - I already covered this.
-  Safety - I don't know what you mean by this.
-  Prototyping - Our development strategy is to build a prototype into a full product. 
-  I expect technical difficulties with the algorithm to match times with streets and the 
-  algorithm to find the correct route since these are both difficult problems.
-  In choosing python we chose a working prototype iterative cycle with a drawback of everyone
-  having to learn the language.
+  Many issues were evaluated when designing Shortqut. With respect to 
+  reusability, many parts of the program would be useful in other programs,
+  especially those dealing with GPS units, distance calculations and 
+  pathfinding. Our code will also adhere to strict style guidelines that are
+  standards in the python community, thus enhancing maintainability. The style
+  of development that we chose, iterative in the REPL, means that we are
+  testing while developing. Tests will be run on atomic chunks of code while
+  writing them. Unit tests will also be used when possible and functions and
+  functional units will be tested using unit tests designed for them. Python
+  is not known for speed. It is an interpreted language. However, we chose it
+  for it's easy syntax and vast amount of libraries. Any performance 
+  bottlenecks that are identified on our target platform (Atom based netbooks)
+  will be refactored or written in C to speed them up. Most sections of code
+  will not be computationally bound but rather waiting on I/O. Python was also
+  chosen for it's good portability. We are currently targetting Windows and
+  Linux but the Android platform would not be impossible to port to. Python
+  prototyping is quick and easy because there is no compilation time and code
+  can be run directly in the interpreter. There are several difficult problems
+  which may be hard to implement. The algorithm to decide how long a road 
+  takes to traverse and the algorithm to find the best 3 routes will be hard. 
+  The only major drawback to python other than its performance is that only
+  one person on the team knows it. Fortuneately python is easy to learn.
   </font></P>
   <P><font size="2">&nbsp;&lt;Discuss your team's evaluation of issues such as 
     reusability, maintainability, testability, performance, portability, reuse, 
