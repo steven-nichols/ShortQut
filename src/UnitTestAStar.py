@@ -33,7 +33,7 @@ class TestSequenceFunctions(unittest.TestCase):
         path = search.shortestPath('A', 'E')
         
         alt = search.alternateRoute(3, path)
-        self.assertTrue(alt[0] == min(alt[0], alt[1], alt[2]))
+        self.assertTrue(alt[0] == min(alt))
         for route in alt:
             self.assertTrue(route[1] != path) # alternative != optimal path
     
@@ -74,4 +74,3 @@ class TestSequenceFunctions(unittest.TestCase):
             
 suite = unittest.TestLoader().loadTestsFromTestCase(TestSequenceFunctions)
 unittest.TextTestRunner(verbosity=2).run(suite)
-

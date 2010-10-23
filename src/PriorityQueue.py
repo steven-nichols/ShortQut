@@ -8,6 +8,7 @@ log = Log('PriorityQueue', 'debug')
 class hashablelist(list):
     '''This is kind of a hack to get around a Python restriction that lists 
     cannot be used as keys in dictionaries.'''
+    
     def __init__(self, l):
         for x in l:
             self.append(x)
@@ -23,13 +24,15 @@ class hashablelist(list):
 class PriorityQueue:
     '''A generic priority queue based off the example implementation in the 
     Official heapq documentation. http://docs.python.org/library/heapq.html'''
-    
-    pq = []                         # the priority queue list
-    counter = itertools.count(1)    # unique sequence count
-    item_finder = {}                # mapping of items to entries
-    INVALID = 0                     # mark an entry as deleted
-    valid_entries = 0               # count valid entries 
-    
+
+    def __init__(self):
+        self.pq = []                         # the priority queue list
+        self.counter = itertools.count(1)    # unique sequence count
+        self.item_finder = {}                # mapping of items to entries
+        self.INVALID = 0                     # mark an entry as deleted
+        self.valid_entries = 0               # count valid entries
+        log.info('Initialize new priority queue')
+        
     def push(self, priority, item, count=None):
         '''Add an item to the priority queue. The priority queue is implemented as
         a min heap such that the highest priority is 0, and the lowest priority is
@@ -44,16 +47,12 @@ class PriorityQueue:
         if(isinstance(item, list)):
             item = hashablelist(item)
         
-        log.debug("push %s onto priority queue" % item)
-        
         if count is None:
             count = next(self.counter)
         entry = [priority, count, item]
-        log.debug("entry = %s" % entry)
         self.item_finder[item] = entry
         heappush(self.pq, entry)
         self.valid_entries += 1
-        log.debug("priority queue AFTER reprioritization: %s" % self)
     
     def pop(self):
         '''Find and return the highest priority (0 = highest, infinity = 
@@ -105,7 +104,6 @@ class PriorityQueue:
             priority (float) - priority of item to be added
             item (any) - the item to be added
         '''
-        log.debug("priority queue BEFORE reprioritization: %s" % self)
         
         if(isinstance(item, list)):
             item = hashablelist(item)
@@ -115,7 +113,6 @@ class PriorityQueue:
             self.push(priority, item, entry[1])
             entry[1] = self.INVALID
         else:
-            log.debug("push %s onto priority queue" % item)
             self.push(priority, item)
 
     

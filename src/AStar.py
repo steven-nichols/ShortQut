@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 import sys
 from PriorityQueue import PriorityQueue
-
+#import Colorer
 from Log import Log
 log = Log('AStar', 'debug')
 
 
 class AStar:
-    '''A* is an algorithm that is used in pathfinding and graph traversal. Noted
-    for its performance and accuracy, it enjoys widespread use. It is an 
-    extension of Edsger Dijkstra's 1959 algorithm and achieves better 
+    '''A* is an algorithm that is used in pathfinding and graph traversal. 
+    Noted for its performance and accuracy, it enjoys widespread use. It is an 
+    extension of Edger Dijkstra's 1959 algorithm and achieves better 
     performance (with respect to time) by using heuristics.
     '''
     def __init__(self, debug=False, graphfile=None):
-        '''When *debug* is True, the program uses the graph stored in *graphfile*
-        instead of pulling from the mysql database.
+        '''When *debug* is True, the program uses the graph stored in 
+        *graphfile* instead of pulling from the mysql database.
         
         Args:
             debug (bool) - is in debug mode?
@@ -90,8 +90,8 @@ class AStar:
         '''Returns a list of the vertices along the shortest path.
         
         Args:
-            came_from (dict) - a dict of the form {'vertex': 'node before vertex
-                                in the shortest path'}
+            came_from (dict) - a dict of the form {'vertex': 'node before 
+								vertex in the shortest path'}
             current_node (str) - name or ID of vertex
             
         Returns:
@@ -157,18 +157,14 @@ class AStar:
         f_score.push(h_score[start], start) 
         
         while len(openset) != 0:
-            log.debug("Openset contains %s" % openset)
             # the node in openset having the lowest f_score[] value
-            log.debug("fscore = %s" % f_score)
             heur, x = f_score.pop()
-            log.debug("x = %s" % x)
             if x == goal:
                 path = self.reconstructPath(came_from, goal)
-                log.info("Path found of weight: %f" % self.pathCost(path))
+                log.info("Path found of weight: %g" % self.pathCost(path))
                 log.info("Path: %s" % path)
                 return path
             
-            log.debug("Remove %s from the openset" % (str(x)))
             try:
                 openset.remove(x)
             except ValueError as e:
@@ -195,12 +191,12 @@ class AStar:
                     tentative_is_better = False
 
                 if tentative_is_better == True:
-                    log.debug("Update node %s's weight to %f" % (y, tentative_g_score))
+                    log.debug("Update node %s's weight to %g" % (y,
+															tentative_g_score))
                     came_from[y] = x
                     g_score[y] = tentative_g_score
                     h_score[y] = self.heuristicEstimateOfDistance(y, goal)
                     f_score.reprioritize(g_score[y] + h_score[y], y)
-                    log.debug("fscore = %s" % f_score)
         return None # Failure
 
 
@@ -215,7 +211,7 @@ class AStar:
             optimal_path (list) - optimal path
         
         Returns:
-            (list) - list of tuples of form: ((cost, path), (cost2, path2), ...)
+            (list) - list of tuples of form: ((cost, path), (cost2, path2), ..)
         '''
         
         # Store the paths by their weights in a priority queue. The paths with
@@ -224,26 +220,26 @@ class AStar:
         minheap = PriorityQueue()
         
         start, goal = optimal_path[0], optimal_path[-1]
-        log.debug("start = %s, goal = %s" % (start, goal))
         
         # Don't remove the start or goal nodes
         for i in range(1, len(optimal_path) - 1):
             x = optimal_path[i-1]
             y = optimal_path[i]
             
-            log.debug("Remove edge (%s, %s)" % (x, y))
+            log.info("Look for sub-optimal solution with edge (%s, %s) removed" % (x, y))
             path = self.shortestPath(start, goal, [(x,y)])
 #            path = self.shortestPath(start, goal)
             cost = self.pathCost(path)
             
-            log.debug("Cost of path with edge (%s, %s) removed is %f" % (x, y, cost))
+            log.debug("Cost of path with edge (%s, %s) removed is %g" \
+                                    % (x, y, cost))
             minheap.push(cost, path)
-        
+
         alternatives = []
-        for i in range(1, num+1):
+        for i in range(0, min(num, len(minheap))):
             cost, path = minheap.pop()
             alternatives.append((cost,path))
-            log.debug("Cost of #%d sub-optimal path is %f" % (i, cost))
+            log.debug("Cost of #%d sub-optimal path is %g" % (i+1, cost))
             
         return alternatives
 
@@ -268,4 +264,4 @@ if __name__ == "__main__":
         print str(node) + " ->",
     print end
     
-    print "Cost: %f" % search.pathCost(path)
+    print "Cost: %g" % search.pathCost(path)

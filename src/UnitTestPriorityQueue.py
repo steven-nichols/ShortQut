@@ -60,6 +60,19 @@ class TestSequenceFunctions(unittest.TestCase):
             pri, val = pq.pop()
             self.assertEqual(letter, val)
             self.assertEqual(pri, 1)
+
+    def test_multiple(self):
+        '''Test that two different priority queues do not interfere with
+        each other'''
+        pq = PriorityQueue()
+        pq.push(0, 'A')
         
-if __name__ == '__main__':
-    unittest.main()
+        pq = PriorityQueue()
+        self.assertEqual(len(pq), 0)
+        with self.assertRaises(IndexError):
+            pq.pop()
+        
+#if __name__ == '__main__':
+    #unittest.main()
+suite = unittest.TestLoader().loadTestsFromTestCase(TestSequenceFunctions)
+unittest.TextTestRunner(verbosity=2).run(suite)
