@@ -51,64 +51,84 @@ def Log(module, lvl=logging.DEBUG, fileout=False, screenout=True):
 
     lvl = LEVELS.get(lvl, logging.NOTSET)
 
-    #logging.basicConfig(level=lvl)
     log = logging.getLogger(module)
     log.setLevel(lvl)
 
     if(screenout):
-        import platform
-        if platform.system() == 'Windows':
-            ch = logging.StreamHandler()
-            ch_fmt = logging.Formatter("%(levelname)s:%(name)s:%(message)s")
-        else:
-            ch = ColoredConsoleHandler()
-            ch_fmt = logging.Formatter("%(message)s")
-            
-        ch.setFormatter(ch_fmt)
+        ch = FormattedStreamHandler()
         log.addHandler(ch)
 
     if(fileout):
-        #if(os.path.exists(LOG_FILE)):
-            #try:
-                #os.remove(LOG_FILE)
-            #except KeyError:
-                #pass
+#        if(os.path.exists(LOG_FILE)):
+#            try:
+#                os.remove(LOG_FILE)
+#            except KeyError:
+#                pass
 
-        fh = logging.FileHandler(LOG_FILE)
+        fh = FormattedFileHandler(LOG_FILE)
         log.addHandler(fh)
-
-        fh_fmt = logging.Formatter("%(levelname)s\t: %(filename)s:%(lineno)d\t: %(message)s")
-        fh.setFormatter(fh_fmt)
 
     return log
 
 
 
+
+
+import sys
 import copy
-class ColoredConsoleHandler(logging.StreamHandler):
+class FormattedStreamHandler(logging.StreamHandler):
     '''Adapted from Colorizer by Ramonster.
     http://stackoverflow.com/questions/384076/how-can-i-make-the-python-\
             logging-output-to-be-colored/2205909#2205909
     '''
-    def emit(self, record):
-        # Need to make a actual copy of the record
-        # to prevent altering the message for other loggers
-        myrecord = copy.copy(record)
-        levelno = myrecord.levelno
+
+    def colorize(self, levelno, text):
+        '''http://docs.python.org/dev/library/logging.html#formatter-objects'''
+        NORMAL = '\x1b[0m'
+        
         if(levelno >= 50): # CRITICAL / FATAL
-            color = '\x1b[31m' # red
+            color = '\x1b[91m' # red
         elif(levelno >= 40): # ERROR
             color = '\x1b[31m' # red
         elif(levelno >= 30): # WARNING
             color = '\x1b[33m' # yellow
         elif(levelno >= 20): # INFO
-            color = '\x1b[37m' # green
+            color = '\x1b[92m' # green
         elif(levelno >= 10): # DEBUG
-            color = '\x1b[32m' # pink
+            color = '\x1b[94m' # blue
         else: # NOTSET and anything else
-            color = '\x1b[0m' # normal
+            color = NORMAL # normal
 
-        #http://docs.python.org/dev/library/logging.html#formatter-objects
-        myrecord.msg = "%s%s:%s\t: %s%s" % (color, str(os.path.basename(myrecord.pathname)), str(myrecord.lineno), str(myrecord.msg), '\x1b[0m')  # normal
+        return color + text + NORMAL
+        
+    def emit(self, record):
+        # Need to make a actual copy of the record
+        # to prevent altering the message for other loggers
+        myrecord = copy.copy(record)
+        
+        header = "[%s %s:%s]" % (myrecord.levelname.capitalize().ljust(8), 
+                                str(os.path.basename(myrecord.pathname)), 
+                                str(myrecord.lineno).rjust(3))
+                                
+        # Windows makes it difficult to color the terminal 
+        if sys.platform != 'win32':
+            # Colorize the header
+            header = self.colorize(myrecord.levelno, header)
+        
+        myrecord.msg = "%s %s" % (header, str(myrecord.msg))  # normal
 
+        logging.StreamHandler.emit(self, myrecord)
+        
+
+class FormattedFileHandler(logging.FileHandler):
+    def emit(self, record):
+        # Need to make a actual copy of the record
+        # to prevent altering the message for other loggers
+        myrecord = copy.copy(record)
+        
+        myrecord.msg = "[%s %s:%s] %s" % (myrecord.levelname.capitalize().ljust(8), 
+                                str(os.path.basename(myrecord.pathname)), 
+                                str(myrecord.lineno).rjust(3),
+                                str(myrecord.msg))
+                                
         logging.StreamHandler.emit(self, myrecord)
