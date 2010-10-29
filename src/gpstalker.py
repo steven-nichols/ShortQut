@@ -8,17 +8,16 @@ from Log import Log
 log = Log('gpstalker')
 
 class GPSTalker:
-    cares = {'GGA' : True,
-             'RMC' : False,
-             'GSV' : False,
-             'GSA' : False
-             }
-    lock = threading.Lock()
-    running = True
-    # Queue is thread-safe
-    messages = Queue.Queue()
-
     def __init__(self,serial="/dev/ttyUSB0"):
+        self.cares = {'GGA' : True,
+                 'RMC' : False,
+                 'GSV' : False,
+                 'GSA' : False
+                 }
+        self.lock = threading.Lock()
+        self.running = True
+        # Queue is thread-safe
+        self.messages = Queue.Queue()
         self.ser = nmea.openGPS(serial)
 
     def runLoop(self):
