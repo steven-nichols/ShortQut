@@ -22,7 +22,8 @@ class AStar:
         '''
         self.debug = debug
         self.graphfile = graphfile
-        log.info("AStart initiated on %s" % graphfile)
+        if graphfile is not None:
+            log.info("AStart initiated on %s" % graphfile)
         
     def neighborNodes(self, vertex):
         '''Retrieve the neighbors of the vertex from the database and add them
@@ -200,6 +201,75 @@ class AStar:
         return None # Failure
 
 
+    def dijkstra(self, start, goal, exceptions=None):
+        dist_f = {}       # dictionary of final distances
+        dist_b = {}       # dictionary of final distances
+        
+        came_from_f = {} # dictionary of predecessors
+        came_from_b = {} # dictionary of predecessors
+        
+        # nodes not yet found
+        forward = PriorityQueue()
+        backward = PriorityQueue()
+
+        # The set of nodes already evaluated
+        closedset_forward = []
+        closedset_backward = []
+        
+        forward.push(0, start)
+        backward.push(0, goal)
+        
+        while len(forward) + len(backward) > 0:
+            if len(forward) > 0:
+                done = self.dijstra_iter(start, goal, exceptions, dist_f, came_from_f, forward, closedset_forward, closedset_backward)
+            if len(backward) > 0:
+                done = done or self.dijstra_iter(goal, start, exceptions, dist_b, came_from_b, backward, closedset_backward, closedset_forward)
+        
+            if done:
+                log.debug("came_from_f: " + str(came_from_f))
+                log.debug("came_from_b: " + str(came_from_b))
+                
+                # Get inverse of the backward came_from dictionary
+                #came_from_b = dict((v,k) for k, v in came_from_b.iteritems())
+                # Merge the dictionaries
+                came_from = dict(came_from_b.items() + came_from_f.items())
+
+                path = self.reconstructPath(came_from, goal)
+                log.info("Path found of weight: %g" % self.pathCost(path))
+                log.info("Path: %s" % path)
+                return path
+                
+        return None
+        
+    def dijstra_iter(self, start, goal, exceptions, dist, came_from, queue, closedset, revclosedset):
+        log.debug("queue: " + str(queue))
+        weight, x = queue.pop()
+        dist[x] = weight
+        if x == goal:
+            return True
+        elif x in revclosedset:
+            log.info("Meet in the middle: Node " + str(x))
+            return True
+            
+        closedset.append(x)
+        
+        for y in self.neighborNodes(x):
+            if y in closedset:
+                continue
+                
+            if(exceptions is not None and (x,y) in exceptions):
+                costxy = float('infinity')
+            else:
+                costxy = self.timeBetween(x,y)
+            
+            if not dist.has_key(y) or dist[x] + costxy < dist[y]:
+                dist[y] = dist[x] + costxy
+                queue.reprioritize(dist[y], y)
+                came_from[y] = x
+                log.debug("Update node %s's weight to %g" % (y, dist[y]))
+                
+        return False
+
     def alternateRoute(self, num, optimal_path):
         '''Find the best sub-optimal solutions. Iterate over the optimal path
         and remove one segment at time. The removed segment is not allowed
@@ -227,7 +297,7 @@ class AStar:
             y = optimal_path[i]
             
             log.info("Look for sub-optimal solution with edge (%s, %s) removed" % (x, y))
-            path = self.shortestPath(start, goal, [(x,y)])
+            path = self.shortestPath(start, goal, [(x,y),(y,x)])
 #            path = self.shortestPath(start, goal)
             cost = self.pathCost(path)
             
@@ -258,10 +328,7 @@ if __name__ == "__main__":
         graphfile = 'data/graph1.txt'
         
     search = AStar(True, graphfile)
-    print "The shortest Path from " + start + " to " + end + " is:"
+
     path = search.shortestPath(start, end)
-    for node in path[:-1]:
-        print str(node) + " ->",
-    print end
-    
-    print "Cost: %g" % search.pathCost(path)
+    alts = search.alternateRoute(3, path)
+  
