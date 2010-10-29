@@ -3,6 +3,31 @@ from Log import Log
 
 log = Log('nmea')
 
+
+def convertLatitude(messageDict):
+    lat = messageDict["lat"]
+    degrees = float(lat[0:2])
+    minutes = float(lat[2:]) / 60
+    degrees += minutes
+    if(messageDict["ns"] == "S"):
+        degrees = -degrees
+    return degrees
+
+
+def convertLongitude(messageDict):
+    lon = messageDict["lon"]
+    degrees = float(lon[0:3])
+    minutes = float(lon[3:]) / 60
+    degrees += minutes
+    if(messageDict["ew"] == "W"):
+        degrees = -degrees
+    return degrees
+
+
+def convertTime(messageDict):
+    return float(messageDict["utc"])
+
+
 def openGPS(device="/dev/ttyUSB0"):
     log.info('Opening GPS device at %s' % device)
     return serial.Serial(device,4800)

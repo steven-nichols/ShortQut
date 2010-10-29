@@ -2,6 +2,7 @@ import threading
 from threading import Thread
 import Queue
 import nmea
+import time
 from Log import Log
 
 log = Log('gpstalker')
@@ -40,15 +41,9 @@ class GPSTalker:
 
     def getMsg(self):
         msg = self.messages.get()[1]
-        time = msg["utc"]
-        if(msg["ns"] == "S"):
-            lat = "-%s" % msg["lat"]
-        else:
-            lat = msg["lat"]
-        if(msg["ew"] == "W"):
-            lon = "-%s" % msg["lon"]
-        else:
-            lon = msg["lon"]
+        time = nmea.convertTime(msg)
+        lat = nmea.convertLatitude(msg)
+        lon = nmea.convertLongitude(msg)
         self.messages.task_done()
         return (time, lat, lon)
 
@@ -59,6 +54,8 @@ class GPSTalker:
 
     def close(self):
         log.info('Closing GPS')
+        self.setRunning(False)
+        time.sleep(5)
         self.ser.close()
 
     def setRunning(self,run):
@@ -76,7 +73,8 @@ def go():
         return talker
     except NameError:
         talker = GPSTalker()
-        return go()
+        talker.runLoop()
+        return talker
 
 
 class TalkerThread(Thread):
