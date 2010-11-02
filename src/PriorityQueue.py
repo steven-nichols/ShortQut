@@ -63,7 +63,13 @@ class PriorityQueue:
             (tuple) - tuple of form: (priority, item)
         '''
         while True:
-            priority, count, item = heappop(self.pq)
+            try:
+                priority, count, item = heappop(self.pq)
+            except IndexError as e:
+                log.error("Index Error: {!s}. [valid_entries = {!s}, pq = {!s}]"\
+                        .format(e, self.valid_entries, self.pq))
+                return (None, None)
+            
             try:
                 del self.item_finder[item]
             except KeyError:
@@ -112,6 +118,7 @@ class PriorityQueue:
         if entry is not None:
             self.push(priority, item, entry[1])
             entry[1] = self.INVALID
+            self.valid_entries -= 1
         else:
             self.push(priority, item)
 

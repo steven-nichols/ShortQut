@@ -4,7 +4,7 @@ from PriorityQueue import PriorityQueue
 #import Colorer
 from Log import Log
 log = Log('AStar', 'debug')
-
+import os
 
 class AStar:
     '''A* is an algorithm that is used in pathfinding and graph traversal. 
@@ -21,9 +21,20 @@ class AStar:
             graphfile (str) - filename of debug input file
         '''
         self.debug = debug
-        self.graphfile = graphfile
         if graphfile is not None:
             log.info("AStart initiated on %s" % graphfile)
+            
+        if debug:
+            if not os.path.exists(graphfile):
+                print "Could not find '%s'" % graphfile
+                
+            self.graph = {}
+            f = open(graphfile, 'r')
+            for line in f:
+                start, end, weight = line.split(',')
+                if not self.graph.has_key(start):
+                    self.graph[start] = []
+                self.graph[start].append((end.strip(), int(weight.strip())))
         
     def neighborNodes(self, vertex):
         '''Retrieve the neighbors of the vertex from the database and add them
@@ -41,11 +52,12 @@ class AStar:
             # Get the neighbors via an SQL query
             return
         else:
-            f = open(self.graphfile, 'r')
-            for line in f:
-                start, end, weight = line.split(',')
-                if start == vertex:
-                    neighbors.append(end.strip())
+            try:
+                for edge in self.graph[vertex]:
+                    neighbors.append(edge[0])
+            except KeyError:
+                pass
+                
             log.debug("Neighbors of %s are %s" % (vertex, neighbors))
             return neighbors
 
@@ -64,11 +76,20 @@ class AStar:
             # average travel time between x and y for this time period
             return
         else:
-            f = open(self.graphfile, 'r')
-            for line in f:
-                start, end, weight = line.split(',')
-                if start.strip() == x and end.strip() == y:
-                    return int(weight)
+            try:
+                for edge in self.graph[x]:
+                    if edge[0] == y:
+                        return edge[1]
+            except KeyError:
+                pass
+                
+            try:
+                for edge in self.graph[y]:
+                    if edge[0] == y:
+                        return edge[1]
+            except KeyError:
+                pass
+                
             return float('infinity')
         
         
@@ -102,7 +123,11 @@ class AStar:
         while True:
             trail.insert(0,current_node)
             try:
-                current_node = came_from[current_node]
+                if current_node == came_from[current_node] or \
+                        len(came_from[current_node]) == 0:
+                    break
+                else:
+                    current_node = came_from[current_node]
             except KeyError:
                 # break out of loop when we reach the root node
                 break
@@ -127,7 +152,6 @@ class AStar:
             prev = element
         return cost
 
-
     def shortestPath(self, start, goal, exceptions=None):
         '''Takes in the *start* node and a *goal* node and returns the shortest
         path between them as a list of nodes. Use pathCost() to find the cost
@@ -141,8 +165,25 @@ class AStar:
         Returns:
             (list) - vertices as they appear in the shortest path
         '''
+        log.info("Start: {}, Goal: {}".format(start, goal))
+        #return self.aStarPath(start, goal, exceptions)
+        return self.dijkstraBi(start, goal, exceptions)
+        #return self.dijkstra(start, goal, exceptions)
         
-        log.info("Start: %s, Goal: %s" % (start, goal))
+        
+    def aStarPath(self, start, goal, exceptions=None):
+        '''Takes in the *start* node and a *goal* node and returns the shortest
+        path between them as a list of nodes. Use pathCost() to find the cost
+        of traversing the path.
+        
+        Args:
+            start (str) - name or ID of start vertex
+            goal (str) - name or ID of destination vertex
+            exceptions (list) - list of edges, (x,y), that should be ignored
+            
+        Returns:
+            (list) - vertices as they appear in the shortest path
+        '''
         
         # The set of nodes already evaluated
         closedset = []
@@ -202,6 +243,60 @@ class AStar:
 
 
     def dijkstra(self, start, goal, exceptions=None):
+        '''Regular dijstra's search.'''
+        dist = {}       # dictionary of final distances
+        
+        came_from = {} # dictionary of predecessors
+        
+        # nodes not yet found
+        queue = PriorityQueue()
+
+        # The set of nodes already evaluated
+        closedset = []
+        
+        queue.push(0, start)
+        
+        while len(queue) > 0:
+            log.debug("queue: " + str(queue))
+            weight, x = queue.pop()
+            dist[x] = weight
+            if x == goal:
+                log.debug("came_from: " + str(came_from))
+                path = self.reconstructPath(came_from, goal)
+                log.info("Path: %s" % path)
+                return path
+                        
+            closedset.append(x)
+            
+            for y in self.neighborNodes(x):
+                if y in closedset:
+                    continue                
+                if(exceptions is not None and y in exceptions):
+                    continue
+
+                costxy = self.timeBetween(x,y)
+                
+                if not dist.has_key(y) or dist[x] + costxy < dist[y]:
+                    dist[y] = dist[x] + costxy
+                    queue.reprioritize(dist[y], y)
+                    came_from[y] = x
+                    log.debug("Update node %s's weight to %g" % (y, dist[y]))
+
+        return None
+                
+
+
+    def dijkstraBi(self, start, goal, exceptions=None):
+        '''Bi-directional dijkstra's search.
+        
+        Args:
+            start (str) - name or ID of start vertex
+            goal (str) - name or ID of destination vertex
+            exceptions (list) - list of edges, (x,y), that should be ignored
+            
+        Returns:
+            (list) - vertices as they appear in the shortest path
+        '''
         dist_f = {}       # dictionary of final distances
         dist_b = {}       # dictionary of final distances
         
@@ -221,46 +316,49 @@ class AStar:
         
         while len(forward) + len(backward) > 0:
             if len(forward) > 0:
-                done = self.dijstra_iter(start, goal, exceptions, dist_f, came_from_f, forward, closedset_forward, closedset_backward)
-            if len(backward) > 0:
-                done = done or self.dijstra_iter(goal, start, exceptions, dist_b, came_from_b, backward, closedset_backward, closedset_forward)
+                done, stop = self.dijkstraBiIter(start, goal, exceptions, dist_f, came_from_f, forward, closedset_forward, closedset_backward)
+            if not done and len(backward) > 0:
+                done, stop = self.dijkstraBiIter(goal, start, exceptions, dist_b, came_from_b, backward, closedset_backward, closedset_forward)
         
             if done:
                 log.debug("came_from_f: " + str(came_from_f))
                 log.debug("came_from_b: " + str(came_from_b))
                 
-                # Get inverse of the backward came_from dictionary
-                #came_from_b = dict((v,k) for k, v in came_from_b.iteritems())
-                # Merge the dictionaries
-                came_from = dict(came_from_b.items() + came_from_f.items())
-
-                path = self.reconstructPath(came_from, goal)
-                log.info("Path found of weight: %g" % self.pathCost(path))
-                log.info("Path: %s" % path)
-                return path
+                pathf = self.reconstructPath(came_from_f, stop)
+                log.info("PathF: %s" % pathf)
+                
+                pathb = self.reconstructPath(came_from_b, stop)
+                pathb.reverse()
+                log.info("PathB: %s" % pathb)
+                
+                return pathf + pathb[1:]
                 
         return None
         
-    def dijstra_iter(self, start, goal, exceptions, dist, came_from, queue, closedset, revclosedset):
+    def dijkstraBiIter(self, start, goal, exceptions, dist, came_from, queue, closedset, revclosedset):
+        ''' Run a single iteration of dijkstra's algorithm. 
+        returns:
+            (bool, string) - tuple of form: (is search over?, vertex stopped on)
+        '''
         log.debug("queue: " + str(queue))
         weight, x = queue.pop()
         dist[x] = weight
         if x == goal:
-            return True
+            return True, x
         elif x in revclosedset:
             log.info("Meet in the middle: Node " + str(x))
-            return True
+            return True, x
             
         closedset.append(x)
         
         for y in self.neighborNodes(x):
             if y in closedset:
+                continue                
+            if(exceptions is not None and y in exceptions):
                 continue
                 
-            if(exceptions is not None and (x,y) in exceptions):
-                costxy = float('infinity')
-            else:
-                costxy = self.timeBetween(x,y)
+
+            costxy = self.timeBetween(x,y)
             
             if not dist.has_key(y) or dist[x] + costxy < dist[y]:
                 dist[y] = dist[x] + costxy
@@ -268,7 +366,7 @@ class AStar:
                 came_from[y] = x
                 log.debug("Update node %s's weight to %g" % (y, dist[y]))
                 
-        return False
+        return False, None
 
     def alternateRoute(self, num, optimal_path):
         '''Find the best sub-optimal solutions. Iterate over the optimal path
@@ -293,16 +391,15 @@ class AStar:
         
         # Don't remove the start or goal nodes
         for i in range(1, len(optimal_path) - 1):
-            x = optimal_path[i-1]
             y = optimal_path[i]
             
-            log.info("Look for sub-optimal solution with edge (%s, %s) removed" % (x, y))
-            path = self.shortestPath(start, goal, [(x,y),(y,x)])
+            log.info("Look for sub-optimal solution with vertex {} removed".format(y))
+            path = self.shortestPath(start, goal, [y])
 #            path = self.shortestPath(start, goal)
             cost = self.pathCost(path)
             
-            log.debug("Cost of path with edge (%s, %s) removed is %g" \
-                                    % (x, y, cost))
+            log.debug("Cost of path with vertex %s removed is %g" \
+                                    % (y, cost))
             minheap.push(cost, path)
 
         alternatives = []
@@ -317,18 +414,18 @@ if __name__ == "__main__":
     if len(sys.argv) == 3:
         start = sys.argv[1]
         end = sys.argv[2]
-        graphfile = 'data/graph1.txt'
+        graphfile = 'data/hugegraph.csv'
     elif len(sys.argv) == 4:
         graphfile = sys.argv[1]
         start = sys.argv[2]
         end = sys.argv[3]
     else:
         start = 'A'
-        end = 'D'
-        graphfile = 'data/graph1.txt'
+        end = 'E'
+        graphfile = 'data/graph2.txt'
         
     search = AStar(True, graphfile)
-
+    
     path = search.shortestPath(start, end)
-    alts = search.alternateRoute(3, path)
-  
+    #alts = search.alternateRoute(3, path)
+    print path
