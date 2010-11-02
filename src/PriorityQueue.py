@@ -68,7 +68,7 @@ class PriorityQueue:
             except IndexError as e:
                 log.error("Index Error: {!s}. [valid_entries = {!s}, pq = {!s}]"\
                         .format(e, self.valid_entries, self.pq))
-                return (None, None)
+                raise IndexError
             
             try:
                 del self.item_finder[item]

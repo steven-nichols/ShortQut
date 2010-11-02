@@ -49,17 +49,20 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(pq.pop()[1], range(0, 10))
     
     def test_reprioritize(self):
+        
         pq = PriorityQueue()
         for letter in range(ord('A'), ord('Z')+1):
             letter = chr(letter)
             pq.push(0, letter)
             pq.reprioritize(1, letter)
+        self.assertEqual(len(pq), 26, "Incorrect length")
         
         for letter in range(ord('A'), ord('Z')+1):
             letter = chr(letter)
             pri, val = pq.pop()
             self.assertEqual(letter, val)
             self.assertEqual(pri, 1)
+        self.assertEqual(len(pq), 0, "Incorrect length")
 
     def test_multiple(self):
         '''Test that two different priority queues do not interfere with
