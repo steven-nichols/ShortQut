@@ -6,19 +6,14 @@ from Log import Log
 log = Log('AStar', 'debug')
 import os
 
-class AStar:
-    '''A* is an algorithm that is used in pathfinding and graph traversal. 
-    Noted for its performance and accuracy, it enjoys widespread use. It is an 
-    extension of Edger Dijkstra's 1959 algorithm and achieves better 
-    performance (with respect to time) by using heuristics.
+class Pathfinding:
+    '''The Pathfinding class contains functions related to finding routes in
+    a network graph.
     '''
+    
     def __init__(self, debug=False, graphfile=None):
-        '''When *debug* is True, the program uses the graph stored in 
-        *graphfile* instead of pulling from the mysql database.
-        
-        Args:
-            debug (bool) - is in debug mode?
-            graphfile (str) - filename of debug input file
+        '''When ``debug`` is ``True``, the program uses the graph stored in 
+        ``graphfile`` instead of pulling from the mysql database.
         '''
         self.debug = debug
         if graphfile is not None:
@@ -35,135 +30,26 @@ class AStar:
                 if not self.graph.has_key(start):
                     self.graph[start] = []
                 self.graph[start].append((end.strip(), int(weight.strip())))
-        
-    def neighborNodes(self, vertex):
-        '''Retrieve the neighbors of the vertex from the database and add them
-        to the shortest path search.
-        
-        Args:
-            vertex (str) - name or ID of a vertex
-            
-        Returns:
-            (list) - a list of neighbor vertices
-        '''
-        neighbors = []
-
-        if not self.debug:
-            # Get the neighbors via an SQL query
-            return
-        else:
-            try:
-                for edge in self.graph[vertex]:
-                    neighbors.append(edge[0])
-            except KeyError:
-                pass
-                
-            log.debug("Neighbors of %s are %s" % (vertex, neighbors))
-            return neighbors
-
-
-    def timeBetween(self, x, y):
-        '''Returns the estimated travel time between x and y.
-        
-        Args:
-            x (str) - name or ID of start vertex
-            y (str) - name or ID of destination vertex
-            
-        Returns:
-            (float) - travel time between vertices x and y
-        '''
-        if not self.debug:
-            # average travel time between x and y for this time period
-            return
-        else:
-            try:
-                for edge in self.graph[x]:
-                    if edge[0] == y:
-                        return edge[1]
-            except KeyError:
-                pass
-                
-            try:
-                for edge in self.graph[y]:
-                    if edge[0] == y:
-                        return edge[1]
-            except KeyError:
-                pass
-                
-            return float('infinity')
-        
-        
-    def heuristicEstimateOfDistance(self, start, goal):
-        '''Guide the A* search. Equivalent to Dijkstra's if it returns only 0.
-        The heuristic function MUST use the same scale as the weight function 
-        and MUST NOT over estimate the distance.
-        
-        Args:
-            start (str) - name or ID of start vertex
-            goal (str) - name or ID of destination vertex
-            
-        Returns:
-            (float) - an estimate of the travel time between vertices x and y
-        '''
-        return 0
-        
-        
-    def reconstructPath(self, came_from, current_node):
-        '''Returns a list of the vertices along the shortest path.
-        
-        Args:
-            came_from (dict) - a dict of the form {'vertex': 'node before 
-								vertex in the shortest path'}
-            current_node (str) - name or ID of vertex
-            
-        Returns:
-            (list) - vertices as they appear in the shortest path
-        '''
-        trail = []
-        while True:
-            trail.insert(0,current_node)
-            try:
-                if current_node == came_from[current_node] or \
-                        len(came_from[current_node]) == 0:
-                    break
-                else:
-                    current_node = came_from[current_node]
-            except KeyError:
-                # break out of loop when we reach the root node
-                break
-        return trail
     
     
-    def pathCost(self, path):
-        '''Takes in the path as a list such as that returned by shortestPath(). 
-        Returns the cost of taking that path from start to finish.
-
-        Args:
-            path (list) - a shortest path
-            
-        Returns:
-            (float) - the cost of traversing the shortest path
-        '''
-        cost = 0
-        i = iter(path)
-        prev = i.next()
-        for element in i:
-            cost += self.timeBetween(prev, element)
-            prev = element
-        return cost
-
     def shortestPath(self, start, goal, exceptions=None):
-        '''Takes in the *start* node and a *goal* node and returns the shortest
-        path between them as a list of nodes. Use pathCost() to find the cost
-        of traversing the path.
+        '''Returns the shortest path from the ``start`` vertex to the ``goal``
+        vertex as a list of nodes. The path will avoid using any vertex from the
+        ``exceptions`` list, which could be used to find alternate routes or avoid
+        certain roads such as highways. :func:`shortestPath` uses the best available
+        pathfinding algorithm and should always be used instead of directly
+        invoking such functions as :func:`aStarPath`, :func:`dijkstra`, or
+        :func:`dijkstraBi`.
         
-        Args:
-            start (str) - name or ID of start vertex
-            goal (str) - name or ID of destination vertex
-            exceptions (list) - list of edges, (x,y), that should be ignored
+        Use :func:`pathCost()` to find the cost of traversing the path.
             
-        Returns:
-            (list) - vertices as they appear in the shortest path
+        Some examples::
+        
+            search = Pathfinding()
+            path = search.shortestPath("A", "C")
+            # returns ["A", "B", "C"]
+            cost = search.pathCost(path)
+            # returns 4
         '''
         log.info("Start: {}, Goal: {}".format(start, goal))
         #return self.aStarPath(start, goal, exceptions)
@@ -172,17 +58,25 @@ class AStar:
         
         
     def aStarPath(self, start, goal, exceptions=None):
-        '''Takes in the *start* node and a *goal* node and returns the shortest
+        '''A* is an algorithm that is used in pathfinding and graph traversal. 
+        Noted for its performance and accuracy, it enjoys widespread use. It is an 
+        extension of Edger Dijkstra's 1959 algorithm and achieves better 
+        performance (with respect to time) by using heuristics.
+    
+        Takes in the ``start`` node and a ``goal`` node and returns the shortest
         path between them as a list of nodes. Use pathCost() to find the cost
         of traversing the path.
         
-        Args:
-            start (str) - name or ID of start vertex
-            goal (str) - name or ID of destination vertex
-            exceptions (list) - list of edges, (x,y), that should be ignored
+        .. note::
+            Does not currently use the heuristic function, making it less
+            efficient than the bi-directional Dijkstra's algorithm used in 
+            :func:`dijkstraBi`.
             
-        Returns:
-            (list) - vertices as they appear in the shortest path
+        .. deprecated:: 0.5
+            Use :func:`shortestPath` instead.
+            
+        .. seealso::
+            :func:`dijkstra`, :func:`dijkstraBi`
         '''
         
         # The set of nodes already evaluated
@@ -242,8 +136,31 @@ class AStar:
         return None # Failure
 
 
+    def heuristicEstimateOfDistance(self, start, goal):
+        '''Guide the A* search. Equivalent to Dijkstra's if it returns only 0.
+        The heuristic function MUST use the same scale as the weight function 
+        and MUST NOT over estimate the distance. 
+        
+        .. warning:: This function is not completed. It always returns 0.
+        '''
+        return 0
+        
+        
     def dijkstra(self, start, goal, exceptions=None):
-        '''Regular dijstra's search.'''
+        '''Dijkstra's algorithm, conceived by Dutch computer scientist Edsger 
+        Dijkstra in 1956 and published in 1959, is a graph search algorithm that
+        solves the single-source shortest path problem for a graph with
+        nonnegative edge path costs, producing a shortest path tree.
+        
+        .. note::
+            Unmodified, Dijkstra's algorithm searches outward in a circle from the
+            start node until it reaches the goal. It is therefore slower than other
+            methods like A* or Bi-directional Dijkstra's. The algorithm is included
+            here for performance comparision against other algorithms only.
+        
+        .. seealso::
+            :func:`aStarPath`, :func:`dijkstraBi`
+        '''
         dist = {}       # dictionary of final distances
         
         came_from = {} # dictionary of predecessors
@@ -287,15 +204,19 @@ class AStar:
 
 
     def dijkstraBi(self, start, goal, exceptions=None):
-        '''Bi-directional dijkstra's search.
+        '''Bi-Directional Dijkstra's algorithm. The search begins at the ``start``
+        node and at the ``goal`` node simultaneously. The search area expands
+        radially outward from both ends until the two meet in the middle. In most 
+        cases this reduces the number of vertices which must be checked by half.
         
-        Args:
-            start (str) - name or ID of start vertex
-            goal (str) - name or ID of destination vertex
-            exceptions (list) - list of edges, (x,y), that should be ignored
+        .. image:: dijkstra.png
+        .. image:: dijkstra-bidirectional.png
+        
+        Search area of Dijkstra's algorithm (left) vs search area of bi-directional
+        Dijkstra's algorithm (right).
             
-        Returns:
-            (list) - vertices as they appear in the shortest path
+        .. seealso::
+            :func:`aStarPath`, :func:`dijkstra`
         '''
         dist_f = {}       # dictionary of final distances
         dist_b = {}       # dictionary of final distances
@@ -316,9 +237,9 @@ class AStar:
         
         while len(forward) + len(backward) > 0:
             if len(forward) > 0:
-                done, stop = self.dijkstraBiIter(start, goal, exceptions, dist_f, came_from_f, forward, closedset_forward, closedset_backward)
+                done, stop = self.__dijkstraBiIter(start, goal, exceptions, dist_f, came_from_f, forward, closedset_forward, closedset_backward)
             if not done and len(backward) > 0:
-                done, stop = self.dijkstraBiIter(goal, start, exceptions, dist_b, came_from_b, backward, closedset_backward, closedset_forward)
+                done, stop = self.__dijkstraBiIter(goal, start, exceptions, dist_b, came_from_b, backward, closedset_backward, closedset_forward)
         
             if done:
                 log.debug("came_from_f: " + str(came_from_f))
@@ -335,7 +256,7 @@ class AStar:
                 
         return None
         
-    def dijkstraBiIter(self, start, goal, exceptions, dist, came_from, queue, closedset, revclosedset):
+    def __dijkstraBiIter(self, start, goal, exceptions, dist, came_from, queue, closedset, revclosedset):
         ''' Run a single iteration of dijkstra's algorithm. 
         returns:
             (bool, string) - tuple of form: (is search over?, vertex stopped on)
@@ -369,17 +290,27 @@ class AStar:
         return False, None
 
     def alternateRoute(self, num, optimal_path):
-        '''Find the best sub-optimal solutions. Iterate over the optimal path
-        and remove one segment at time. The removed segment is not allowed
-        to be used in the new path. Store the cost of the new path and return 
-        the removed segment.
+        '''To obtain a ranked list of less-than-optimal solutions, the optimal 
+        solution must first calculated. This optimal solution is passed in as
+        ``optimal_path``. A single edge appearing in the optimal solution is 
+        removed from the graph, and the optimum solution to this new graph is 
+        calculated. Each edge of the original solution is suppressed in turn and 
+        a new shortest-path calculated. The secondary solutions are then ranked 
+        and the ``num`` best sub-optimal solutions are returned. If less than 
+        ``num`` solutions exist for the given graph, less than ``num`` solutions 
+        will be returned. The results are a list of tuples of form: 
+        ``((cost, path), (cost2, path2), ...)``
         
-        Args:
-            num (int) - number of alternative routes to find
-            optimal_path (list) - optimal path
+        An example of finding alternate routes::
         
-        Returns:
-            (list) - list of tuples of form: ((cost, path), (cost2, path2), ..)
+            search = Pathfinding()
+            # find optimal route
+            optimal_path = search.shortestPath("A", "E")
+            # returns ["A", "C", "E"]
+            cost = search.pathCost(optimal_path)
+            # returns 3
+            alt_paths = search.alternateRoute(2, optimal_path)
+            # returns ((4, ["A", "B", "D", "E"]), (4, ["A", "B", "F", "E"]))
         '''
         
         # Store the paths by their weights in a priority queue. The paths with
@@ -395,7 +326,7 @@ class AStar:
             
             log.info("Look for sub-optimal solution with vertex {} removed".format(y))
             path = self.shortestPath(start, goal, [y])
-#            path = self.shortestPath(start, goal)
+            #path = self.shortestPath(start, goal)
             cost = self.pathCost(path)
             
             log.debug("Cost of path with vertex %s removed is %g" \
@@ -410,6 +341,88 @@ class AStar:
             
         return alternatives
 
+    def neighborNodes(self, vertex):
+        '''Retrieve the neighbors of the vertex from the database and returns
+        them as a list of vertices. If ``Pathfinding`` was started in debug
+        mode the neighbors will be pulled from a file instead.
+        '''
+        neighbors = []
+
+        if not self.debug:
+            # Get the neighbors via an SQL query
+            return
+        else:
+            try:
+                for edge in self.graph[vertex]:
+                    neighbors.append(edge[0])
+            except KeyError:
+                pass
+                
+            log.debug("Neighbors of %s are %s" % (vertex, neighbors))
+            return neighbors
+
+
+    def timeBetween(self, x, y):
+        '''Returns the estimated travel time between ``x`` and ``y``. This is
+        exactly equivalent to the weight of the edge ``(x,y)``.
+        '''
+        if not self.debug:
+            # average travel time between x and y for this time period
+            return
+        else:
+            try:
+                for edge in self.graph[x]:
+                    if edge[0] == y:
+                        return edge[1]
+            except KeyError:
+                pass
+                
+            try:
+                for edge in self.graph[y]:
+                    if edge[0] == y:
+                        return edge[1]
+            except KeyError:
+                pass
+                
+            return float('infinity')
+        
+        
+    def reconstructPath(self, came_from, goal):
+        '''Returns a list of the vertices along the shortest path in order from
+        the start vertex to the goal vertex. ``came_from`` is a dict of the 
+        form ``{'vertex': 'node before vertex in the shortest path'}``. The 
+        algorith starts at the goal vertex, specified by ``goal``, and works 
+        backward until the entire path has been reconstructed.
+        '''
+        current_node = goal
+        trail = []
+        while True:
+            trail.insert(0,current_node)
+            try:
+                if current_node == came_from[current_node] or \
+                        len(came_from[current_node]) == 0:
+                    break
+                else:
+                    current_node = came_from[current_node]
+            except KeyError:
+                # break out of loop when we reach the root node
+                break
+        return trail
+        
+        
+    def pathCost(self, path):
+        '''Returns the cost of taking a ``path`` from start to finish. The ``path``
+        is a list of vertices such as the one returned by :func:`shortestPath()`.
+        '''
+        cost = 0
+        i = iter(path)
+        prev = i.next()
+        for element in i:
+            cost += self.timeBetween(prev, element)
+            prev = element
+        return cost
+        
+        
 if __name__ == "__main__":
     if len(sys.argv) == 3:
         start = sys.argv[1]
@@ -424,7 +437,7 @@ if __name__ == "__main__":
         end = 'E'
         graphfile = 'data/graph2.txt'
         
-    search = AStar(True, graphfile)
+    search = Pathfinding(True, graphfile)
     
     path = search.shortestPath(start, end)
     #alts = search.alternateRoute(3, path)

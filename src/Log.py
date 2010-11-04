@@ -3,45 +3,43 @@ import os
 import logging
 
 
-'''Sample usage:
 
-At the beginning of your module add the following lines:
-
-    from Log import Log
-    log = Log('my_module')
-
-
-To print a message:
-
-    log.info("my_module initiated")  #INFO level
-    log.warning('A bad thing happened') #WARNING level
-
-
-The accepted message levels are (in order of severity):
-
-    debug, info, warning, error, critical
-
-
-You may limit the amount of output by restricting messages
-by severity level:
-    For example,
-        log = Log('my_module', 'warning')
-
-    will only output messages of type warning, error, or critical.
-
-
-By default, output is printed to the console but you can
-also print to a file:
-
-    # Print to a file instead of the screen
-    log = Log('my_module', fileout=True, screenout=False)
-
-'''
 
 def Log(module, lvl=logging.DEBUG, fileout=False, screenout=True):
     '''Module to facilitate logging error or debug messages in a consistent,
-    scalable manner.'''
+    scalable manner.
+        
+    Sample usage. 
+    At the beginning of your module add the following lines::
 
+        from Log import Log
+        log = Log('my_module')
+
+
+    To print a message::
+
+        log.info("my_module initiated")  #INFO level
+        log.warning('A bad thing happened') #WARNING level
+
+
+    The accepted message levels are (in order of severity)::
+
+        debug, info, warning, error, critical
+
+
+    You may limit the amount of output by restricting messages
+    by severity level. For example, to only output messages of 
+    type warning, error, or critical::
+
+            log = Log('my_module', 'warning')
+
+
+    By default, output is printed to the console but you can
+    also print to a file::
+
+        # Print to a file instead of the screen
+        log = Log('my_module', fileout=True, screenout=False)
+    '''
     LEVELS = {'debug': logging.DEBUG,
           'info': logging.INFO,
           'warning': logging.WARNING,

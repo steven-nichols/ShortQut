@@ -34,15 +34,11 @@ class PriorityQueue:
         log.info('Initialize new priority queue')
         
     def push(self, priority, item, count=None):
-        '''Add an item to the priority queue. The priority queue is implemented as
-        a min heap such that the highest priority is 0, and the lowest priority is
-        infinity.
-        
-        Args:
-            priority (float) - priority of item to be added
-            item (any) - the item to be added
-            count (int) - unique id
-            
+        '''Add ``item`` to the priority queue with priority of ``priority``. The
+        priority queue is implemented as a min heap such that the highest 
+        priority is 0, and the lowest priority is infinity. ``Count`` is a 
+        unique ID to distinguish multiple copies of the same item. It is 
+        recommeded to let the Priority Queue assign IDs.
         '''
         if(isinstance(item, list)):
             item = hashablelist(item)
@@ -55,12 +51,10 @@ class PriorityQueue:
         self.valid_entries += 1
     
     def pop(self):
-        '''Find and return the highest priority (0 = highest, infinity = 
+        '''Find and return the highest priority item (0 = highest, infinity = 
         lowest). If more than one item has the same priority, the item that was 
-        added first will be selected. 
-        
-        Returns:
-            (tuple) - tuple of form: (priority, item)
+        added first will be selected. Returns a tuple of form: 
+        ``(priority, item)``
         '''
         while True:
             try:
@@ -81,11 +75,7 @@ class PriorityQueue:
                 return (priority, item)
 
     def delete(self, item):
-        '''Remove an item from the queue.
-        
-        Args:
-            item (any) - the item to be removed
-            
+        '''Remove ``item`` from the priority queue.
         '''
         if(isinstance(item, list)):
             item = hashablelist(item)
@@ -104,11 +94,8 @@ class PriorityQueue:
         return entry
     
     def reprioritize(self, priority, item):
-        '''Change the priority of an item already in the queue.
-        
-        Args:
-            priority (float) - priority of item to be added
-            item (any) - the item to be added
+        '''Change the priority of an item already in the queue or push the item
+        if it is not already in the queue.
         '''
         
         if(isinstance(item, list)):
@@ -124,7 +111,7 @@ class PriorityQueue:
 
     
     def tolist(self):
-        '''Return a list representation of this object'''
+        '''Return a list representation of the Priority Queue.'''
         temp = nsmallest(len(self), self.pq)
         l = []
         for priority, count, item in temp:
@@ -135,9 +122,9 @@ class PriorityQueue:
         return l
     
     def __len__(self):
-        '''Return the number of valid entries currently in the queue'''
+        '''Return the number of valid entries currently in the queue.'''
         return self.valid_entries;
     
     def __repr__(self):
-        '''Return a string prepresentation of this object'''
+        '''Return a string prepresentation of this object.'''
         return str(self.tolist())
