@@ -1,0 +1,5 @@
+Pathfinding
+====================================
+
+.. automodule:: Pathfinding
+    :members:
