@@ -1,4 +1,4 @@
-Logging Framework
+:mod:`Log` --- Message Logging Framework
 ====================================
 
 .. automodule:: Log
