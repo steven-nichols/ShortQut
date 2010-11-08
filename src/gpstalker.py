@@ -16,9 +16,11 @@ class GPSTalker:
                  }
         self.lock = threading.Lock()
         self.running = True
+        self.child = False
         # Queue is thread-safe
         self.messages = Queue.Queue()
-        self.ser = nmea.openGPS(serial)
+        if serial:
+            self.ser = nmea.openGPS(serial)
 
     def runLoop(self):
         self.child = TalkerThread(self)
@@ -49,7 +51,8 @@ class GPSTalker:
     def consume(self):
         while(self.messages.qsize() > 0):
             print self.getMsg()
-        self.messages.join()
+        if(self.child):
+            self.messages.join()
 
     def close(self):
         log.info('Closing GPS')
