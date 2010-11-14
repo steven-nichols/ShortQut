@@ -57,7 +57,7 @@ class MapFactory:
             #distance to next intersection
             current_dist = get_dist(location, cur_intersection)
             if 100 > current_dist:
-                closest_pt = find_segment_end(cur_intersection, current_dist)
+                closest_pt = find_segment_end(cur_intersection, location)
             if segment_begin == None:
                 segment_begin = closest_pt
             else:
@@ -71,9 +71,9 @@ class MapFactory:
         current_dist = get_dist(location, cur_intersection)  
         closest_pt_dist = get_dist(closest_pt, cur_intersection)
         if closest_pt_dist > current_dist:
-            closest_pt[0] = location[0]
-            closest_pt[1] = cur_intersection[0]
-            closest_pt[2] = cur_intersection[1]
+            closest_pt['time'] = location['time']
+            closest_pt['lat'] = cur_intersection[0]
+            closest_pt['lon'] = cur_intersection[1]
         if current_dist > 125:
             return closest_pt
         else:
