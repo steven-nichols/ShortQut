@@ -1,10 +1,15 @@
 import time
+import Queue
 import gpstalker
 
 class TestTalker(gpstalker.GPSTalker):
     def __init__(self, filename, delay=1):
         gpstalker.GPSTalker.__init__(self,None)
         self.delay = delay
+        self.load_file(filename)
+
+    def load_file(self, filename):
+        self.messages = Queue.Queue()
         self.input = open(filename, 'r')
         lines = self.input.readlines()
         self.input.close()
