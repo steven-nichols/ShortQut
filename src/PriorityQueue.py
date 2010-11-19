@@ -34,8 +34,8 @@ class PriorityQueue:
         log.info('Initialize new priority queue')
         
     def push(self, priority, item, count=None):
-        '''Add ``item`` to the priority queue with priority of ``priority``. The
-        priority queue is implemented as a min heap such that the highest 
+        '''Add ``item`` to the priority queue with priority of ``priority``. 
+        The priority queue is implemented as a min heap such that the highest 
         priority is 0, and the lowest priority is infinity. ``Count`` is a 
         unique ID to distinguish multiple copies of the same item. It is 
         recommeded to let the Priority Queue assign IDs.

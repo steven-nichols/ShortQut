@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import unittest
-from Pathfinding import Pathfinding
+from Pathfinding import Pathfinding, weightedAvg
 
 class TestSequenceFunctions(unittest.TestCase):
 
@@ -79,6 +79,11 @@ class TestSequenceFunctions(unittest.TestCase):
             self.assertEqual(element, chr(65 + count), 'Node not in list')
             count += 1
 
+    def testmisc1(self):
+        '''Test weighted averages'''
+        avg = weightedAvg([35, 10, 1])
+        print(avg)
+        self.assertGreater(avg, 15.4)
             
 suite = unittest.TestLoader().loadTestsFromTestCase(TestSequenceFunctions)
 unittest.TextTestRunner(verbosity=2).run(suite)
