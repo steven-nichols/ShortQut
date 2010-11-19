@@ -10,11 +10,12 @@ class TestTalker(gpstalker.GPSTalker):
 
     def load_file(self, filename):
         self.messages = Queue.Queue()
+        self.buf = Queue.Queue()
         self.input = open(filename, 'r')
         lines = self.input.readlines()
         self.input.close()
         for line in lines:
-            self.addMsg(self.interpret(line))
+            self.buf.put(self.interpret(line))
 
     def interpret(self, data):
         """Return a useful interpretation of the `data` given."""
@@ -34,7 +35,6 @@ class TestTalker(gpstalker.GPSTalker):
         return
 
     def recvMsg(self):
-        return
-
-    def runLoop(self):
+        self.messages.put(self.buf.get())
+        time.sleep(self.delay)
         return
