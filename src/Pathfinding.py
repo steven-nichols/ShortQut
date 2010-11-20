@@ -3,8 +3,20 @@ import sys
 from PriorityQueue import PriorityQueue
 #import Colorer
 from Log import Log
-log = Log('AStar', 'debug')
+log = Log('Pathfinding', 'info')
 import os
+
+def weightedAvg(mylist):
+    '''Returns the weighted moving average of the numbers in the list.'''
+    n = len(mylist)
+    wma = 0
+
+    for i in range(0, n):
+        wma += (n - i) * mylist[i]
+    wma /= (n * (n + 1))/2.0
+
+    return wma
+
 
 class Pathfinding:
     '''The Pathfinding class contains functions related to finding routes in
@@ -31,15 +43,15 @@ class Pathfinding:
                     self.graph[start] = []
                 self.graph[start].append((end.strip(), int(weight.strip())))
     
-    
+
     def shortestPath(self, start, goal, exceptions=None):
         '''Returns the shortest path from the ``start`` vertex to the ``goal``
-        vertex as a list of nodes. The path will avoid using any vertex from the
-        ``exceptions`` list, which could be used to find alternate routes or avoid
-        certain roads such as highways. :func:`shortestPath` uses the best available
-        pathfinding algorithm and should always be used instead of directly
-        invoking such functions as :func:`aStarPath`, :func:`dijkstra`, or
-        :func:`dijkstraBi`.
+        vertex as a list of nodes. The path will avoid using any vertex from 
+        the ``exceptions`` list, which could be used to find alternate routes
+        or avoid certain roads such as highways. :func:`shortestPath` uses the
+        best available pathfinding algorithm and should always be used instead
+        of directly invoking such functions as :func:`aStarPath`, 
+        :func:`dijkstra`, or :func:`dijkstraBi`.
         
         Use :func:`pathCost()` to find the cost of traversing the path.
             
@@ -52,20 +64,23 @@ class Pathfinding:
             # returns 4
         '''
         log.info("Start: {}, Goal: {}".format(start, goal))
-        #return self.aStarPath(start, goal, exceptions)
-        return self.dijkstraBi(start, goal, exceptions)
-        #return self.dijkstra(start, goal, exceptions)
+        #path = self.aStarPath(start, goal, exceptions)
+        path = self.dijkstraBi(start, goal, exceptions)
+        #path = self.dijkstra(start, goal, exceptions)
+        
+        log.info("Path: %s" % path)
+        return path
         
         
     def aStarPath(self, start, goal, exceptions=None):
         '''A* is an algorithm that is used in pathfinding and graph traversal. 
-        Noted for its performance and accuracy, it enjoys widespread use. It is an 
-        extension of Edger Dijkstra's 1959 algorithm and achieves better 
+        Noted for its performance and accuracy, it enjoys widespread use. It
+        is an extension of Edger Dijkstra's 1959 algorithm and achieves better 
         performance (with respect to time) by using heuristics.
     
-        Takes in the ``start`` node and a ``goal`` node and returns the shortest
-        path between them as a list of nodes. Use pathCost() to find the cost
-        of traversing the path.
+        Takes in the ``start`` node and a ``goal`` node and returns the
+        shortest path between them as a list of nodes. Use pathCost() to find
+        the cost of traversing the path.
         
         .. note::
             Does not currently use the heuristic function, making it less
@@ -97,8 +112,8 @@ class Pathfinding:
             heur, x = f_score.pop()
             if x == goal:
                 path = self.reconstructPath(came_from, goal)
-                log.info("Path found of weight: %g" % self.pathCost(path))
-                log.info("Path: %s" % path)
+                #log.info("Path found of weight: %g" % self.pathCost(path))
+                #log.info("Path: %s" % path)
                 return path
             
             try:
@@ -127,8 +142,8 @@ class Pathfinding:
                     tentative_is_better = False
 
                 if tentative_is_better == True:
-                    log.debug("Update node %s's weight to %g" % (y,
-															tentative_g_score))
+                    #log.debug("Update node %s's weight to %g" % (y,
+															#tentative_g_score))
                     came_from[y] = x
                     g_score[y] = tentative_g_score
                     h_score[y] = self.heuristicEstimateOfDistance(y, goal)
@@ -148,15 +163,16 @@ class Pathfinding:
         
     def dijkstra(self, start, goal, exceptions=None):
         '''Dijkstra's algorithm, conceived by Dutch computer scientist Edsger 
-        Dijkstra in 1956 and published in 1959, is a graph search algorithm that
-        solves the single-source shortest path problem for a graph with
+        Dijkstra in 1956 and published in 1959, is a graph search algorithm 
+        that solves the single-source shortest path problem for a graph with
         nonnegative edge path costs, producing a shortest path tree.
         
         .. note::
-            Unmodified, Dijkstra's algorithm searches outward in a circle from the
-            start node until it reaches the goal. It is therefore slower than other
-            methods like A* or Bi-directional Dijkstra's. The algorithm is included
-            here for performance comparision against other algorithms only.
+            Unmodified, Dijkstra's algorithm searches outward in a circle from
+            the start node until it reaches the goal. It is therefore slower
+            than other methods like A* or Bi-directional Dijkstra's. The
+            algorithm is included here for performance comparision against
+            other algorithms only.
         
         .. seealso::
             :func:`aStarPath`, :func:`dijkstraBi`
@@ -174,13 +190,13 @@ class Pathfinding:
         queue.push(0, start)
         
         while len(queue) > 0:
-            log.debug("queue: " + str(queue))
+            #log.debug("queue: " + str(queue))
             weight, x = queue.pop()
             dist[x] = weight
             if x == goal:
-                log.debug("came_from: " + str(came_from))
+                #log.debug("came_from: " + str(came_from))
                 path = self.reconstructPath(came_from, goal)
-                log.info("Path: %s" % path)
+                #log.info("Path: %s" % path)
                 return path
                         
             closedset.append(x)
@@ -197,23 +213,24 @@ class Pathfinding:
                     dist[y] = dist[x] + costxy
                     queue.reprioritize(dist[y], y)
                     came_from[y] = x
-                    log.debug("Update node %s's weight to %g" % (y, dist[y]))
+                    #log.debug("Update node %s's weight to %g" % (y, dist[y]))
 
         return None
                 
 
 
     def dijkstraBi(self, start, goal, exceptions=None):
-        '''Bi-Directional Dijkstra's algorithm. The search begins at the ``start``
-        node and at the ``goal`` node simultaneously. The search area expands
-        radially outward from both ends until the two meet in the middle. In most 
-        cases this reduces the number of vertices which must be checked by half.
+        '''Bi-Directional Dijkstra's algorithm. The search begins at the
+        ``start`` node and at the ``goal`` node simultaneously. The search area
+        expands radially outward from both ends until the two meet in the
+        middle. In most cases this reduces the number of vertices which must
+        be checked by half.
         
         .. image:: dijkstra.png
         .. image:: dijkstra-bidirectional.png
         
-        Search area of Dijkstra's algorithm (left) vs search area of bi-directional
-        Dijkstra's algorithm (right).
+        Search area of Dijkstra's algorithm (left) vs search area of 
+        bi-directional Dijkstra's algorithm (right).
             
         .. seealso::
             :func:`aStarPath`, :func:`dijkstra`
@@ -237,37 +254,42 @@ class Pathfinding:
         
         while len(forward) + len(backward) > 0:
             if len(forward) > 0:
-                done, stop = self.__dijkstraBiIter(start, goal, exceptions, dist_f, came_from_f, forward, closedset_forward, closedset_backward)
+                done, stop = self.__dijkstraBiIter(start, goal, exceptions, 
+                                        dist_f, came_from_f, forward, 
+                                        closedset_forward, closedset_backward)
+
             if not done and len(backward) > 0:
-                done, stop = self.__dijkstraBiIter(goal, start, exceptions, dist_b, came_from_b, backward, closedset_backward, closedset_forward)
+                done, stop = self.__dijkstraBiIter(goal, start, exceptions,
+                                        dist_b, came_from_b, backward, 
+                                        closedset_backward, closedset_forward)
         
             if done:
-                log.debug("came_from_f: " + str(came_from_f))
-                log.debug("came_from_b: " + str(came_from_b))
+                #log.debug("came_from_f: " + str(came_from_f))
+                #log.debug("came_from_b: " + str(came_from_b))
                 
                 pathf = self.reconstructPath(came_from_f, stop)
-                log.info("PathF: %s" % pathf)
+                #log.info("PathF: %s" % pathf)
                 
                 pathb = self.reconstructPath(came_from_b, stop)
                 pathb.reverse()
-                log.info("PathB: %s" % pathb)
+                #log.info("PathB: %s" % pathb)
                 
                 return pathf + pathb[1:]
-                
         return None
         
-    def __dijkstraBiIter(self, start, goal, exceptions, dist, came_from, queue, closedset, revclosedset):
+    def __dijkstraBiIter(self, start, goal, exceptions, dist, came_from, queue,
+                            closedset, revclosedset):
         ''' Run a single iteration of dijkstra's algorithm. 
         returns:
             (bool, string) - tuple of form: (is search over?, vertex stopped on)
         '''
-        log.debug("queue: " + str(queue))
+        #log.debug("queue: " + str(queue))
         weight, x = queue.pop()
         dist[x] = weight
         if x == goal:
             return True, x
         elif x in revclosedset:
-            log.info("Meet in the middle: Node " + str(x))
+            #log.info("Meet in the middle: Node " + str(x))
             return True, x
             
         closedset.append(x)
@@ -285,7 +307,7 @@ class Pathfinding:
                 dist[y] = dist[x] + costxy
                 queue.reprioritize(dist[y], y)
                 came_from[y] = x
-                log.debug("Update node %s's weight to %g" % (y, dist[y]))
+                #log.debug("Update node %s's weight to %g" % (y, dist[y]))
                 
         return False, None
 
@@ -294,11 +316,12 @@ class Pathfinding:
         solution must first calculated. This optimal solution is passed in as
         ``optimal_path``. A single edge appearing in the optimal solution is 
         removed from the graph, and the optimum solution to this new graph is 
-        calculated. Each edge of the original solution is suppressed in turn and 
-        a new shortest-path calculated. The secondary solutions are then ranked 
-        and the ``num`` best sub-optimal solutions are returned. If less than 
-        ``num`` solutions exist for the given graph, less than ``num`` solutions 
-        will be returned. The results are a list of tuples of form: 
+        calculated. Each edge of the original solution is suppressed in turn
+        and a new shortest-path calculated. The secondary solutions are then
+        ranked and the ``num`` best sub-optimal solutions are returned. If 
+        less than ``num`` solutions exist for the given graph, less than
+        ``num`` solutions will be returned. The results are a list of tuples
+        of form: 
         ``((cost, path), (cost2, path2), ...)``
         
         An example of finding alternate routes::
@@ -324,7 +347,8 @@ class Pathfinding:
         for i in range(1, len(optimal_path) - 1):
             y = optimal_path[i]
             
-            log.info("Look for sub-optimal solution with vertex {} removed".format(y))
+            log.info("Look for sub-optimal solution with vertex {} removed".\
+                    format(y))
             path = self.shortestPath(start, goal, [y])
             #path = self.shortestPath(start, goal)
             cost = self.pathCost(path)
@@ -340,6 +364,7 @@ class Pathfinding:
             log.debug("Cost of #%d sub-optimal path is %g" % (i+1, cost))
             
         return alternatives
+
 
     def neighborNodes(self, vertex):
         '''Retrieve the neighbors of the vertex from the database and returns
@@ -365,6 +390,11 @@ class Pathfinding:
     def timeBetween(self, x, y):
         '''Returns the estimated travel time between ``x`` and ``y``. This is
         exactly equivalent to the weight of the edge ``(x,y)``.
+
+        The weight of travelled road segments is determined by a weighted
+        moving average. Travel time for road segments for which we have no data
+        is calculated by assuming the travel speed will be 30 mph (which is the
+        speed limit for business and residential streets in Florida).
         '''
         if not self.debug:
             # average travel time between x and y for this time period
@@ -389,9 +419,9 @@ class Pathfinding:
         
     def reconstructPath(self, came_from, goal):
         '''Returns a list of the vertices along the shortest path in order from
-        the start vertex to the goal vertex. ``came_from`` is a dict of the 
-        form ``{'vertex': 'node before vertex in the shortest path'}``. The 
-        algorith starts at the goal vertex, specified by ``goal``, and works 
+        the start vertex to the goal vertex. ``came_from`` is a dict of the
+        form ``{'vertex': 'node before vertex in the shortest path'}``. The
+        algorith starts at the goal vertex, specified by ``goal``, and works
         backward until the entire path has been reconstructed.
         '''
         current_node = goal
@@ -411,8 +441,9 @@ class Pathfinding:
         
         
     def pathCost(self, path):
-        '''Returns the cost of taking a ``path`` from start to finish. The ``path``
-        is a list of vertices such as the one returned by :func:`shortestPath()`.
+        '''Returns the cost of taking a ``path`` from start to finish. The
+        ``path`` is a list of vertices such as the one returned by
+        :func:`shortestPath()`.
         '''
         cost = 0
         i = iter(path)

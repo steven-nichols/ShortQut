@@ -31,6 +31,7 @@ Reference material including documentation of every :mod:`ShortQut` module.
 .. toctree::
     :maxdepth: 2
     
+    database
     logging
     pathfinding
     priority_queue
