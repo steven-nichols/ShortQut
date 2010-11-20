@@ -109,7 +109,9 @@ class ShortqutGUI:
         #Set up and position sprite
         actor = clutter.Texture(filename="pirate-ship-1.jpg")
         marker = champlain.marker_new_with_image(actor)
-        marker.set_position(0,0)
+        marker.set_draw_background(False)
+        #marker.set_position(0,0)
+        marker.set_position(lat,lon)
         layer.add(marker)
         marker.raise_top()
 
