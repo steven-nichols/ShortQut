@@ -25,7 +25,7 @@ class ShortqutGUI:
         self.window.set_title("Shortqut v0.5a")
         self.window.connect("destroy", gtk.main_quit)
 
-        vbox = gtk.VBox(False, 12) 
+        vbox = gtk.VBox(False, 12) #look up what vbox does, does this need to be changed?
 
         champ = champlaingtk.ChamplainEmbed()
         champ.set_size_request(640,480)
@@ -134,8 +134,7 @@ class ShortqutGUI:
             image.set_from_stock(gtk.STOCK_YES, gtk.ICON_SIZE_BUTTON)
 
     def load_osm_file(self):
-        osm_filename = "orlandoeast.osm"
-        if not os.path.isfile(".%s%s" % (os.sep, osm_filename)):
+        if not os.path.isfile('/home/dana/Desktop/Shortqut/orlandoeast.osm'):
             print "no valid OSM file"
             return
         
@@ -143,18 +142,18 @@ class ShortqutGUI:
         
         win = gtk.Window()
         win.set_title("Loading")
-        label = gtk.Label("Loading OSM file %s ..." % osm_filename)
+        label = gtk.Label("Loading OSM file %s ..." % '/home/dana/Desktop/Shortqut/orlandoeast.osm')
         win.add(label)
         win.set_position(gtk.WIN_POS_CENTER)
         win.set_keep_above(False)
         win.show_all()
         
         self.load_osm_file_window = win
-        gobject.idle_add(self._load_osm_file, osm_filename)
+        gobject.idle_add(self._load_osm_file)
 		
-    def _load_osm_file(self, filename):
+    def _load_osm_file(self):
         print "Loading osm file..."
-        self.map_data_source.load_map_data(".%s%s" % (os.sep, filename))
+        self.map_data_source.load_map_data('/home/dana/Desktop/Shortqut/orlandoeast.osm')
         print "Done"
         self.load_osm_file_window.destroy()
         
@@ -167,13 +166,14 @@ class ShortqutGUI:
         if self.map_data_source is not None:
             self.source.set_map_data_source(self.map_data_source)
             
-        rules_filename = "rules.xml"
-        self.source.load_rules(".%s%s" % (os.sep, rules_filename))
+        filename = '/home/dana/Desktop/Shortqut/rules.xml'
+            		
+        self.source.load_rules(filename)
                 
         tile_size = self.source.get_tile_size()
         error_tile_source = champlain.error_tile_source_new_full(tile_size)
         
-        file_cache_path = ".%scache" % (os.sep)
+	file_cache_path = ".%scache" % (os.sep)
         file_cache = champlain.file_cache_new_full(1024*1024*50, file_cache_path, True)
         
         source_chain = champlain.MapSourceChain()
