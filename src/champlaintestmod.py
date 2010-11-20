@@ -12,7 +12,7 @@ import gtk
 
 class ShortqutGUI:
     
-    auto_rrFlag = 0
+    auto_reroute = False
     
     def __init__(self):
 	global location
@@ -62,7 +62,7 @@ class ShortqutGUI:
         
         button = gtk.CheckButton("Automatic Rerouting")
         button.set_active(False)
-        button.connect("clicked", self.auto_rr)
+        button.connect("clicked", self.toggle_auto_reroute)
         bbox.add(button)
         
         button = gtk.Button(stock=gtk.STOCK_ZOOM_IN)
@@ -105,8 +105,8 @@ class ShortqutGUI:
         #gobject.timeout_add(1000, center_gps, self.view, location)
         
     #If the box is checked, enable Automatic Rerouting
-    def auto_rr(self, widget):
-        auto_rrFlag = 1
+    def toggle_auto_reroute(self, widget):
+        auto_reroute = False if auto_reroute else True
     
     def zoom_in(self, widget):
         self.view.zoom_in()
