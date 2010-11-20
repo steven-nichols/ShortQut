@@ -100,15 +100,15 @@ class ShortqutGUI:
 
 
         #lat = 28.568542 + (random.random() - 0.5)
-        lat = 28.568542
+        lat = 28.541492
         #lon = -81.207504 + (random.random() - 0.5)
-        lon = -81.207504 
+        lon = -81.195965
         self.view.center_on(lat,lon)
         
+        
+        #Set up and position sprite
         actor = clutter.Texture(filename="pirate-ship-1.jpg")
-        
         marker = champlain.marker_new_with_image(actor)
-        
         marker.set_position(lat,lon)
         layer.add(marker)
         marker.raise_top()
@@ -116,6 +116,30 @@ class ShortqutGUI:
         #location = talker.getMsg()
         #gobject.timeout_add(1000, random_view, self.view)
         #gobject.timeout_add(1000, center_gps, self.view, location)
+        
+        self.draw_route()
+        
+    def draw_route(self):
+        #Draw the route
+        route = champlain.Polygon()
+        #Test sample route
+        route.append_point(28.541492, -81.195965)
+        route.append_point(28.541493, -81.195963)
+        route.append_point(28.541495, -81.195962)
+        route.append_point(28.541498, -81.195958)
+        route.append_point(28.541500, -81.195957)
+        route.append_point(28.541500, -81.195955)
+        route.append_point(28.541497, -81.195953)
+        route.append_point(28.541492, -81.195952)
+        route.append_point(28.541482, -81.195948)
+        route.append_point(28.541408, -81.195938)
+        route.append_point(28.541375, -81.195932)
+        route.append_point(28.541350, -81.195925)
+        route.append_point(28.541330, -81.195917)
+        route.append_point(28.541317, -81.195903)
+        route.append_point(28.541308, -81.195893)
+        route.set_stroke_width(5.0)
+        self.view.add_polygon(route)
         
     #If the box is checked, enable Automatic Rerouting
     def auto_rr(self, widget):
@@ -212,6 +236,7 @@ def center_gps(view, gps_tuple):
     view.center_on(lat, lon)
     print "Go to: %f %f %f" % (time, lat, lon)
     return True
+    
 
 if __name__ == "__main__":
     gobject.threads_init()
