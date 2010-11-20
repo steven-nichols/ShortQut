@@ -74,6 +74,7 @@ class ShortqutGUI:
         bbox.add(button)
 
         
+        
         self.spinbutton = gtk.SpinButton(gtk.Adjustment(lower=0, upper=20, 
             value=1, step_incr=1))
         self.spinbutton.connect("changed", self.zoom_changed)
@@ -92,7 +93,6 @@ class ShortqutGUI:
 
         self.window.show_all()
 
-        
 
         #lat = 28.568542 + (random.random() - 0.5)
         lat = 28.568542
@@ -103,7 +103,6 @@ class ShortqutGUI:
         #location = talker.getMsg()
         #gobject.timeout_add(1000, random_view, self.view)
         #gobject.timeout_add(1000, center_gps, self.view, location)
-        
         
     #If the box is checked, enable Automatic Rerouting
     def auto_rr(self, widget):
