@@ -25,7 +25,7 @@ class ShortqutGUI:
         self.window.set_title("Shortqut v0.5a")
         self.window.connect("destroy", gtk.main_quit)
 
-        vbox = gtk.VBox(False, 12) #look up what vbox does, does this need to be changed?
+        vbox = gtk.VBox(False, 12) 
 
         champ = champlaingtk.ChamplainEmbed()
         champ.set_size_request(640,480)
