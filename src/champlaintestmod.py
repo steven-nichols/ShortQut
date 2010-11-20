@@ -109,7 +109,7 @@ class ShortqutGUI:
         #Set up and position sprite
         actor = clutter.Texture(filename="pirate-ship-1.jpg")
         marker = champlain.marker_new_with_image(actor)
-        marker.set_position(lat,lon)
+        marker.set_position(0,0)
         layer.add(marker)
         marker.raise_top()
 
@@ -234,6 +234,7 @@ def center_gps(view, gps_tuple):
         location = talker.getMsg()
     time, lat, lon = location
     view.center_on(lat, lon)
+    marker.set_position(lat,lon)
     print "Go to: %f %f %f" % (time, lat, lon)
     return True
     
