@@ -9,6 +9,7 @@ import champlaingtk
 import champlain
 import champlainmemphis
 import gtk
+import clutter
 
 class ShortqutGUI:
     
@@ -38,6 +39,10 @@ class ShortqutGUI:
         self.view.set_property('zoom-level', 12)
         self.view.set_property('license-text', "Alpha version, not for release")
         self.view.set_property('show-scale', True)
+        
+        layer = champlain.Layer()
+        self.view.add_layer(layer)
+        
         self.map_source_factory = champlain.map_source_factory_dup_default()
         self.map_data_source = None
         self.load_memphis_rules()
@@ -99,6 +104,14 @@ class ShortqutGUI:
         #lon = -81.207504 + (random.random() - 0.5)
         lon = -81.207504 
         self.view.center_on(lat,lon)
+        
+        actor = clutter.Texture(filename="pirate-ship-1.jpg")
+        
+        marker = champlain.marker_new_with_image(actor)
+        
+        marker.set_position(lat,lon)
+        layer.add(marker)
+        marker.raise_top()
 
         #location = talker.getMsg()
         #gobject.timeout_add(1000, random_view, self.view)
