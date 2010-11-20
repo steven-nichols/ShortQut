@@ -16,8 +16,9 @@ class MapFactory:
     def __init__(self):
         #instantiate a GPSTalker
         #mytalker = GPSTalker()
-        #loco = mytalker.getMsg
-        self.mytalker = TestTalker("data/gps3.out")
+        self.mytalker = TestTalker("data/gps3.out", .1)
+        loco = self.mytalker.getMsg()
+        print loco
         self.get_bearings()
         return
     
@@ -96,6 +97,5 @@ class MapFactory:
 def main():
     MapFactory()
     
-
 if __name__ == '__main__':
     main()
