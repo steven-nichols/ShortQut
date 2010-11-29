@@ -1,10 +1,37 @@
 #!/usr/bin/env python
 import sys
+import os
 from PriorityQueue import PriorityQueue
+from Database import Database
 #import Colorer
 from Log import Log
-log = Log('Pathfinding', 'info')
-import os
+log = Log('Pathfinding', 'debug')
+
+
+#time_periods = 
+
+def weightedAvg2(mylist, current_time_period):
+    '''Mylist is a list of tuples of form: (number, time period). The list
+    entries are sorted by time period with the entires in the current time
+    period receiving the most weight. Newer entries receive higher weights than
+    older entries.'''
+
+    # Separate out all entries in the current time period
+    curr = []
+    for entry in mylist:
+        number, period = entry[0], entry[1]
+        if(period == current_time_period):
+            curr.append(entry)
+    # Sort set by date
+    curr.sort()
+    # Sort remaining entries by date
+    mylist.sort()
+
+    # Append remaining entries after current time period entries
+    curr.append(mylist)
+
+    return weightedAvg(mylist)
+
 
 def weightedAvg(mylist):
     '''Returns the weighted moving average of the numbers in the list.'''
@@ -42,7 +69,8 @@ class Pathfinding:
                 if not self.graph.has_key(start):
                     self.graph[start] = []
                 self.graph[start].append((end.strip(), int(weight.strip())))
-    
+        else:
+            self.db = Database()
 
     def shortestPath(self, start, goal, exceptions=None):
         '''Returns the shortest path from the ``start`` vertex to the ``goal``
@@ -142,8 +170,8 @@ class Pathfinding:
                     tentative_is_better = False
 
                 if tentative_is_better == True:
-                    #log.debug("Update node %s's weight to %g" % (y,
-															#tentative_g_score))
+                    log.debug("Update node %s's weight to %g" % (y,
+															tentative_g_score))
                     came_from[y] = x
                     g_score[y] = tentative_g_score
                     h_score[y] = self.heuristicEstimateOfDistance(y, goal)
@@ -283,13 +311,13 @@ class Pathfinding:
         returns:
             (bool, string) - tuple of form: (is search over?, vertex stopped on)
         '''
-        #log.debug("queue: " + str(queue))
+        log.debug("queue: " + str(queue))
         weight, x = queue.pop()
         dist[x] = weight
         if x == goal:
             return True, x
         elif x in revclosedset:
-            #log.info("Meet in the middle: Node " + str(x))
+            log.info("Meet in the middle: Node " + str(x))
             return True, x
             
         closedset.append(x)
@@ -307,7 +335,7 @@ class Pathfinding:
                 dist[y] = dist[x] + costxy
                 queue.reprioritize(dist[y], y)
                 came_from[y] = x
-                #log.debug("Update node %s's weight to %g" % (y, dist[y]))
+                log.debug("Update node %s's weight to %g" % (y, dist[y]))
                 
         return False, None
 
@@ -375,7 +403,9 @@ class Pathfinding:
 
         if not self.debug:
             # Get the neighbors via an SQL query
-            return
+            neighbors = self.db.getNeighbors(vertex)
+            log.debug("Neighbors of %s are %s" % (vertex, neighbors))
+            return neighbors
         else:
             try:
                 for edge in self.graph[vertex]:
@@ -398,7 +428,7 @@ class Pathfinding:
         '''
         if not self.debug:
             # average travel time between x and y for this time period
-            return
+            return self.db.getTravelTime(x, y)
         else:
             try:
                 for edge in self.graph[x]:
@@ -468,8 +498,9 @@ if __name__ == "__main__":
         end = 'E'
         graphfile = 'data/graph2.txt'
         
-    search = Pathfinding(True, graphfile)
-    
-    path = search.shortestPath(start, end)
+    #search = Pathfinding(True, graphfile)
+    search = Pathfinding()
+
+    path = search.shortestPath("28.241378,-81.206989", "28.700301,-81.529274")
     #alts = search.alternateRoute(3, path)
     print path
