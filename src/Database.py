@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+'''Provides functions for converting between strings and geographical 
+coordinates. Also provides the Database class for communicating with
+a MySQL database holding the map data.'''
 import math
 try: 
     import MySQLdb
@@ -16,12 +19,14 @@ def cord2name(lat, lon):
 
 def name2cord(name):
     '''Convert a coordinate pair like "28.5815770,-81.1719860" into latitude
-    and longitude.'''
+    and longitude tuple.'''
     return name.split(",")
 
 def get_dist(pt1, pt2):
     '''Calcuate the Euclidean distance between two points specified by
-    latitude and longitude. Distance is returned in feet.'''
+    latitude and longitude. Distance is returned in feet. Based on a 
+    method with the same name in MapFactory.py but moved here because
+    the other method was required an instance of the MapFactory class.'''
     coord_dist = math.sqrt(math.pow(abs(pt2['lat'] - pt1['lat']),2) +  \
     math.pow(abs(pt2['lon'] - pt1['lon']),2))
     dist = (coord_dist*10000)*36.5 #distance between pts in ft
@@ -58,18 +63,20 @@ class Database:
         self.conn.close()
 
     def getMySQLVersion(self):
+        '''Returns the version number of the MySQL database.'''
         self.cursor.execute("SELECT VERSION()")
         row = self.cursor.fetchone()
         return row[0]
 
     def getTimes(self):
+        '''Returns all entries the `times` table as an iterable list'''
         self.cursor.execute("SELECT * FROM `times`;")
         rows = self.cursor.fetchall()
         return rows
     
 
     def getAvgTravelTime(self, start, end):
-        '''Get the average of past travel time across this segment in 
+        '''Get the average of past travel times across this segment in 
         seconds.'''
         try:
             lat, lon = name2cord(start)[0], name2cord(start)[1]
@@ -113,18 +120,27 @@ class Database:
 
 
     def getNeighbors(self, node):
-        #self.cursor.execute("SELECT name, road_id, segment_id, int1lat, int1lon, int2lat, int2lon FROM road_names, (select road_id, segment_id, int1lat,int1lon,int2lat,int2lon from segments WHERE (int1lat = '28.5412667' and int1lon = '-81.1958727') or (int2lat = '28.5412667' and int2lon = '-81.1958727')) as a where a.road_id = road_names.id")
+        '''Return a list of neighbor nodes, that is, the names of nodes which
+        share a segment with this node::
+            db.getNeighbors(cord2name("28.5815770", "-81.1719860"))
+            # returns
+            ['28.5823810,-81.1701780', '28.5883288,-81.1720451', '28.5802643,-81.1747488']
+        '''
         neighbors = []
         lat, lon = node.split(",")[0], node.split(",")[1]
         
+        #self.cursor.execute("SELECT name, road_id, segment_id, int1lat, int1lon, int2lat, int2lon FROM road_names, (select road_id, segment_id, int1lat,int1lon,int2lat,int2lon from segments WHERE (int1lat = '28.5412667' and int1lon = '-81.1958727') or (int2lat = '28.5412667' and int2lon = '-81.1958727')) as a where a.road_id = road_names.id")
+        # Neighbor nodes
         self.cursor.execute("select road_id, segment_id, int2lat as lat, int2lon as lon from segments where int1lat = {0} and int1lon = {1} union select road_id, segment_id, int1lat as lat, int1lon as lon from segments where int2lat = {0} and int2lon = {1} and oneway = 0;".format(lat, lon))
+        # Intersections
+        self.cursor.execute("select distinct lat, lon from ( select road_id1, road_id2 from intersections where lat = 28.5815770 and lon = -81.1719860) as a, ( select road_id1, road_id2, lat, lon, sqrt( pow((28.5815770 - lat), 2) + pow((-81.1719860 - lon), 2) ) as distance from intersections order by distance) as b where (a.road_id1 = b.road_id1 or a.road_id2 = b.road_id1 or a.road_id1 = b.road_id2 or a.road_id2 = b.road_id2)")
         for row in self.cursor.fetchall():
-            neighbors.append(cord2name(row[2], row[3]))
+            neighbors.append(cord2name(row[0], row[1]))
         return neighbors
 
 if __name__ == "__main__":
     db = Database()
-    #print(db.getMySQLVersion())
+    print(db.getMySQLVersion())
     #for row in db.getTimes():
     #    print(row)
     
