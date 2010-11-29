@@ -5,10 +5,27 @@ from PriorityQueue import PriorityQueue
 from Database import Database, name2cord
 #import Colorer
 from Log import Log
-log = Log('Pathfinding', 'debug')
+log = Log('Pathfinding', 'info')
 
 
 #time_periods = 
+def writeResultsToFile(L):
+    '''A debug function'''
+    log.info("Writing partial results to file")
+    f = open("results.kml", "w")
+    f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+    f.write('<kml xmlns="http://www.opengis.net/kml/2.2">\n')
+    f.write('<Document>\n')
+    for node in L:
+        f.write('  <Placemark>\n')
+        f.write('   <name>%s</name>\n' % node)
+        f.write('   <Point>\n')
+        f.write('     <coordinates>%s,%s,0</coordinates>\n' % (name2cord(node)[1],name2cord(node)[0]))
+        f.write('   </Point>\n')
+        f.write(' </Placemark>\n')
+
+    f.write('</Document>\n')
+    f.write('</kml>\n')
 
 def weightedAvg2(mylist, current_time_period):
     '''Mylist is a list of tuples of form: (number, time period). The list
@@ -301,8 +318,8 @@ class Pathfinding:
                 pathb = self.reconstructPath(came_from_b, stop)
                 pathb.reverse()
                 #log.info("PathB: %s" % pathb)
-                
                 return pathf + pathb[1:]
+
         return None
 
     def __dijkstraBiIter(self, start, goal, exceptions, dist, came_from, queue,
@@ -311,57 +328,33 @@ class Pathfinding:
         returns:
             (bool, string) - tuple of form: (is search over?, vertex stopped on)
         '''
-        try:
-            log.debug("queue: " + str(queue))
-            weight, x = queue.pop()
-            dist[x] = weight
-            if x == goal:
-                return True, x
-            elif x in revclosedset:
-                log.info("Meet in the middle: Node " + str(x))
-                return True, x
+        log.debug("queue: " + str(queue))
+        weight, x = queue.pop()
+        dist[x] = weight
+        if x == goal:
+            return True, x
+        elif x in revclosedset:
+            log.info("Meet in the middle: Node " + str(x))
+            return True, x
                 
-            closedset.append(x)
+        closedset.append(x)
             
-            for y in self.neighborNodes(x):
-                if y in closedset:
-                    continue                
-                if(exceptions is not None and y in exceptions):
-                    continue
+        for y in self.neighborNodes(x):
+            if y in closedset:
+                continue                
+            if(exceptions is not None and y in exceptions):
+                continue
                     
-
-                costxy = self.timeBetween(x,y)
+            costxy = self.timeBetween(x,y)
                 
-                if not dist.has_key(y) or dist[x] + costxy < dist[y]:
-                    dist[y] = dist[x] + costxy
-                    queue.reprioritize(dist[y], y)
-                    came_from[y] = x
-                    log.debug("Update node %s's weight to %g" % (y, dist[y]))
+            if not dist.has_key(y) or dist[x] + costxy < dist[y]:
+                dist[y] = dist[x] + costxy
+                queue.reprioritize(dist[y], y)
+                came_from[y] = x
+                log.debug("Update node %s's weight to %g" % (y, dist[y]))
                     
-            return False, None
+        return False, None
 
-        except KeyboardInterrupt:
-            log.info("Writing partial results to file")
-            f = open("partialresults.kml", "w")
-            f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-            f.write('<kml xmlns="http://www.opengis.net/kml/2.2">\n')
-            f.write('<Document>\n')
-            listall = []
-            listall.extend(closedset)
-            listall.extend(revclosedset)
-            print(listall)
-            for node in listall:
-                f.write('  <Placemark>\n')
-                f.write('   <name>%s</name>\n' % node)
-                f.write('   <Point>\n')
-                f.write('     <coordinates>%s,%s,0</coordinates>\n' % (name2cord(node)[1],name2cord(node)[0]))
-                f.write('   </Point>\n')
-                f.write(' </Placemark>\n')
-
-            f.write('</Document>\n')
-            f.write('</kml>\n')
-            raise KeyboardInterrupt
-        
     def alternateRoute(self, num, optimal_path):
         '''To obtain a ranked list of less-than-optimal solutions, the optimal 
         solution must first calculated. This optimal solution is passed in as
@@ -524,6 +517,7 @@ if __name__ == "__main__":
     #search = Pathfinding(True, graphfile)
     search = Pathfinding()
 
-    path = search.shortestPath("28.6118857,-81.196140", "28.5961900,-81.2003121")
+    path = search.shortestPath("28.6118857,-81.196140", "28.5799816,-81.175521")
     #alts = search.alternateRoute(3, path)
     print path
+    writeResultsToFile(path)
