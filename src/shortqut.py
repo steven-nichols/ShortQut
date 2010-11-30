@@ -48,12 +48,14 @@ class ShortqutGUI:
         self.load_osm_file()
         
         #Add the image
+        '''
         bboxTitle = gtk.HBox(False, 6)
         image = gtk.Image()
         image.set_from_file("Shortqut_banner.jpg")
         bboxTitle.add(image)
         image.show()
         vbox.pack_start(bboxTitle, expand = False, fill = False)
+        '''
         
         #Add the buttons
         bbox = gtk.HBox(False, 6)
