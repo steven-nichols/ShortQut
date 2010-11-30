@@ -13,13 +13,12 @@ import clutter
 
 class ShortqutGUI:
     
-    auto_reroute = False
-    
     def __init__(self):
 	global location
 	global talker
         #talker = gpstalker.GPSTalker()
         #talker.runLoop()
+        auto_center = True
 
         self.window = gtk.Window()
         self.window.set_border_width(10)
@@ -36,8 +35,8 @@ class ShortqutGUI:
         self.view.connect('button-release-event', self.mouse_click_cb, self.view)
 
         self.view.set_property('scroll-mode', champlain.SCROLL_MODE_KINETIC)
-        self.view.set_property('zoom-level', 12)
-        self.view.set_property('license-text', "Alpha version, not for release")
+        self.view.set_property('zoom-level', 15)
+        self.view.set_property('license-text', ".")
         self.view.set_property('show-scale', True)
         
         layer = champlain.Layer()
@@ -56,19 +55,17 @@ class ShortqutGUI:
         image.show()
         vbox.pack_start(bboxTitle, expand = False, fill = False)
         
-        #Add the label
-        bbox2 = gtk.HBox(False, 6)
-        label = gtk.Label("Please Choose Your Destination")
-        bbox2.add(label)
-        vbox.pack_start(bbox2, expand = False, fill = False)
-        
         #Add the buttons
         bbox = gtk.HBox(False, 6)
-        
-        button = gtk.CheckButton("Automatic Rerouting")
-        button.set_active(False)
-        button.connect("clicked", self.toggle_auto_reroute)
-        bbox.add(button)
+
+        #Add the label
+        label = gtk.Label("Please Click Your Destination")
+        bbox.add(label)
+
+        center_check = gtk.CheckButton("Centered")
+        center_check.set_active(True)
+        center_check.connect("clicked", self.toggle_auto_centered)
+        bbox.add(center_check)
         
         button = gtk.Button(stock=gtk.STOCK_ZOOM_IN)
         button.connect("clicked", self.zoom_in)
@@ -84,7 +81,7 @@ class ShortqutGUI:
             value=1, step_incr=1))
         self.spinbutton.connect("changed", self.zoom_changed)
         self.view.connect("notify::zoom-level", self.map_zoom_changed)
-        self.spinbutton.set_value(12)
+        self.spinbutton.set_value(15)
         bbox.add(self.spinbutton)
 
         button = gtk.Image()
@@ -143,9 +140,9 @@ class ShortqutGUI:
         route.set_stroke_width(5.0)
         self.view.add_polygon(route)
         
-    #If the box is checked, enable Automatic Rerouting
-    def toggle_auto_reroute(self, widget):
-        auto_reroute = False if auto_reroute else True
+    #If the box is checked, enable Automatic Centering
+    def toggle_auto_centered(self, widget):
+        auto_center = False if auto_center else True
     
     def zoom_in(self, widget):
         self.view.zoom_in()
@@ -235,9 +232,10 @@ def center_gps(view, gps_tuple):
     while(talker.messages.qsize() > 0):
         location = talker.getMsg()
     time, lat, lon = location
-    view.center_on(lat, lon)
     marker.set_position(lat,lon)
     print "Go to: %f %f %f" % (time, lat, lon)
+    if auto_center:
+        view.center_on(lat, lon)
     return True
     
 
