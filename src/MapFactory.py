@@ -39,7 +39,8 @@ class MapFactory:
         #find nearest node or just the road ID or the list of intersections
         # of the road I'm on (database)
         #con_list = (returned above)
-        con_list = db.getNeighbors()
+        con_list = db.getNeighborsFromCoord(cord2name(self.location['lat'], \
+        self.location['lon']))
         for intersection in con_list:
             if get_dist(self.location, instersection) < 100:
                 cur_intersection = intersection
@@ -63,7 +64,8 @@ class MapFactory:
                 #distance to next intersection
                 current_dist = get_dist(self.location, intersection)
                 if 100 > current_dist:
-                    closest_pt = find_segment_end(cur_intersection, self.location)
+                    closest_pt = find_segment_end(cur_intersection, \
+                    self.location)
                     cur_intersection = intersection
             if segment_begin == None:
                 segment_begin = closest_pt
@@ -71,6 +73,8 @@ class MapFactory:
                 segment_end = closest_pt
                 time_taken = segment_end['time'] - segment_begin['time']
                 #send Laura time_taken and segment_begin['time']
+                db.setTravelTime(segment_begin['lat'], segment_begin['lon'], \
+                segment_end['lat'], segment_end['lon'], time_taken)
                 segment_begin = segment_end
         return
     
