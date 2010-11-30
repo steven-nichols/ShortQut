@@ -121,7 +121,7 @@ class Database:
     def setTravelTime(self, lat_start, lon_start, lat_end, lon_end, duration):
         ''' duration = '00:00:26' '''
         #this query inserts a row of data into the times table when eric passes the intersections' coordinates
-        self.cursor.execute("insert into times (int_id1, int_id2, time, duration) select a.int_id, b.int_id, NULL, {0} from (select int_id from intersections where lat = {1} and lon = {2} limit 1) as a, (select int_id from intersections where lat = {3} and lon = {4} limit 1) as b".format(duration, lat_start, lon_start, lat_end, lon_end)
+        self.cursor.execute("insert into times (int_id1, int_id2, time, duration) select a.int_id, b.int_id, NULL, {0} from (select int_id from intersections where lat = {1} and lon = {2} limit 1) as a, (select int_id from intersections where lat = {3} and lon = {4} limit 1) as b".format(duration, lat_start, lon_start, lat_end, lon_end))
 
 
     def getNeighbors(self, node):
