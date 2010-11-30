@@ -1,15 +1,21 @@
 #!/usr/bin/env python
 import os
 import random
-#import gpstalker
+
+import testtalker
 
 import gobject
-
 import champlaingtk
 import champlain
 import champlainmemphis
 import gtk
 import clutter
+
+def gpsfiletoroute(filename):
+    f = open(filename, 'r')
+    return map(lambda line: (float(line[1]), float(line[2])),
+               map(lambda l: l.split(),
+                   f.readlines()))
 
 class ShortqutGUI:
     
@@ -17,15 +23,19 @@ class ShortqutGUI:
         global location
         global talker
         global loading
-        #talker = gpstalker.GPSTalker()
-        #talker.runLoop()
+        global track
+        global marker
+        global auto_center
+        talker = testtalker.TestTalker("data/gps2.out", 0)
+        talker.runLoop()
         auto_center = True
         loading = True
+        track = [] #where I've been
 
         self.window = gtk.Window()
         self.window.set_border_width(10)
         self.window.set_title("Shortqut v0.5a")
-        self.window.connect("destroy", gtk.main_quit)
+        self.window.connect("destroy", lambda x: self.cleanup())
 
         vbox = gtk.VBox(False, 12) 
 
@@ -63,8 +73,8 @@ class ShortqutGUI:
         bbox = gtk.HBox(False, 6)
 
         #Add the label
-        label = gtk.Label("Please Click Your Destination")
-        bbox.add(label)
+        self.label = gtk.Label("Loading OSM File")
+        bbox.add(self.label)
 
         center_check = gtk.CheckButton("Centered")
         center_check.set_active(True)
@@ -101,8 +111,8 @@ class ShortqutGUI:
 
 
         #lat = 28.568542 + (random.random() - 0.5)
-        lat = 28.541492
         #lon = -81.207504 + (random.random() - 0.5)
+        lat = 28.541492
         lon = -81.195965
         self.view.center_on(lat,lon)
         
@@ -116,37 +126,29 @@ class ShortqutGUI:
         layer.add(marker)
         marker.raise_top()
 
-        #location = talker.getMsg()
+        self.draw_route(gpsfiletoroute("data/gps2.out"))
+
+        location = talker.getMsg()
         #gobject.timeout_add(1000, random_view, self.view)
-        #gobject.timeout_add(1000, center_gps, self.view, location)
-        gobject.timeout_add(1000, is_loaded, self.view)
+        gobject.timeout_add(250, center_gps, self.view, location)
+        gobject.timeout_add(1000, is_loaded, self.view, self.label)
+
+    def cleanup(self):
+        global talker
+        talker.setRunning(False)
+        gtk.main_quit()
         
-        self.draw_route()
-        
-    def draw_route(self):
-        #Draw the route
+    def draw_route(self, faff):
         route = champlain.Polygon()
-        #Test sample route
-        route.append_point(28.541492, -81.195965)
-        route.append_point(28.541493, -81.195963)
-        route.append_point(28.541495, -81.195962)
-        route.append_point(28.541498, -81.195958)
-        route.append_point(28.541500, -81.195957)
-        route.append_point(28.541500, -81.195955)
-        route.append_point(28.541497, -81.195953)
-        route.append_point(28.541492, -81.195952)
-        route.append_point(28.541482, -81.195948)
-        route.append_point(28.541408, -81.195938)
-        route.append_point(28.541375, -81.195932)
-        route.append_point(28.541350, -81.195925)
-        route.append_point(28.541330, -81.195917)
-        route.append_point(28.541317, -81.195903)
-        route.append_point(28.541308, -81.195893)
+        for x in faff:
+            route.append_point(x[0], x[1])
         route.set_stroke_width(5.0)
+        route.set_stroke_color(clutter.color_from_string('blue'))
         self.view.add_polygon(route)
         
     #If the box is checked, enable Automatic Centering
     def toggle_auto_centered(self, widget):
+        global auto_center
         auto_center = False if auto_center else True
     
     def zoom_in(self, widget):
@@ -182,18 +184,8 @@ class ShortqutGUI:
         
         self.map_data_source = champlainmemphis.LocalMapDataSource()
         
-        '''
-        win = gtk.Window()
-        win.set_title("Loading")
-        label = gtk.Label("Loading OSM file %s ..." % osm_filename)
-        win.add(label)
-        win.set_position(gtk.WIN_POS_CENTER)
-        win.set_keep_above(False)
-        win.show_all()
-        
-        self.load_osm_file_window = win
-        '''
-        gobject.idle_add(self._load_osm_file, osm_filename)
+        #gobject.idle_add(self._load_osm_file, osm_filename)
+        gobject.timeout_add(10, self._load_osm_file, osm_filename)
 		
     def _load_osm_file(self, filename):
         global loading
@@ -202,10 +194,8 @@ class ShortqutGUI:
         print "Done"
 
         loading = False
-        #self.load_osm_file_window.destroy()
         
         self.source.set_map_data_source(self.map_data_source)
-            
         return False
 
     def load_memphis_rules(self):
@@ -237,27 +227,32 @@ def random_view(view):
     return True
 
 def center_gps(view, gps_tuple):
+    global auto_center
+    global marker
     global location
     global talker
-    while(talker.messages.qsize() > 0):
+    global track
+    if talker.messages.qsize() > 0:
         location = talker.getMsg()
-    time, lat, lon = location
-    marker.set_position(lat,lon)
+        time, lat, lon = location
+        marker.set_position(lat,lon)
+    if len(track) > 0:
+        pass
+        
     print "Go to: %f %f %f" % (time, lat, lon)
     if auto_center:
         view.center_on(lat, lon)
     return True
 
-def is_loaded(view):
+       
+def is_loaded(view, label):
     global loading
-    print 'called is_loaded'
     if loading:
         return True # have the timer run this fn again
     else:
+        label.set_text("ShortQut")
         view.zoom_in()
-        print 'and i\'m never coming back'
         return False # the timer will fizzle out
-    
 
 if __name__ == "__main__":
     gobject.threads_init()
