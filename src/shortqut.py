@@ -130,7 +130,7 @@ class ShortqutGUI:
 
         location = talker.getMsg()
         #gobject.timeout_add(1000, random_view, self.view)
-        gobject.timeout_add(250, center_gps, self.view, location)
+        gobject.timeout_add(500, center_gps, self.view, location)
         gobject.timeout_add(1000, is_loaded, self.view, self.label)
 
     def cleanup(self):
