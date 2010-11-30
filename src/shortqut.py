@@ -14,11 +14,13 @@ import clutter
 class ShortqutGUI:
     
     def __init__(self):
-	global location
-	global talker
+        global location
+        global talker
+        global loading
         #talker = gpstalker.GPSTalker()
         #talker.runLoop()
         auto_center = True
+        loading = True
 
         self.window = gtk.Window()
         self.window.set_border_width(10)
@@ -117,6 +119,7 @@ class ShortqutGUI:
         #location = talker.getMsg()
         #gobject.timeout_add(1000, random_view, self.view)
         #gobject.timeout_add(1000, center_gps, self.view, location)
+        gobject.timeout_add(1000, is_loaded, self.view)
         
         self.draw_route()
         
@@ -179,6 +182,7 @@ class ShortqutGUI:
         
         self.map_data_source = champlainmemphis.LocalMapDataSource()
         
+        '''
         win = gtk.Window()
         win.set_title("Loading")
         label = gtk.Label("Loading OSM file %s ..." % osm_filename)
@@ -188,13 +192,17 @@ class ShortqutGUI:
         win.show_all()
         
         self.load_osm_file_window = win
+        '''
         gobject.idle_add(self._load_osm_file, osm_filename)
 		
     def _load_osm_file(self, filename):
+        global loading
         print "Loading osm file..."
         self.map_data_source.load_map_data(".%s%s" % (os.sep, filename))
         print "Done"
-        self.load_osm_file_window.destroy()
+
+        loading = False
+        #self.load_osm_file_window.destroy()
         
         self.source.set_map_data_source(self.map_data_source)
             
@@ -239,6 +247,16 @@ def center_gps(view, gps_tuple):
     if auto_center:
         view.center_on(lat, lon)
     return True
+
+def is_loaded(view):
+    global loading
+    print 'called is_loaded'
+    if loading:
+        return True # have the timer run this fn again
+    else:
+        view.zoom_in()
+        print 'and i\'m never coming back'
+        return False # the timer will fizzle out
     
 
 if __name__ == "__main__":
