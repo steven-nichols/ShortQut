@@ -118,6 +118,11 @@ class Database:
         log.debug("Travel time between %s and %s is %f seconds." % (node1, node2, dist/speed))
         return dist / speed 
 
+    def setTravelTime(self, lat_start, lon_start, lat_end, lon_end, duration):
+        ''' duration = '00:00:26' '''
+        #this query inserts a row of data into the times table when eric passes the intersections' coordinates
+        self.cursor.execute("insert into times (int_id1, int_id2, time, duration) select a.int_id, b.int_id, NULL, {0} from (select int_id from intersections where lat = {1} and lon = {2} limit 1) as a, (select int_id from intersections where lat = {3} and lon = {4} limit 1) as b".format(duration, lat_start, lon_start, lat_end, lon_end))
+
 
     def getNeighbors(self, node):
         '''Return a list of neighbor nodes, that is, the names of nodes which
@@ -130,10 +135,16 @@ class Database:
         lat, lon = node.split(",")[0], node.split(",")[1]
         
         #self.cursor.execute("SELECT name, road_id, segment_id, int1lat, int1lon, int2lat, int2lon FROM road_names, (select road_id, segment_id, int1lat,int1lon,int2lat,int2lon from segments WHERE (int1lat = '28.5412667' and int1lon = '-81.1958727') or (int2lat = '28.5412667' and int2lon = '-81.1958727')) as a where a.road_id = road_names.id")
-        # Neighbor nodes
-        self.cursor.execute("select road_id, segment_id, int2lat as lat, int2lon as lon from segments where int1lat = {0} and int1lon = {1} union select road_id, segment_id, int1lat as lat, int1lon as lon from segments where int2lat = {0} and int2lon = {1} and oneway = 0;".format(lat, lon))
-        # Intersections
-        self.cursor.execute("select distinct lat, lon from ( select road_id1, road_id2 from intersections where lat = 28.5815770 and lon = -81.1719860) as a, ( select road_id1, road_id2, lat, lon, sqrt( pow((28.5815770 - lat), 2) + pow((-81.1719860 - lon), 2) ) as distance from intersections order by distance) as b where (a.road_id1 = b.road_id1 or a.road_id2 = b.road_id1 or a.road_id1 = b.road_id2 or a.road_id2 = b.road_id2)")
+        # All neighbor nodes
+        #self.cursor.execute("select int2lat as lat, int2lon as lon from segments where int1lat = {0} and int1lon = {1} union select int1lat as lat, int1lon as lon from segments where int2lat = {0} and int2lon = {1} and oneway = 0;".format(lat, lon))
+        # Just intersections
+        self.cursor.execute("select distinct lat, lon from ( select road_id1, road_id2 from intersections where lat = {0} and lon = {1}) as a, ( select road_id1, road_id2, lat, lon, sqrt( pow(({0} - lat), 2) + pow(({1} - lon), 2) ) as distance from intersections order by distance) as b where (a.road_id1 = b.road_id1 or a.road_id2 = b.road_id1 or a.road_id1 = b.road_id2 or a.road_id2 = b.road_id2) limit 4".format(lat, lon))
+        for row in self.cursor.fetchall():
+            neighbors.append(cord2name(row[0], row[1]))
+        return neighbors
+
+    def getNeighborsFromCoord(self, lat, lon):
+        self.cursor.execute("select distinct lat, lon from intersections where road_id1 = ( select road_id from (select road_id, sqrt(pow((int1lat - {0}),2) + pow((int1lon - {1}),2)) as distance from segments group by road_id order by distance) as a limit 1) or road_id2 = ( select road_id from (select road_id, sqrt(pow((int1lat - {0}),2) + pow((int1lon - {1}),2)) as distance from segments group by road_id order by distance) as a limit 1)".format(lat, lon))
         for row in self.cursor.fetchall():
             neighbors.append(cord2name(row[0], row[1]))
         return neighbors
@@ -146,5 +157,7 @@ if __name__ == "__main__":
     
     neighbors = db.getNeighbors(cord2name("28.5815770", "-81.1719860"))
     print(neighbors)
-
+    
+    neighbors = db.getNeighbors(cord2name("28.5815770", "-81.1719860"))
+    print(neighbors)
     #print(db.getAvgTravelTime())
