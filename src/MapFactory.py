@@ -2,6 +2,8 @@ import math
 import time
 import gpstalker
 from testtalker import TestTalker
+#from gpstalker import GPSTalker
+from Database import Database
 
 #CONVERSIONS
 #distance between 100.0001 N, 100.0001 W 
@@ -18,7 +20,7 @@ class MapFactory:
         #mytalker = GPSTalker()
         self.mytalker = TestTalker("data/gps3.out", .1)
         loco = self.mytalker.getMsg()
-        print loco
+        db = Database()
         self.get_bearings()
         return
     
@@ -37,12 +39,12 @@ class MapFactory:
         #find nearest node or just the road ID or the list of intersections
         # of the road I'm on (database)
         #con_list = (returned above)
-        """for intersection in con_list:
+        con_list = db.getNeighbors()
+        for intersection in con_list:
             if get_dist(self.location, instersection) < 100:
                 cur_intersection = intersection
                 map_points(cur_intersection)
                 break
-        """
 
     def map_points(self, cur_intersection):
         time_taken = None   #road segment duration
@@ -54,10 +56,15 @@ class MapFactory:
         
         while running:  #loop to get data from queue
             self.update_location()
-            #distance to next intersection
-            current_dist = get_dist(self.location, cur_intersection)
-            if 100 > current_dist:
-                closest_pt = find_segment_end(cur_intersection, self.location)
+            #find next intersections
+            con_list = db.getNeighbors(cord2name(self.location['lat'], self.\
+            location['lon']))
+            for intersection in con_list:
+                #distance to next intersection
+                current_dist = get_dist(self.location, intersection)
+                if 100 > current_dist:
+                    closest_pt = find_segment_end(cur_intersection, self.location)
+                    cur_intersection = intersection
             if segment_begin == None:
                 segment_begin = closest_pt
             else:
