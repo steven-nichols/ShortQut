@@ -138,7 +138,13 @@ class Database:
         # All neighbor nodes
         #self.cursor.execute("select int2lat as lat, int2lon as lon from segments where int1lat = {0} and int1lon = {1} union select int1lat as lat, int1lon as lon from segments where int2lat = {0} and int2lon = {1} and oneway = 0;".format(lat, lon))
         # Just intersections
-        self.cursor.execute("select distinct lat, lon from ( select road_id1, road_id2 from intersections where lat = {0} and lon = {1}) as a, ( select road_id1, road_id2, lat, lon, sqrt( pow(({0} - lat), 2) + pow(({1} - lon), 2) ) as distance from intersections order by distance) as b where (a.road_id1 = b.road_id1 or a.road_id2 = b.road_id1 or a.road_id1 = b.road_id2 or a.road_id2 = b.road_id2)".format(lat, lon))
+        self.cursor.execute("select distinct lat, lon from ( select road_id1, road_id2 from intersections where lat = {0} and lon = {1}) as a, ( select road_id1, road_id2, lat, lon, sqrt( pow(({0} - lat), 2) + pow(({1} - lon), 2) ) as distance from intersections order by distance) as b where (a.road_id1 = b.road_id1 or a.road_id2 = b.road_id1 or a.road_id1 = b.road_id2 or a.road_id2 = b.road_id2) limit 4".format(lat, lon))
+        for row in self.cursor.fetchall():
+            neighbors.append(cord2name(row[0], row[1]))
+        return neighbors
+
+    def getNeighborsFromCoord(self, lat, lon):
+        self.cursor.execute("select distinct lat, lon from intersections where road_id1 = ( select road_id from (select road_id, sqrt(pow((int1lat - {0}),2) + pow((int1lon - {1}),2)) as distance from segments group by road_id order by distance) as a limit 1) or road_id2 = ( select road_id from (select road_id, sqrt(pow((int1lat - {0}),2) + pow((int1lon - {1}),2)) as distance from segments group by road_id order by distance) as a limit 1)".format(lat, lon))
         for row in self.cursor.fetchall():
             neighbors.append(cord2name(row[0], row[1]))
         return neighbors
@@ -151,5 +157,7 @@ if __name__ == "__main__":
     
     neighbors = db.getNeighbors(cord2name("28.5815770", "-81.1719860"))
     print(neighbors)
-
+    
+    neighbors = db.getNeighbors(cord2name("28.5815770", "-81.1719860"))
+    print(neighbors)
     #print(db.getAvgTravelTime())
