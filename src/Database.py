@@ -11,7 +11,7 @@ except ImportError:
             "it is installed and try again.")
     raise
 from Log import Log
-log = Log('Database', 'debug')
+log = Log('Database', 'info')
 
 def cord2name(lat, lon):
     '''Convert a set of cordinates to a unique string.'''
@@ -83,14 +83,14 @@ class Database:
             self.cursor.execute("select int_id from intersections where lat = %s and lon = %s;" % (lat, lon))
             log.debug("select int_id from intersections where lat = %s and lon = %s;" % (lat, lon))
             set1 = "%d,%d" % (self.cursor.fetchone()[0], self.cursor.fetchone()[0])
-            print(set1)
+            #print(set1)
 
             lat, lon = name2cord(end)[0], name2cord(end)[1]
             self.cursor.execute("select int_id from intersections where lat = %s and lon = %s;" % (lat, lon))
             log.debug("select int_id from intersections where lat = %s and lon = %s;" % (lat, lon))
 
             set2 = "%d,%d" % (self.cursor.fetchone()[0], self.cursor.fetchone()[0])
-            print(set2)
+            #print(set2)
 
             self.cursor.execute("select sec_to_time(avg(time_to_sec(duration))) as avg_time from times where int_id1 in (%s) and int_id2 in (%s) and hour(time) between 5 and 6;" % (set1, set2))
             return self.cursor.fetchone()[0]
