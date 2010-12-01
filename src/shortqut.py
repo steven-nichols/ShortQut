@@ -138,12 +138,12 @@ class ShortqutGUI:
         talker.setRunning(False)
         gtk.main_quit()
         
-    def draw_route(self, faff):
+    def draw_route(self, list_of_points, color='blue'):
         route = champlain.Polygon()
-        for x in faff:
+        for x in list_of_points:
             route.append_point(x[0], x[1])
         route.set_stroke_width(5.0)
-        route.set_stroke_color(clutter.color_from_string('blue'))
+        route.set_stroke_color(clutter.color_from_string(color))
         self.view.add_polygon(route)
         
     #If the box is checked, enable Automatic Centering
