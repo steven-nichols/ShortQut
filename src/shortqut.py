@@ -24,6 +24,7 @@ class ShortqutGUI:
         self.loading = True #loading osm file?
         self.track = [] #where I've been
         self.track_route = None #route of track
+        self.next_click = False #when true, next click choose destination
         self.marker = None #clutter marker of where I am right now
         self.auto_center = True #auto center map
         self.running = True
@@ -126,8 +127,8 @@ class ShortqutGUI:
         gobject.timeout_add(500, self.update_tick)
         gobject.timeout_add(1000, self.is_loaded)
 
-    def set_destination(self):
-        pass
+    def set_destination(self, widget):
+        self.next_click = True
 
     def setup_marker(self):
         layer = champlain.Layer()
@@ -178,8 +179,13 @@ class ShortqutGUI:
 
     def mouse_click_cb(self, actor, event, view):
         lat, lon = view.get_coords_from_event(event)
-        print "Mouse click at: %f %f" % (lat, lon)
-        self.view.center_on(lat, lon)
+        if self.next_click:
+            time, from_lat, from_lon = self.location
+            print "Route from %f %f to %f %f" % (from_lat, from_lon, lat, lon)
+            self.next_click = False
+        else:
+            print "Mouse click at: %f %f" % (lat, lon)
+            self.view.center_on(lat, lon)
         return self.running
 
     def zoom_changed(self, widget):
@@ -240,11 +246,11 @@ class ShortqutGUI:
             self.location = self.talker.getMsg()
             time, lat, lon = self.location
             self.marker.set_position(lat,lon)
-        print "Go to: %f %f %f" % (time, lat, lon)
-        self.track.append( (lat,lon) )
-        self.refresh_track_route()
-        if self.auto_center:
-            self.view.center_on(lat, lon)
+            #print "Go to: %f %f %f" % (time, lat, lon)
+            self.track.append( (lat,lon) )
+            self.refresh_track_route()
+            if self.auto_center:
+                self.view.center_on(lat, lon)
         return self.running
 
     def is_loaded(self):
