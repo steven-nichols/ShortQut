@@ -48,6 +48,14 @@ class TestSequenceFunctions(unittest.TestCase):
         pq.push(0,range(0, 10))
         self.assertEqual(pq.pop()[1], range(0, 10))
     
+    def test_dict(self):
+        '''Push a dictionary'''
+        pq = PriorityQueue()
+        d = {'a':10, 'b':4}
+        
+        pq.push(0, d)
+        self.assertEqual(pq.pop()[1], d)
+    
     def test_reprioritize(self):
         
         pq = PriorityQueue()

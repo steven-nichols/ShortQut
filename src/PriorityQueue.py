@@ -19,6 +19,17 @@ class hashablelist(list):
     def toList(self):
         return self
         
+class hashabledict(dict):
+    '''This is kind of a hack to get around a Python restriction that dicts 
+    cannot be used as keys in dictionaries.'''
+    def __key(self):
+        return tuple((k,self[k]) for k in sorted(self))
+        
+    def __hash__(self):
+        return hash(self.__key())
+        
+    def __eq__(self, other):
+        return self.__key() == other.__key()
 
 
 class PriorityQueue:
@@ -42,6 +53,8 @@ class PriorityQueue:
         '''
         if(isinstance(item, list)):
             item = hashablelist(item)
+        if(isinstance(item, dict)):
+            item = hashabledict(item)
         
         if count is None:
             count = next(self.counter)
@@ -71,6 +84,8 @@ class PriorityQueue:
             if count is not self.INVALID:
                 if(isinstance(item, hashablelist)):
                     item = item.toList()
+                if(isinstance(item, hashabledict)):
+                    item = dict(item)
                 self.valid_entries -= 1
                 return (priority, item)
 
@@ -79,6 +94,9 @@ class PriorityQueue:
         '''
         if(isinstance(item, list)):
             item = hashablelist(item)
+        if(isinstance(item, dict)):
+            item = hashabledict(item)
+            
         entry = self.item_finder[item]
         entry[1] = self.INVALID
         self.valid_entries -= 1
@@ -86,6 +104,8 @@ class PriorityQueue:
     def __find(self, item):
         if(isinstance(item, list)):
             item = hashablelist(item)
+        if(isinstance(item, dict)):
+            item = hashabledict(item)
             
         try:
             entry = self.item_finder[item]
@@ -97,10 +117,11 @@ class PriorityQueue:
         '''Change the priority of an item already in the queue or push the item
         if it is not already in the queue.
         '''
-        
         if(isinstance(item, list)):
             item = hashablelist(item)
-        
+        if(isinstance(item, dict)):
+            item = hashabledict(item)
+            
         entry = self.__find(item)
         if entry is not None:
             self.push(priority, item, entry[1])
@@ -118,6 +139,8 @@ class PriorityQueue:
             if count is not self.INVALID:
                 if(isinstance(item, hashablelist)):
                     item = item.toList()
+                if(isinstance(item, hashabledict)):
+                    item = dict(item)
                 l.append(item)
         return l
     

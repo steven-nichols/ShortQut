@@ -2,8 +2,8 @@
 import cProfile
 import sys
 import os
-from PriorityQueue import PriorityQueue
-from Database import Database, name2cord
+from PriorityQueue import PriorityQueue, hashabledict
+from Database import Database, str2coord
 #import Colorer
 from Log import Log
 log = Log('Pathfinding', 'debug', fileout=True)
@@ -19,9 +19,9 @@ def writeResultsToFile(L):
     f.write('<Document>\n')
     for node in L:
         f.write(' <Placemark>\n')
-        f.write(' <name>%s</name>\n' % node)
+        f.write(' <name>{},{}</name>\n'.format(node['lon'], node['lat']))
         f.write(' <Point>\n')
-        f.write(' <coordinates>%s,%s,0</coordinates>\n' % (name2cord(node)[1],name2cord(node)[0]))
+        f.write(' <coordinates>{},{},0</coordinates>\n'.format(node['lon'], node['lat']))
         f.write(' </Point>\n')
         f.write(' </Placemark>\n')
 
@@ -330,7 +330,8 @@ class Pathfinding:
         try:
             log.debug("queue: " + str(queue))
             weight, x = queue.pop()
-            dist[x] = weight
+            hashable_x = hashabledict(x)
+            dist[hashable_x] = weight
             if x == goal:
                 log.info("Found the goal")
                 return True, x
@@ -339,21 +340,21 @@ class Pathfinding:
                 return True, x
                 
             closedset.append(x)
-            
+
             for y in self.neighborNodes(x):
                 if y in closedset:
                     continue                
                 if(exceptions is not None and y in exceptions):
                     continue
                     
-
+                hashable_y = hashabledict(y)
                 costxy = self.timeBetween(x,y)
                 
-                if not dist.has_key(y) or dist[x] + costxy < dist[y]:
-                    dist[y] = dist[x] + costxy
-                    queue.reprioritize(dist[y], y)
-                    came_from[y] = x
-                    log.debug("Update node %s's weight to %g" % (y, dist[y]))
+                if not dist.has_key(hashable_y) or dist[hashable_x] + costxy < dist[hashable_y]:
+                    dist[hashable_y] = dist[hashable_x] + costxy
+                    queue.reprioritize(dist[hashable_y], y)
+                    came_from[hashable_y] = x
+                    log.debug("Update node %s's weight to %g" % (y, dist[hashable_y]))
                     
             return False, None
         except KeyboardInterrupt:
@@ -424,7 +425,7 @@ class Pathfinding:
 
         if not self.debug:
             # Get the neighbors via an SQL query
-            #neighbors = self.db.getNeighborsFromCoord(name2cord(vertex)[0], name2cord(vertex)[1])
+            #neighbors = self.db.getNeighborsFromCoord(str2coord(vertex))
             neighbors = self.db.getNeighbors(vertex)
             log.debug("Neighbors of %s are %s" % (vertex, neighbors))
             return neighbors
@@ -522,7 +523,7 @@ if __name__ == "__main__":
         
     #search = Pathfinding(True, graphfile)
     search = Pathfinding()
-    cProfile.run("search.shortestPath('28.241378,-81.206989', '28.700301,-81.529274')")
+    cProfile.run("search.shortestPath({'lat':28.241378,'lon':-81.206989}, {'lat':28.700301,'lon':-81.529274})")
     #path = search.shortestPath("28.2496933,-81.2789873", "28.624119,-81.207763")
     #alts = search.alternateRoute(3, path)
     #print path
