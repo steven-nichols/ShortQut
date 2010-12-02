@@ -18,7 +18,7 @@ class MapFactory:
     def __init__(self):
         #instantiate a GPSTalker
         #mytalker = GPSTalker()
-        self.mytalker = TestTalker("data/gps3.out", .1)
+        self.mytalker = TestTalker("data/gps3.out", .01)
         self.mytalker.runLoop()
         self.db = Database()
         self.get_bearings()
@@ -45,49 +45,66 @@ class MapFactory:
             self.update_location()
             con_list = self.db.getNeighborsFromCoord(self.location['lat'], \
                 self.location['lon'])
-            print "Con list:", con_list
+            print "Con list:", con_list, "\n"
             for intersection in con_list:
                 if self.get_dist(self.location, intersection) < 100:
-                    segment_begin = intersection
-                    segment_begin['time'] = self.location['time']
-                    self.map_points(segment_begin)
+                    self.find_first_segment(intersection)
                     break
 
-    def map_points(self, cur_intersection):
+    def map_points(self, segment_begin, cur_intersection):
         time_taken = None   #road segment duration
-        segment_begin = None  #Where road segment begins
         print "setting seg begin to None"
         segment_end = None  #Where road segment ends
         closest_pt = None   #our closest point to intersection coordinates
         #con_list = None  #connection list: list of intersections that connect
         running = True
-        if segment_begin == None:
-            segment_begin = cur_intersection
         
         while running:  #loop to get data from queue
             print " Starting looping ness"
             self.update_location()
             #find next intersections
             con_list = self.db.getNeighbors(self.location)
-            for intersection in con_list:
-                #distance to next intersection
-                current_dist = get_dist(self.location, intersection)
-                if 100 > current_dist:
-                    closest_pt = find_segment_end(cur_intersection, \
-                    self.location)
-                    cur_intersection = intersection
-            else:
-                segment_end = closest_pt
-                time_taken = segment_end['time'] - segment_begin['time']
-                #send Laura time_taken and segment_begin['time']
-                print "Setting travel time:", segment_begin['lat'], \
-                segment_begin['lon'], "segment end:", segment_end['lat'], \
-                segment_end['lon'], "time:", time_taken
-                db.setTravelTime(segment_begin['lat'], segment_begin['lon'], \
-                segment_end['lat'], segment_end['lon'], time_taken)
-                segment_begin = segment_end
+            while 100 > self.get_dist(self.location, cur_intersection):
+                for intersection in con_list:
+                    #distance to next intersection
+                    current_dist = get_dist(self.location, intersection)
+                    if 100 > current_dist:
+                        closest_pt = find_segment_end(cur_intersection, \
+                        self.location)
+                        cur_intersection = intersection
+                    segment_end = closest_pt
+                    time_taken = segment_end['time'] - segment_begin['time']
+                    #send Laura time_taken and segment_begin['time']
+                    print "Setting travel time:", segment_begin['lat'], \
+                        segment_begin['lon'], "segment end:", segment_end['lat'], \
+                        segment_end['lon'], "time:", time_taken
+                    db.setTravelTime(segment_begin['lat'], segment_begin['lon'], \
+                        segment_end['lat'], segment_end['lon'], time_taken)
+                    segment_begin = segment_end
         return
     
+    def find_first_segment(self, cur_intersection):
+        print "in find first segment"
+        cur_dist = 100
+        closest_dist = 999999
+        while cur_dist < 125:
+            print "with 125 of first intersection\n"
+            cur_dist = self.get_dist(self.location, cur_intersection)
+            if cur_dist < closest_dist:
+                closest_dist = cur_dist
+                closest_pt = cur_intersection
+                closest_pt['time'] = self.location['time']
+            self.update_location()
+        while True:
+            self.update_location()
+            con_list = self.db.getNeighborsFromCoord(self.location['lat'], \
+                self.location['lon'])
+            for intersection in con_list:
+                if self.get_dist(self.location, intersection) < 100:
+                    self.map_points(closest_pt, intersection)
+                    break
+                    
+                        
     def find_segment_end(self, cur_intersection, closest_pt):
         self.update_location()     
         current_dist = self.get_dist(self.location, cur_intersection)  

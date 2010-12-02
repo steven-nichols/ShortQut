@@ -3,7 +3,7 @@
 coordinates. Also provides the Database class for communicating with
 a MySQL database holding the map data.'''
 import math
-try: 
+try:
     import MySQLdb
     from MySQLdb.constants import FIELD_TYPE
 except ImportError:
@@ -54,7 +54,7 @@ class Database:
                         host = "localhost",
                         user = "root",
                         passwd = "",
-                        db = "db_shortqut") #change this back
+                        db = "shortqut") #change this back
 
         self.cursor = self.conn.cursor()
 
@@ -146,7 +146,6 @@ class Database:
 
     def getNeighborsFromCoord(self, lat, lon):
         neighbors = []
-        print "getting neighbors"
         self.cursor.execute('''select distinct lat, lon from intersections where road_id1 = ( 
             select road_id from (
                 select road_id, sqrt(pow((int1lat - {0}),2) + pow((int1lon - {1}),2)) as distance 
@@ -156,8 +155,8 @@ class Database:
                 select road_id, sqrt(pow((int1lat - {0}),2) + pow((int1lon - {1}),2)) as distance
                 from segments order by distance) as a limit 1)'''.format(lat, lon))
         for row in self.cursor.fetchall():
-            print "row=", row
             neighbors.append({'lat': float(row[0]), 'lon': float(row[1])})
+        print "returning from neighbors"
         return neighbors
 
 if __name__ == "__main__":
