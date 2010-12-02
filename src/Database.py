@@ -3,7 +3,7 @@
 coordinates. Also provides the Database class for communicating with
 a MySQL database holding the map data.'''
 import math
-try: 
+try:
     import MySQLdb
     from MySQLdb.constants import FIELD_TYPE
 except ImportError:
@@ -48,13 +48,13 @@ class Database:
  
         #self.conn = MySQLdb.connect(host = "twiggy",
         #                user = "shortqut_user",
-        #                passwd = "Don'tCommitThis",
+        #                passwd = "Don'tCommitThis", #WTF WHO COMMITTED THIS
         #                db = "shortqut")
         self.conn = MySQLdb.connect(conv=my_conv,
                         host = "localhost",
                         user = "root",
                         passwd = "",
-                        db = "shortqut")
+                        db = "shortqut") #change this back
 
         self.cursor = self.conn.cursor()
 
@@ -132,7 +132,8 @@ class Database:
             ['28.5823810,-81.1701780', '28.5883288,-81.1720451', '28.5802643,-81.1747488']
         '''
         neighbors = []
-        lat, lon = node.split(",")[0], node.split(",")[1]
+        lat = node['lat']
+        lon = node['lon']
         
         #self.cursor.execute("SELECT name, road_id, segment_id, int1lat, int1lon, int2lat, int2lon FROM road_names, (select road_id, segment_id, int1lat,int1lon,int2lat,int2lon from segments WHERE (int1lat = '28.5412667' and int1lon = '-81.1958727') or (int2lat = '28.5412667' and int2lon = '-81.1958727')) as a where a.road_id = road_names.id")
         # All neighbor nodes
@@ -140,14 +141,24 @@ class Database:
         # Just intersections
         #self.cursor.execute("select distinct lat, lon from ( select road_id1, road_id2 from intersections where lat = {0} and lon = {1}) as a, ( select road_id1, road_id2, lat, lon, sqrt( pow(({0} - lat), 2) + pow(({1} - lon), 2) ) as distance from intersections order by distance) as b where (a.road_id1 = b.road_id1 or a.road_id2 = b.road_id1 or a.road_id1 = b.road_id2 or a.road_id2 = b.road_id2) ".format(lat, lon))
         for row in self.cursor.fetchall():
-            neighbors.append(cord2name(row[0], row[1]))
+            neighbors.append({'lat': float(row[0]), 'lon': float(row[1])})
         return neighbors
 
+    #returns the two closest points from the segments table
     def getNeighborsFromCoord(self, lat, lon):
         neighbors = []
-        self.cursor.execute("select distinct lat, lon from intersections where road_id1 = ( select road_id from (select road_id, sqrt(pow((int1lat - {0}),2) + pow((int1lon - {1}),2)) as distance from segments group by road_id order by distance) as a limit 1) or road_id2 = ( select road_id from (select road_id, sqrt(pow((int1lat - {0}),2) + pow((int1lon - {1}),2)) as distance from segments group by road_id order by distance) as a limit 1)".format(lat, lon))
+        self.cursor.execute('''select distinct lat, lon from intersections where road_id1 = ( 
+            select road_id from (
+                select road_id, sqrt(pow((int1lat - {0}),2) + pow((int1lon - {1}),2)) as distance 
+                from segments order by distance) as a limit 1) 
+        or road_id2 = ( 
+            select road_id from (
+                select road_id, sqrt(pow((int1lat - {0}),2) + pow((int1lon - {1}),2)) as distance
+                from segments order by distance) as a limit 1)'''.format(lat, lon))
+
         for row in self.cursor.fetchall():
-            neighbors.append(cord2name(row[0], row[1]))
+            neighbors.append({'lat': float(row[0]), 'lon': float(row[1])})
+        print "returning from neighbors"
         return neighbors
 
 if __name__ == "__main__":
@@ -156,9 +167,10 @@ if __name__ == "__main__":
     #for row in db.getTimes():
     #    print(row)
     
-    neighbors = db.getNeighbors(cord2name("28.2496933", "-81.2789873"))
+    node = {'lat': 28.5815770, 'lon': -81.1719860}
+    neighbors = db.getNeighbors(node)
     print(neighbors)
     
-    neighbors = db.getNeighborsFromCoord("28.5815770", "-81.1719860")
+    neighbors = db.getNeighbors(node)
     print(neighbors)
     #print(db.getAvgTravelTime())
