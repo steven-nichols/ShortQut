@@ -3,7 +3,7 @@ import time
 import gpstalker
 from testtalker import TestTalker
 #from gpstalker import GPSTalker
-from Database import Database
+from Database import Database, cord2name
 
 #CONVERSIONS
 #distance between 100.0001 N, 100.0001 W 
@@ -19,8 +19,8 @@ class MapFactory:
         #instantiate a GPSTalker
         #mytalker = GPSTalker()
         self.mytalker = TestTalker("data/gps3.out", .1)
-        loco = self.mytalker.getMsg()
-        db = Database()
+        self.mytalker.runLoop()
+        self.db = Database()
         self.get_bearings()
         return
     
@@ -28,38 +28,47 @@ class MapFactory:
         return location
         
     def update_location(self):
-        while not self.mytalker.getMsg():
-            time.sleep(.5)
+        #while not self.mytalker.getMsg():
+        time.sleep(.1)
         loc = self.mytalker.getMsg()
+        print "loc=", loc
         self.location = {'time': loc[0], 'lat': loc[1], 'lon': loc[2]}
         
     def get_bearings(self):
         cur_intersection = None    #Where road segment begins
         self.update_location()
-        #find nearest node or just the road ID or the list of intersections
-        # of the road I'm on (database)
-        #con_list = (returned above)
-        con_list = db.getNeighborsFromCoord(cord2name(self.location['lat'], \
-        self.location['lon']))
-        for intersection in con_list:
-            if get_dist(self.location, instersection) < 100:
-                cur_intersection = intersection
-                map_points(cur_intersection)
-                break
+        #find the list of intersections of the road I'm on (database)
+        con_list = self.db.getNeighborsFromCoord(self.location['lat'], \
+            self.location['lon'])
+        print "con_list", con_list
+        while True:
+            self.update_location()
+            con_list = self.db.getNeighborsFromCoord(self.location['lat'], \
+                self.location['lon'])
+            print "Con list:", con_list
+            for intersection in con_list:
+                if self.get_dist(self.location, intersection) < 100:
+                    segment_begin = intersection
+                    segment_begin['time'] = self.location['time']
+                    self.map_points(segment_begin)
+                    break
 
     def map_points(self, cur_intersection):
         time_taken = None   #road segment duration
         segment_begin = None  #Where road segment begins
+        print "setting seg begin to None"
         segment_end = None  #Where road segment ends
         closest_pt = None   #our closest point to intersection coordinates
         #con_list = None  #connection list: list of intersections that connect
         running = True
+        if segment_begin == None:
+            segment_begin = cur_intersection
         
         while running:  #loop to get data from queue
+            print " Starting looping ness"
             self.update_location()
             #find next intersections
-            con_list = db.getNeighbors(cord2name(self.location['lat'], self.\
-            location['lon']))
+            con_list = self.db.getNeighbors(self.location)
             for intersection in con_list:
                 #distance to next intersection
                 current_dist = get_dist(self.location, intersection)
@@ -67,12 +76,13 @@ class MapFactory:
                     closest_pt = find_segment_end(cur_intersection, \
                     self.location)
                     cur_intersection = intersection
-            if segment_begin == None:
-                segment_begin = closest_pt
             else:
                 segment_end = closest_pt
                 time_taken = segment_end['time'] - segment_begin['time']
                 #send Laura time_taken and segment_begin['time']
+                print "Setting travel time:", segment_begin['lat'], \
+                segment_begin['lon'], "segment end:", segment_end['lat'], \
+                segment_end['lon'], "time:", time_taken
                 db.setTravelTime(segment_begin['lat'], segment_begin['lon'], \
                 segment_end['lat'], segment_end['lon'], time_taken)
                 segment_begin = segment_end
@@ -80,8 +90,8 @@ class MapFactory:
     
     def find_segment_end(self, cur_intersection, closest_pt):
         self.update_location()     
-        current_dist = get_dist(self.location, cur_intersection)  
-        closest_pt_dist = get_dist(closest_pt, cur_intersection)
+        current_dist = self.get_dist(self.location, cur_intersection)  
+        closest_pt_dist = self.get_dist(closest_pt, cur_intersection)
         if closest_pt_dist > current_dist:
             closest_pt['time'] = self.location['time']
             closest_pt['lat'] = cur_intersection[0]
@@ -95,12 +105,12 @@ class MapFactory:
         coord_dist = math.sqrt(math.pow(abs(pt2['lat'] - pt1['lat']),2) +  \
         math.pow(abs(pt2['lon'] - pt1['lon']),2))
         dist = (coord_dist*10000)*36.5 #distance between pts in ft
+        return dist
 
     def get_vel(self, pt1, pt2):
         coord_dist = math.sqrt(math.pow(abs(pt2['lat'] - pt1['lat']),2) +  \
         math.pow(abs(pt2['lon'] - pt1['lon']),2))
         dist = (coord_dist*10000)*36.5 #distance between pts in ft
-        #print "point 1 lat:", pt1_lat,"point 1 lon ",pt1_lon,"dist/vel = ",dist
         tim = pt2['time']-pt1['time'] #almost always 1 sec exactly
         vel = ((dist/5280)*3600)/(tim)  #vel in MPH
         return vel
