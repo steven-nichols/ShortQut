@@ -3,7 +3,6 @@ import os
 import random
 
 import testtalker
-import Database
 
 import gobject
 import champlaingtk
@@ -31,7 +30,9 @@ class ShortqutGUI:
         self.running = True
         self.tick = 1
 
-        self.talker = testtalker.TestTalker("data/gps2.out", 0)
+        self.data_filename = "data/gps2.out"
+
+        self.talker = testtalker.TestTalker(self.data_filename, 0)
         self.talker.runLoop()
 
         self.window = gtk.Window()
@@ -58,7 +59,6 @@ class ShortqutGUI:
         self.load_memphis_rules()
         self.load_osm_file()
         
-        '''
         #Add the image
         bboxTitle = gtk.HBox(False, 6)
         image = gtk.Image()
@@ -66,14 +66,15 @@ class ShortqutGUI:
         bboxTitle.add(image)
         image.show()
         vbox.pack_start(bboxTitle, expand = False, fill = False)
-        '''
         
         #Add the buttons
         bbox = gtk.HBox(False, 6)
 
+        '''
         button = gtk.Button("Set")
         button.connect("clicked", self.set_destination)
         bbox.add(button)
+        '''
         
         #Add the label
         self.label = gtk.Label("Loading OSM File")
@@ -112,19 +113,12 @@ class ShortqutGUI:
 
         self.window.show_all()
 
-
-        '''
-        lat = 28.541492
-        lon = -81.195965
-        self.view.center_on(lat,lon)
-        '''
-        
         self.marker = self.setup_marker()        
         
-        #self.draw_route(gpsfiletoroute("data/gps2.out"))
+        self.draw_route(gpsfiletoroute(self.data_filename))
 
         #self.location = self.talker.getMsg()
-        gobject.timeout_add(500, self.update_tick)
+        gobject.timeout_add(300, self.update_tick)
         gobject.timeout_add(1000, self.is_loaded)
 
     def set_destination(self, widget):
@@ -155,7 +149,7 @@ class ShortqutGUI:
         if len(self.track) > 1:
             if self.track_route is not None:
                 self.view.remove_polygon(self.track_route)
-            self.track_route = self.draw_route(self.track, 'purple')
+            self.track_route = self.draw_route(self.track, 'red')
             
     def draw_route(self, list_of_points, color='blue'):
         route = champlain.Polygon()
