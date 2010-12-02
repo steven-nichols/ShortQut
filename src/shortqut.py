@@ -3,6 +3,7 @@ import os
 import random
 
 import testtalker
+import Database
 
 import gobject
 import champlaingtk
@@ -44,7 +45,6 @@ class ShortqutGUI:
         champ.set_size_request(640,480)
 
         self.view = champ.get_view()
-        help(self.view)
         self.view.set_reactive(True)
         self.view.connect('button-release-event', self.mouse_click_cb, self.view)
 
