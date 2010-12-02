@@ -144,6 +144,7 @@ class Database:
             neighbors.append({'lat': float(row[0]), 'lon': float(row[1])})
         return neighbors
 
+    #returns the two closest points from the segments table
     def getNeighborsFromCoord(self, lat, lon):
         neighbors = []
         self.cursor.execute('''select distinct lat, lon from intersections where road_id1 = ( 
