@@ -59,7 +59,6 @@ class ShortqutGUI:
         self.load_memphis_rules()
         self.load_osm_file()
         
-        '''
         #Add the image
         bboxTitle = gtk.HBox(False, 6)
         image = gtk.Image()
@@ -67,7 +66,6 @@ class ShortqutGUI:
         bboxTitle.add(image)
         image.show()
         vbox.pack_start(bboxTitle, expand = False, fill = False)
-        '''
         
         #Add the buttons
         bbox = gtk.HBox(False, 6)
@@ -120,7 +118,7 @@ class ShortqutGUI:
         self.draw_route(gpsfiletoroute(self.data_filename))
 
         #self.location = self.talker.getMsg()
-        gobject.timeout_add(500, self.update_tick)
+        gobject.timeout_add(300, self.update_tick)
         gobject.timeout_add(1000, self.is_loaded)
 
     def set_destination(self, widget):
