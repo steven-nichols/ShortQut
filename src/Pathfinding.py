@@ -3,13 +3,30 @@ import cProfile
 import sys
 import os
 from PriorityQueue import PriorityQueue
-from Database import Database
+from Database import Database, name2cord
 #import Colorer
 from Log import Log
-log = Log('Pathfinding', 'info')
+log = Log('Pathfinding', 'debug', fileout=True)
 
 
 #time_periods = 
+def writeResultsToFile(L):
+    '''A debug function'''
+    log.info("Writing partial results to file")
+    f = open("results.kml", "w")
+    f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+    f.write('<kml xmlns="http://www.opengis.net/kml/2.2">\n')
+    f.write('<Document>\n')
+    for node in L:
+        f.write(' <Placemark>\n')
+        f.write(' <name>%s</name>\n' % node)
+        f.write(' <Point>\n')
+        f.write(' <coordinates>%s,%s,0</coordinates>\n' % (name2cord(node)[1],name2cord(node)[0]))
+        f.write(' </Point>\n')
+        f.write(' </Placemark>\n')
+
+    f.write('</Document>\n')
+    f.write('</kml>\n')
 
 def weightedAvg2(mylist, current_time_period):
     '''Mylist is a list of tuples of form: (number, time period). The list
@@ -310,33 +327,38 @@ class Pathfinding:
         returns:
             (bool, string) - tuple of form: (is search over?, vertex stopped on)
         '''
-        #log.debug("queue: " + str(queue))
-        weight, x = queue.pop()
-        dist[x] = weight
-        if x == goal:
-            return True, x
-        elif x in revclosedset:
-            #log.info("Meet in the middle: Node " + str(x))
-            return True, x
-            
-        closedset.append(x)
-        
-        for y in self.neighborNodes(x):
-            if y in closedset:
-                continue                
-            if(exceptions is not None and y in exceptions):
-                continue
+        try:
+            log.debug("queue: " + str(queue))
+            weight, x = queue.pop()
+            dist[x] = weight
+            if x == goal:
+                log.info("Found the goal")
+                return True, x
+            elif x in revclosedset:
+                log.info("Meet in the middle: Node " + str(x))
+                return True, x
                 
+            closedset.append(x)
+            
+            for y in self.neighborNodes(x):
+                if y in closedset:
+                    continue                
+                if(exceptions is not None and y in exceptions):
+                    continue
+                    
 
-            costxy = self.timeBetween(x,y)
-            
-            if not dist.has_key(y) or dist[x] + costxy < dist[y]:
-                dist[y] = dist[x] + costxy
-                queue.reprioritize(dist[y], y)
-                came_from[y] = x
-                #log.debug("Update node %s's weight to %g" % (y, dist[y]))
+                costxy = self.timeBetween(x,y)
                 
-        return False, None
+                if not dist.has_key(y) or dist[x] + costxy < dist[y]:
+                    dist[y] = dist[x] + costxy
+                    queue.reprioritize(dist[y], y)
+                    came_from[y] = x
+                    log.debug("Update node %s's weight to %g" % (y, dist[y]))
+                    
+            return False, None
+        except KeyboardInterrupt:
+            writeResultsToFile(closedset)
+
 
     def alternateRoute(self, num, optimal_path):
         '''To obtain a ranked list of less-than-optimal solutions, the optimal 
@@ -402,6 +424,7 @@ class Pathfinding:
 
         if not self.debug:
             # Get the neighbors via an SQL query
+            #neighbors = self.db.getNeighborsFromCoord(name2cord(vertex)[0], name2cord(vertex)[1])
             neighbors = self.db.getNeighbors(vertex)
             log.debug("Neighbors of %s are %s" % (vertex, neighbors))
             return neighbors
@@ -500,7 +523,7 @@ if __name__ == "__main__":
     #search = Pathfinding(True, graphfile)
     search = Pathfinding()
     cProfile.run("search.shortestPath('28.241378,-81.206989', '28.700301,-81.529274')")
-    #path = search.shortestPath("28.241378,-81.206989", "28.700301,-81.529274")
+    #path = search.shortestPath("28.2496933,-81.2789873", "28.624119,-81.207763")
     #alts = search.alternateRoute(3, path)
     #print path
     #print search.pathCost(path)
