@@ -48,7 +48,7 @@ class Database:
  
         #self.conn = MySQLdb.connect(host = "twiggy",
         #                user = "shortqut_user",
-        #                passwd = "Don'tCommitThis",
+        #                passwd = "Don'tCommitThis", #WTF WHO COMMITTED THIS
         #                db = "shortqut")
         self.conn = MySQLdb.connect(conv=my_conv,
                         host = "localhost",
