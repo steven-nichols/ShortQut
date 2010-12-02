@@ -164,10 +164,10 @@ if __name__ == "__main__":
     print(db.getMySQLVersion())
     #for row in db.getTimes():
     #    print(row)
-    
-    neighbors = db.getNeighbors(cord2name("28.5815770", "-81.1719860"))
+    node = {'lat': 28.5815770, 'lon': -81.1719860}
+    neighbors = db.getNeighbors(node)
     print(neighbors)
     
-    neighbors = db.getNeighbors(cord2name("28.5815770", "-81.1719860"))
+    neighbors = db.getNeighbors(node)
     print(neighbors)
     #print(db.getAvgTravelTime())
